@@ -112,7 +112,7 @@ internal abstract class BaseMapInitializer : IMapInitializer
         this._mapDefinition = this.Context.CreateNew<GameMapDefinition>();
         this._mapDefinition.SetGuid(this.MapNumber, this.Discriminator);
         this._mapDefinition.Number = this.MapNumber;
-        this._mapDefinition.Name = this.MapName;
+        this._mapDefinition.Name = MapNameTranslations.Localize(this.MapName);
         this._mapDefinition.Discriminator = this.Discriminator;
         this._mapDefinition.UpdateTerrainFromResources(this.TerrainVersionPrefix);
 

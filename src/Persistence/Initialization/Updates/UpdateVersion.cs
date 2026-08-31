@@ -548,5 +548,35 @@ public enum UpdateVersion
     /// <summary>
     /// The version of the <see cref="ConfigureCastleSiegeEconomyUpdatePlugIn"/>.
     /// </summary>
-    ConfigureCastleSiegeEconomy = 108,
+    ConfigureCastleSiegeEconomy = 116,
+
+    /// <summary>
+    /// The version of the <see cref="AddChineseMapNamesPlugIn"/>.
+    /// </summary>
+    AddChineseMapNames = 108,
+
+    /// <summary>
+    /// The version of the <see cref="AddChineseItemNamesPlugIn"/>.
+    /// </summary>
+    AddChineseItemNames = 109,
+
+    /// <summary>
+    /// The version of the <see cref="AddChineseSkillNamesPlugIn"/>.
+    /// </summary>
+    AddChineseSkillNames = 110,
+
+    /// <summary>The version of the <see cref="AddChineseConfigurationNamesPlugIn"/>.</summary>
+    AddChineseConfigurationNames = 111,
+
+    /// <summary>The version of the <see cref="FixChineseMerchantNamesPlugIn"/>.</summary>
+    FixChineseMerchantNames = 112,
+
+    /// <summary>The version of the <see cref="AuditChineseConfigurationNamesPlugIn"/>.</summary>
+    AuditChineseConfigurationNames = 113,
+
+    /// <summary>The version of the <see cref="FixChineseDropItemGroupNamesPlugIn"/>.</summary>
+    FixChineseDropItemGroupNames = 114,
+
+    /// <summary>The version of the <see cref="CleanInvalidChineseTranslationsPlugIn"/>.</summary>
+    CleanInvalidChineseTranslations = 115,
 }

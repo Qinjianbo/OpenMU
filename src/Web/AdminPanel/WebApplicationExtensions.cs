@@ -47,7 +47,13 @@ public static class WebApplicationExtensions
 
         var supportedCultures = CultureHelper
             .GetAvailableCultures<Properties.Resources>()
-            .Select(culture => culture.TwoLetterISOLanguageName)
+            .Select(culture => culture.Name)
+
+            // The Simplified Chinese satellite resources are part of this project.
+            // Register the specific culture explicitly because neutral "zh" would
+            // not load a satellite assembly located under "zh-CN".
+            .Append("zh-CN")
+            .Distinct(StringComparer.OrdinalIgnoreCase)
             .ToArray();
         services.AddLocalization()
             .Configure<RequestLocalizationOptions>(o =>

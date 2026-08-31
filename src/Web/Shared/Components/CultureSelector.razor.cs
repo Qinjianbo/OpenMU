@@ -34,15 +34,19 @@ public partial class CultureSelector
     /// </summary>
     public string SelectedCultureCode
     {
-        get => CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
+        get => CultureInfo.CurrentUICulture.Name;
         set
         {
-            if (CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == value)
+            if (CultureInfo.CurrentUICulture.Name == value)
             {
                 return;
             }
 
-            CultureInfo.CurrentUICulture = new CultureInfo(value);
+            var culture = new CultureInfo(value);
+            // LocalizedString uses CurrentCulture, while resource files use CurrentUICulture.
+            // Keep both in sync so configuration names and UI resources use the selected language.
+            CultureInfo.CurrentCulture = culture;
+            CultureInfo.CurrentUICulture = culture;
             this.SetCultureInCookie();
         }
     }
