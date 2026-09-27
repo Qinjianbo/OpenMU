@@ -893,5 +893,11 @@ namespace MUnique.OpenMU.Persistence.Initialization.Properties {
         /// <summary>Gets the localized AlignChineseCharacterClassNames_Description text.</summary>
         public static string AlignChineseCharacterClassNames_Description => ResourceManager.GetString("AlignChineseCharacterClassNames_Description", resourceCulture)!;
 
+        /// <summary>Gets the localized AlignChineseMerchantNames_Name text.</summary>
+        public static string AlignChineseMerchantNames_Name => ResourceManager.GetString("AlignChineseMerchantNames_Name", resourceCulture)!;
+
+        /// <summary>Gets the localized AlignChineseMerchantNames_Description text.</summary>
+        public static string AlignChineseMerchantNames_Description => ResourceManager.GetString("AlignChineseMerchantNames_Description", resourceCulture)!;
+
     }
 }

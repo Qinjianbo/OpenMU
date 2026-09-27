@@ -376,4 +376,6 @@
   <data name="FixChaosMixesPlugInSeason6_Description" xml:space="preserve"><value>This update fixes the Chaos Weapon, First Wings, Dinorant, Item Level Upgrade, Second Wings, Third Wings, Cape, SD Potions, Guardian Option, and Secromicon crafting settings; Blue Fenrir (Protect) damage decrease option value; Wizard's Ring wizardry option; lvl 380 item guardian options for Summoner and Rage Fighter.</value></data>
   <data name="AlignChineseCharacterClassNames_Name" xml:space="preserve"><value>Align Simplified Chinese character class names</value></data>
   <data name="AlignChineseCharacterClassNames_Description" xml:space="preserve"><value>Adds missing official Chinese class names and corrects known mistranslations while preserving customized names and other languages.</value></data>
+  <data name="AlignChineseMerchantNames_Name" xml:space="preserve"><value>Align Simplified Chinese merchant names</value></data>
+  <data name="AlignChineseMerchantNames_Description" xml:space="preserve"><value>Adds missing Chinese merchant names and corrects known mistranslations while preserving customized names, shop inventory, and other languages.</value></data>
 </root>
