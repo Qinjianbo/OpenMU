@@ -378,4 +378,6 @@
   <data name="AlignChineseCharacterClassNames_Description" xml:space="preserve"><value>Adds missing official Chinese class names and corrects known mistranslations while preserving customized names and other languages.</value></data>
   <data name="AlignChineseMerchantNames_Name" xml:space="preserve"><value>Align Simplified Chinese merchant names</value></data>
   <data name="AlignChineseMerchantNames_Description" xml:space="preserve"><value>Adds missing Chinese merchant names and corrects known mistranslations while preserving customized names, shop inventory, and other languages.</value></data>
+  <data name="AlignChineseMonsterNames_Name" xml:space="preserve"><value>Align Simplified Chinese monster and NPC names</value></data>
+  <data name="AlignChineseMonsterNames_Description" xml:space="preserve"><value>Adds missing Chinese monster and NPC names and corrects known mistranslations while preserving customized names, other languages, and gameplay settings.</value></data>
 </root>

@@ -339,4 +339,6 @@
   <data name="AlignChineseCharacterClassNames_Description" xml:space="preserve"><value>补齐官方中文职业名称并修正已知误译，保留自定义名称和其他语言。</value></data>
   <data name="AlignChineseMerchantNames_Name" xml:space="preserve"><value>对齐简体中文商人名称</value></data>
   <data name="AlignChineseMerchantNames_Description" xml:space="preserve"><value>补齐中文商人名称并修正已知误译，保留自定义名称、商店商品和其他语言。</value></data>
+  <data name="AlignChineseMonsterNames_Name" xml:space="preserve"><value>对齐简体中文怪物及NPC名称</value></data>
+  <data name="AlignChineseMonsterNames_Description" xml:space="preserve"><value>补齐怪物、NPC及机关的中文名称并修正已知误译，保留自定义名称、其他语言及战斗配置。</value></data>
 </root>
