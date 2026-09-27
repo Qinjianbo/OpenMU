@@ -584,4 +584,19 @@ public enum UpdateVersion
     /// The version of the <see cref="AddDoppelgangerDataUpdatePlugIn"/>.
     /// </summary>
     AddDoppelgangerData = 115,
+
+    /// <summary>
+    /// The version of the <see cref="AlignChineseCharacterClassNamesPlugIn075"/>.
+    /// </summary>
+    AlignChineseCharacterClassNames075 = 116,
+
+    /// <summary>
+    /// The version of the <see cref="AlignChineseCharacterClassNamesPlugIn095d"/>.
+    /// </summary>
+    AlignChineseCharacterClassNames095d = 117,
+
+    /// <summary>
+    /// The version of the <see cref="AlignChineseCharacterClassNamesPlugInSeason6"/>.
+    /// </summary>
+    AlignChineseCharacterClassNamesSeason6 = 118,
 }

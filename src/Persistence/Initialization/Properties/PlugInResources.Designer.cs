@@ -887,5 +887,11 @@ namespace MUnique.OpenMU.Persistence.Initialization.Properties {
         /// <summary>Gets the localized FixChaosMixesPlugInSeason6_Description text.</summary>
         public static string FixChaosMixesPlugInSeason6_Description => ResourceManager.GetString("FixChaosMixesPlugInSeason6_Description", resourceCulture)!;
 
+        /// <summary>Gets the localized AlignChineseCharacterClassNames_Name text.</summary>
+        public static string AlignChineseCharacterClassNames_Name => ResourceManager.GetString("AlignChineseCharacterClassNames_Name", resourceCulture)!;
+
+        /// <summary>Gets the localized AlignChineseCharacterClassNames_Description text.</summary>
+        public static string AlignChineseCharacterClassNames_Description => ResourceManager.GetString("AlignChineseCharacterClassNames_Description", resourceCulture)!;
+
     }
 }
