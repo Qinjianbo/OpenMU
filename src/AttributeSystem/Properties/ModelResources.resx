@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="AttributeDefinition_TypeCaption" xml:space="preserve"><value>Attribute</value></data>
+  <data name="AttributeDefinition_TypeCaptionPlural" xml:space="preserve"><value>Attributes</value></data>
+  <data name="AttributeDefinition_TypeDescription" xml:space="preserve"><value>Defines an attribute used in game calculations.</value></data>
+  <data name="AttributeDefinition_Id_Caption" xml:space="preserve"><value>Identifier</value></data>
+  <data name="AttributeDefinition_Designation_Caption" xml:space="preserve"><value>Designation</value></data>
+  <data name="AttributeDefinition_Designation_Description" xml:space="preserve"><value>The stored name. Built-in names may be used by configuration updates.</value></data>
+  <data name="AttributeDefinition_Description_Caption" xml:space="preserve"><value>Description</value></data>
+  <data name="AttributeDefinition_Description_Description" xml:space="preserve"><value>The stored description. A translation is displayed below when available.</value></data>
+  <data name="AttributeDefinition_MaximumValue_Caption" xml:space="preserve"><value>Maximum Value</value></data>
+  <data name="AttributeDefinition_MaximumValue_Description" xml:space="preserve"><value>Optional upper limit for the attribute.</value></data>
+  <data name="AggregateType_AddRaw_Caption" xml:space="preserve"><value>Add Raw</value></data>
+  <data name="AggregateType_Multiplicate_Caption" xml:space="preserve"><value>Multiplicate</value></data>
+  <data name="AggregateType_AddFinal_Caption" xml:space="preserve"><value>Add Final</value></data>
+  <data name="AggregateType_Maximum_Caption" xml:space="preserve"><value>Maximum</value></data>
+</root>

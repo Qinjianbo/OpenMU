@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="AttributeDefinition_TypeCaption" xml:space="preserve"><value>属性</value></data>
+  <data name="AttributeDefinition_TypeCaptionPlural" xml:space="preserve"><value>属性列表</value></data>
+  <data name="AttributeDefinition_TypeDescription" xml:space="preserve"><value>定义游戏计算中使用的属性。</value></data>
+  <data name="AttributeDefinition_Id_Caption" xml:space="preserve"><value>标识符</value></data>
+  <data name="AttributeDefinition_Designation_Caption" xml:space="preserve"><value>名称</value></data>
+  <data name="AttributeDefinition_Designation_Description" xml:space="preserve"><value>数据库中保存的原始名称。内置英文名称可能被配置更新使用，中文显示名列在输入框下方。</value></data>
+  <data name="AttributeDefinition_Description_Caption" xml:space="preserve"><value>说明</value></data>
+  <data name="AttributeDefinition_Description_Description" xml:space="preserve"><value>数据库中保存的原始说明。有对应中文翻译时，会显示在输入框下方。</value></data>
+  <data name="AttributeDefinition_MaximumValue_Caption" xml:space="preserve"><value>最大值</value></data>
+  <data name="AttributeDefinition_MaximumValue_Description" xml:space="preserve"><value>属性数值的可选上限。</value></data>
+  <data name="AggregateType_AddRaw_Caption" xml:space="preserve"><value>基础值相加</value></data>
+  <data name="AggregateType_Multiplicate_Caption" xml:space="preserve"><value>相乘</value></data>
+  <data name="AggregateType_AddFinal_Caption" xml:space="preserve"><value>最终值相加</value></data>
+  <data name="AggregateType_Maximum_Caption" xml:space="preserve"><value>取最大值</value></data>
+</root>

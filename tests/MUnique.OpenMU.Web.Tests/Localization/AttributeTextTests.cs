@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.Extensions.DependencyInjection;
 using MUnique.OpenMU.AttributeSystem;
+using MUnique.OpenMU.DataModel;
 using MUnique.OpenMU.Persistence;
 using MUnique.OpenMU.Web.Shared.Components.Form;
 using MUnique.OpenMU.Web.Shared.Services;
@@ -33,9 +34,11 @@ public class AttributeTextTests
             var component = context.Render<CascadingValue<EditContext>>(parameters => parameters
                 .Add(cascade => cascade.Value, new EditContext(attribute))
                 .AddChildContent<TextField>(fields => fields
-                .Add(field => field.Value, attribute.Designation!)
-                .Add(field => field.ValueExpression, () => attribute.Designation!)
-                .Add(field => field.ValueChanged, value => attribute.Designation = value)));
+                    .Add(field => field.Value, attribute.Designation!)
+                    .Add(field => field.ValueExpression, () => attribute.Designation!)
+                    .Add(field => field.ValueChanged, value => attribute.Designation = value)));
+            Assert.That(typeof(AttributeDefinition).GetTypeCaption(), Is.EqualTo("属性"));
+            Assert.That(component.Find("label").TextContent, Does.StartWith("名称"));
             Assert.That(attribute.GetName(), Is.EqualTo("基础力量"));
             Assert.That(component.Find("input").GetAttribute("value"), Is.EqualTo("Base Strength"));
             Assert.That(component.Find(".form-text").TextContent, Is.EqualTo("基础力量"));
