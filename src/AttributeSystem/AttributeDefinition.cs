@@ -94,7 +94,7 @@ public class AttributeDefinition : IEquatable<AttributeDefinition>
     /// </returns>
     public override string? ToString()
     {
-        return this.Designation;
+        return this.GetDisplayName();
     }
 
     /// <summary>

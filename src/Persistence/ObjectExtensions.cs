@@ -6,6 +6,7 @@ namespace MUnique.OpenMU.Persistence;
 
 using System.Collections.Concurrent;
 using System.Reflection;
+using MUnique.OpenMU.AttributeSystem;
 using MUnique.OpenMU.Interfaces;
 
 /// <summary>
@@ -49,6 +50,11 @@ public static class ObjectExtensions
     /// <returns>The name of an object.</returns>
     public static string GetName(this object item)
     {
+        if (item is AttributeDefinition attribute)
+        {
+            return attribute.GetDisplayName() ?? string.Empty;
+        }
+
         if (!NameProperties.TryGetValue(item.GetType(), out var nameProperty))
         {
             var properties = item.GetType().GetProperties()

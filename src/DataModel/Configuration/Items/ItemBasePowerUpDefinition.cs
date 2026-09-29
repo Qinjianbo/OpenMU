@@ -62,6 +62,6 @@ public partial class ItemBasePowerUpDefinition
     /// <inheritdoc />
     public override string ToString()
     {
-        return $"{this.BaseValue} {this.TargetAttribute} {this.AggregateType}";
+        return $"{this.BaseValue} {this.TargetAttribute} {this.AggregateType.GetDisplayName()}";
     }
 }

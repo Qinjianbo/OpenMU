@@ -199,6 +199,7 @@ public abstract class DataInitializationBase : IDataInitializationPlugIn
         ChineseMonsterNames.Apply(this.GameConfiguration);
         ChineseMapNames.Apply(this.GameConfiguration);
         ChineseItemNames.Apply(this.GameConfiguration);
+        ChineseItemOptionNames.Apply(this.GameConfiguration);
         this.AddAllUpdateEntries(plugInManager);
 
         await this.Context.SaveChangesAsync().ConfigureAwait(false);

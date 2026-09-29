@@ -384,4 +384,6 @@
   <data name="AlignChineseMapNames_Description" xml:space="preserve"><value>Adds missing Chinese map names and corrects known mistranslations while preserving customized names and other languages.</value></data>
   <data name="AlignChineseItemNames_Name" xml:space="preserve"><value>Align Simplified Chinese item names</value></data>
   <data name="AlignChineseItemNames_Description" xml:space="preserve"><value>Adds missing Chinese item names and corrects known mistranslations while preserving customized names and other languages.</value></data>
+  <data name="AlignChineseItemOptionNames_Name" xml:space="preserve"><value>Align Simplified Chinese item option names</value></data>
+  <data name="AlignChineseItemOptionNames_Description" xml:space="preserve"><value>Adds Chinese item option and ancient set names while preserving customized names and other languages.</value></data>
 </root>

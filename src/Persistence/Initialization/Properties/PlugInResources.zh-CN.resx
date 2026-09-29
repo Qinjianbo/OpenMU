@@ -345,4 +345,6 @@
   <data name="AlignChineseMapNames_Description" xml:space="preserve"><value>补齐地图中文名称，按国服官方名称修正已知旧译，保留自定义名称及其他语言。</value></data>
   <data name="AlignChineseItemNames_Name" xml:space="preserve"><value>对齐简体中文物品名称</value></data>
   <data name="AlignChineseItemNames_Description" xml:space="preserve"><value>补齐物品中文名称，修正已知旧译，保留自定义名称及其他语言。</value></data>
+  <data name="AlignChineseItemOptionNames_Name" xml:space="preserve"><value>补齐简体中文物品属性名称</value></data>
+  <data name="AlignChineseItemOptionNames_Description" xml:space="preserve"><value>补齐物品属性类型、属性组和套装名称的中文翻译，保留自定义名称及其他语言。</value></data>
 </root>
