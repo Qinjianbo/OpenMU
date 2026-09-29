@@ -644,4 +644,19 @@ public enum UpdateVersion
     /// The version of the <see cref="AlignChineseMapNamesPlugInSeason6"/>.
     /// </summary>
     AlignChineseMapNamesSeason6 = 127,
+
+    /// <summary>
+    /// The version of the <see cref="AlignChineseItemNamesPlugIn075"/>.
+    /// </summary>
+    AlignChineseItemNames075 = 128,
+
+    /// <summary>
+    /// The version of the <see cref="AlignChineseItemNamesPlugIn095d"/>.
+    /// </summary>
+    AlignChineseItemNames095d = 129,
+
+    /// <summary>
+    /// The version of the <see cref="AlignChineseItemNamesPlugInSeason6"/>.
+    /// </summary>
+    AlignChineseItemNamesSeason6 = 130,
 }
