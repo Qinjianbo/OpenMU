@@ -51,3 +51,19 @@ applied on top of a current schema.
   rates, monster stats), you may want to deselect it and merge the change
   yourself in the [game configuration](game-configuration.md).
 * Apply updates during a maintenance window, since a restart is needed anyway.
+
+## Chinese localization updates in this fork
+
+This fork reserves versions **100116–100133** for its optional Chinese data
+translations. Upstream versions retain their original numbers. Earlier builds of
+this fork used **116–133**, which later overlapped with upstream updates.
+
+When checking for available updates, the server automatically moves recognized
+legacy translation records to the reserved range before comparing installed
+versions. It requires both the old number and the original neutral update name
+to match. Installation timestamps and translated game data remain unchanged;
+upstream records and unknown custom records are left alone. The migration is
+idempotent and updates the recorded highest installed version.
+
+This migration concerns update history only. New upstream gameplay updates still
+appear separately and must be applied through the normal update workflow.

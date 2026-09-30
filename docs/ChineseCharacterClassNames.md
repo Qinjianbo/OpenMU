@@ -25,7 +25,7 @@ No separate SQL patch is required.
 
 The update is optional; deploying the application alone does not automatically
 apply it to existing data. Each supported initialization version has its own
-update plugin (versions 116, 117, and 118). The normal update service records
+update plugin (versions 100116, 100117, and 100118). The normal update service records
 installation and removes the installed update from the available updates list.
 
 Only missing Chinese translations and known legacy mistranslations are changed.

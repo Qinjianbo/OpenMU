@@ -41,6 +41,19 @@ public class DataUpdateService
         using var context = this._contextProvider.CreateNewContext();
         var updates = (await context.GetAsync<ConfigurationUpdate>().ConfigureAwait(false)).ToList();
 
+        if (ChineseUpdateVersionMigration.Apply(updates))
+        {
+            var states = await context.GetAsync<ConfigurationUpdateState>().ConfigureAwait(false);
+            var installedVersion = updates.Where(update => update.InstalledAt is not null)
+                .Select(update => update.Version).DefaultIfEmpty().Max();
+            foreach (var state in states)
+            {
+                state.CurrentInstalledVersion = Math.Max(state.CurrentInstalledVersion, installedVersion);
+            }
+
+            await context.SaveChangesAsync().ConfigureAwait(false);
+        }
+
         var initializationKey = await this.DetermineInitializationKeyAsync(context).ConfigureAwait(false);
         var installedUpdates = updates
             .Where(up => up.InstalledAt is not null)

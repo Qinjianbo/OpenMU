@@ -442,10 +442,10 @@
     <value>NIGHTMARE has appeared! Defeat him to claim victory!</value>
   </data>
   <data name="KanturuNightmareTeleport2" xml:space="preserve">
-    <value>Nightmare has teleported! He recovers his full strength!</value>
+    <value>Nightmare has teleported! Don't let him escape!</value>
   </data>
   <data name="KanturuNightmareTeleport3" xml:space="preserve">
-    <value>Nightmare teleports again! He is more powerful than ever!</value>
+    <value>Nightmare teleports again! Keep up the attack!</value>
   </data>
   <data name="KanturuNightmareTeleport4" xml:space="preserve">
     <value>Nightmare is at his last stand! Finish him!</value>
@@ -578,6 +578,24 @@
   </data>
   <data name="ItemIsBoundToInventoryOfCharacter" xml:space="preserve">
     <value>This item is bound to the inventory of this character.</value>
+  </data>
+  <data name="ItemCannotBeDropped" xml:space="preserve">
+    <value>This item can't be dropped.</value>
+  </data>
+  <data name="ItemCannotBeRepaired" xml:space="preserve">
+    <value>This item can't be repaired.</value>
+  </data>
+  <data name="ItemCannotBeSoldInPersonalStore" xml:space="preserve">
+    <value>This item can't be sold in a personal store.</value>
+  </data>
+  <data name="ItemCannotBeSoldToNpc" xml:space="preserve">
+    <value>This item can't be sold.</value>
+  </data>
+  <data name="ItemCannotBeStored" xml:space="preserve">
+    <value>This item can't be stored in the vault.</value>
+  </data>
+  <data name="ItemCannotBeTraded" xml:space="preserve">
+    <value>This item can't be traded.</value>
   </data>
   <data name="NotEnoughMoneyToSendLetter" xml:space="preserve">
     <value>Not enough Zen to send a letter.</value>
@@ -800,5 +818,35 @@
   </data>
   <data name="DoppelgangerIceWalkerKilled" xml:space="preserve">
     <value>The Ice Walker has been defeated!</value>
+  </data>
+  <data name="RaklionSelupanAppeared" xml:space="preserve">
+    <value>Selupan has appeared. The Hatchery Gates will be closed in {0} minute(s).</value>
+  </data>
+  <data name="RaklionHatcheryClosed" xml:space="preserve">
+    <value>The Hatchery Gate is closed.</value>
+  </data>
+  <data name="RaklionHatcheryOpensIn" xml:space="preserve">
+    <value>The Hatchery Gates will open in {0}.</value>
+  </data>
+  <data name="RaklionHatcheryIsClosed" xml:space="preserve">
+    <value>The Hatchery Gate is closed, you cannot enter.</value>
+  </data>
+  <data name="RaklionHatcheryOpened" xml:space="preserve">
+    <value>The Hatchery Gate is opened.</value>
+  </data>
+  <data name="RaklionSelupanDefeated" xml:space="preserve">
+    <value>{0} defeated Selupan! The Hatchery Gates will open in {1}.</value>
+  </data>
+  <data name="RaklionBattleFailed" xml:space="preserve">
+    <value>The battle against Selupan has failed. The Hatchery Gates will open in {0}.</value>
+  </data>
+  <data name="RaklionDurationHoursMinutes" xml:space="preserve">
+    <value>{0} hour(s) {1} minute(s)</value>
+  </data>
+  <data name="RaklionDurationMinutes" xml:space="preserve">
+    <value>{0} minute(s)</value>
+  </data>
+  <data name="ImperialGuardianLevelTooLow" xml:space="preserve">
+    <value>You need at least level {0} to enter the Fortress of Imperial Guardian.</value>
   </data>
 </root>

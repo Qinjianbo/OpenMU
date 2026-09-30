@@ -240,12 +240,12 @@ public class ItemSerializerTests<T>
     {
         using var context = this._contextProvider.CreateNewContext(this._gameConfiguration);
         var item = context.CreateNew<Item>();
-        item.Definition = this._gameConfiguration.Items.First(i => i.Name == "Lighting Sword");
+        item.Definition = this._gameConfiguration.Items.First(i => i.Name.ValueInNeutralLanguage == "Lighting Sword");
         item.Level = 15;
         item.Durability = 100;
         item.HasSkill = true;
 
-        var ancientSet = this._gameConfiguration.ItemSetGroups.First(i => i.Name == "Hyon");
+        var ancientSet = this._gameConfiguration.ItemSetGroups.First(i => i.Name.ValueInNeutralLanguage == "Hyon");
         var itemOfSet = ancientSet.Items.First(i => i.ItemDefinition == item.Definition);
         var ancientBonus = context.CreateNew<ItemOptionLink>();
         ancientBonus.ItemOption = itemOfSet.BonusOption;
@@ -264,10 +264,10 @@ public class ItemSerializerTests<T>
     {
         using var context = this._contextProvider.CreateNewContext(this._gameConfiguration);
         var item = context.CreateNew<Item>();
-        item.Definition = this._gameConfiguration.Items.First(i => i.Name == "Pendant of Ability");
+        item.Definition = this._gameConfiguration.Items.First(i => i.Name.ValueInNeutralLanguage == "Pendant of Ability");
         item.Durability = 10;
 
-        var ancientSet = this._gameConfiguration.ItemSetGroups.First(i => i.Name == "Gywen");
+        var ancientSet = this._gameConfiguration.ItemSetGroups.First(i => i.Name.ValueInNeutralLanguage == "Gywen");
         var itemOfSet = ancientSet.Items.First(i => i.ItemDefinition == item.Definition);
         item.ItemSetGroups.Add(itemOfSet);
 
@@ -282,7 +282,7 @@ public class ItemSerializerTests<T>
     {
         using var context = this._contextProvider.CreateNewContext(this._gameConfiguration);
         var item = context.CreateNew<Item>();
-        item.Definition = this._gameConfiguration.Items.First(i => i.Name == "Blade");
+        item.Definition = this._gameConfiguration.Items.First(i => i.Name.ValueInNeutralLanguage == "Blade");
         item.Level = 15;
         item.Durability = 23;
         item.HasSkill = hasSkill;

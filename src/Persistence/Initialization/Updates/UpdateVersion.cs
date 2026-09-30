@@ -586,86 +586,116 @@ public enum UpdateVersion
     AddDoppelgangerData = 115,
 
     /// <summary>
+    /// The version of the <see cref="AddItemRuleFlagsPlugIn"/>.
+    /// </summary>
+    AddItemRuleFlags = 116,
+
+    /// <summary>
+    /// The version of the <see cref="AddDarkHorseCanFlyPlugIn"/>.
+    /// </summary>
+    AddDarkHorseCanFly = 117,
+
+    /// <summary>
+    /// The version of the <see cref="AddRaklionEventUpdatePlugIn"/>.
+    /// </summary>
+    AddRaklionEvent = 118,
+
+    /// <summary>
+    /// The version of the <see cref="RefreshKanturuDataUpdatePlugIn"/>.
+    /// </summary>
+    RefreshKanturuData = 119,
+
+    /// <summary>
+    /// The version of the <see cref="AddSelupanFallSkillUpdatePlugIn"/>.
+    /// </summary>
+    AddSelupanFallSkill = 120,
+
+    /// <summary>
+    /// The version of the <see cref="AddImperialGuardianDataUpdatePlugIn"/>.
+    /// </summary>
+    AddImperialGuardianData = 121,
+
+    /// <summary>
     /// The version of the <see cref="AlignChineseCharacterClassNamesPlugIn075"/>.
     /// </summary>
-    AlignChineseCharacterClassNames075 = 116,
+    AlignChineseCharacterClassNames075 = 100116,
 
     /// <summary>
     /// The version of the <see cref="AlignChineseCharacterClassNamesPlugIn095d"/>.
     /// </summary>
-    AlignChineseCharacterClassNames095d = 117,
+    AlignChineseCharacterClassNames095d = 100117,
 
     /// <summary>
     /// The version of the <see cref="AlignChineseCharacterClassNamesPlugInSeason6"/>.
     /// </summary>
-    AlignChineseCharacterClassNamesSeason6 = 118,
+    AlignChineseCharacterClassNamesSeason6 = 100118,
 
     /// <summary>
     /// The version of the <see cref="AlignChineseMerchantNamesPlugIn075"/>.
     /// </summary>
-    AlignChineseMerchantNames075 = 119,
+    AlignChineseMerchantNames075 = 100119,
 
     /// <summary>
     /// The version of the <see cref="AlignChineseMerchantNamesPlugIn095d"/>.
     /// </summary>
-    AlignChineseMerchantNames095d = 120,
+    AlignChineseMerchantNames095d = 100120,
 
     /// <summary>
     /// The version of the <see cref="AlignChineseMerchantNamesPlugInSeason6"/>.
     /// </summary>
-    AlignChineseMerchantNamesSeason6 = 121,
+    AlignChineseMerchantNamesSeason6 = 100121,
 
     /// <summary>
     /// The version of the <see cref="AlignChineseMonsterNamesPlugIn075"/>.
     /// </summary>
-    AlignChineseMonsterNames075 = 122,
+    AlignChineseMonsterNames075 = 100122,
 
     /// <summary>
     /// The version of the <see cref="AlignChineseMonsterNamesPlugIn095d"/>.
     /// </summary>
-    AlignChineseMonsterNames095d = 123,
+    AlignChineseMonsterNames095d = 100123,
 
     /// <summary>
     /// The version of the <see cref="AlignChineseMonsterNamesPlugInSeason6"/>.
     /// </summary>
-    AlignChineseMonsterNamesSeason6 = 124,
+    AlignChineseMonsterNamesSeason6 = 100124,
 
     /// <summary>
     /// The version of the <see cref="AlignChineseMapNamesPlugIn075"/>.
     /// </summary>
-    AlignChineseMapNames075 = 125,
+    AlignChineseMapNames075 = 100125,
 
     /// <summary>
     /// The version of the <see cref="AlignChineseMapNamesPlugIn095d"/>.
     /// </summary>
-    AlignChineseMapNames095d = 126,
+    AlignChineseMapNames095d = 100126,
 
     /// <summary>
     /// The version of the <see cref="AlignChineseMapNamesPlugInSeason6"/>.
     /// </summary>
-    AlignChineseMapNamesSeason6 = 127,
+    AlignChineseMapNamesSeason6 = 100127,
 
     /// <summary>
     /// The version of the <see cref="AlignChineseItemNamesPlugIn075"/>.
     /// </summary>
-    AlignChineseItemNames075 = 128,
+    AlignChineseItemNames075 = 100128,
 
     /// <summary>
     /// The version of the <see cref="AlignChineseItemNamesPlugIn095d"/>.
     /// </summary>
-    AlignChineseItemNames095d = 129,
+    AlignChineseItemNames095d = 100129,
 
     /// <summary>
     /// The version of the <see cref="AlignChineseItemNamesPlugInSeason6"/>.
     /// </summary>
-    AlignChineseItemNamesSeason6 = 130,
+    AlignChineseItemNamesSeason6 = 100130,
 
     /// <summary>The version of the <see cref="AlignChineseItemOptionNamesPlugIn075"/>.</summary>
-    AlignChineseItemOptionNames075 = 131,
+    AlignChineseItemOptionNames075 = 100131,
 
     /// <summary>The version of the <see cref="AlignChineseItemOptionNamesPlugIn095d"/>.</summary>
-    AlignChineseItemOptionNames095d = 132,
+    AlignChineseItemOptionNames095d = 100132,
 
     /// <summary>The version of the <see cref="AlignChineseItemOptionNamesPlugInSeason6"/>.</summary>
-    AlignChineseItemOptionNamesSeason6 = 133,
+    AlignChineseItemOptionNamesSeason6 = 100133,
 }

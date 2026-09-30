@@ -1218,6 +1218,18 @@
   <data name="MiniGameStartConfiguration_EntranceClosedMessage_Name" xml:space="preserve">
     <value>Entrance closed message</value>
   </data>
+  <data name="KanturuStartConfiguration_TowerOpenDuration_Name" xml:space="preserve">
+    <value>Tower open duration</value>
+  </data>
+  <data name="KanturuStartConfiguration_TowerOpenDuration_Description" xml:space="preserve">
+    <value>How long the Tower of Refinement stays open after the Nightmare boss has been defeated. While the window is open, scheduled event starts are skipped; a game master start still proceeds and ends the window.</value>
+  </data>
+  <data name="KanturuStartConfiguration_TowerOpenUntilUtc_Name" xml:space="preserve">
+    <value>Tower open until (UTC)</value>
+  </data>
+  <data name="KanturuStartConfiguration_TowerOpenUntilUtc_Description" xml:space="preserve">
+    <value>End of the current open window in UTC. Set automatically when Nightmare is defeated.</value>
+  </data>
   <data name="HappyHourConfiguration_ExperienceMultiplier_Name" xml:space="preserve">
     <value>Experience multiplier</value>
   </data>
@@ -1421,4 +1433,22 @@
   <data name="InvasionSpawnConfiguration_MonsterId_Caption" xml:space="preserve"><value>Monster Id</value></data>
   <data name="KanturuStartConfiguration_EventDefinition_Caption" xml:space="preserve"><value>Event Definition</value></data>
   <data name="BlessJewelConsumeHandlerPlugInConfiguration_RepairTargetItems_Caption" xml:space="preserve"><value>Repair Target Items</value></data>
+  <data name="RaklionPlugIn_Name" xml:space="preserve">
+    <value>Raklion Event</value>
+  </data>
+  <data name="RaklionPlugIn_Description" xml:space="preserve">
+    <value>The event in the hatchery of raklion: when all spider eggs are destroyed, Selupan appears. After the battle, the hatchery is closed for some time.</value>
+  </data>
+  <data name="ImperialGuardianFeaturePlugIn_Name" xml:space="preserve">
+    <value>Imperial Guardian event</value>
+  </data>
+  <data name="ImperialGuardianFeaturePlugIn_Description" xml:space="preserve">
+    <value>Configures the run of the imperial guardian event, e.g. its times, the experience reward and the scaling of the monsters.</value>
+  </data>
+  <data name="SuspiciousScrapOfPaperStackedPlugIn_Name" xml:space="preserve">
+    <value>Suspicious scrap of paper stack transformation</value>
+  </data>
+  <data name="SuspiciousScrapOfPaperStackedPlugIn_Description" xml:space="preserve">
+    <value>Transforms a full stack of suspicious scraps of paper into a Gaion's Order.</value>
+  </data>
 </root>

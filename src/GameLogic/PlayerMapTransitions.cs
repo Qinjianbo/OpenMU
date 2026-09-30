@@ -249,6 +249,12 @@ internal sealed class PlayerMapTransitions
         await player.PlayerState.TryAdvanceToAsync(GameLogic.PlayerState.EnteredWorld).ConfigureAwait(false);
         player.IsAlive = true;
 
+        if (player.CurrentMiniGame?.GetEntrySpawnPosition(player) is { } spawnPosition)
+        {
+            player.SelectedCharacter.PositionX = spawnPosition.X;
+            player.SelectedCharacter.PositionY = spawnPosition.Y;
+        }
+
         await player.CurrentMap!.AddAsync(player).ConfigureAwait(false);
         if (!player.CurrentMap.Terrain.WalkMap[player.SelectedCharacter.PositionX, player.SelectedCharacter.PositionY]
             && await this.RecoverFromBlockedSpawnAsync().ConfigureAwait(false))
@@ -339,8 +345,9 @@ internal sealed class PlayerMapTransitions
     internal async ValueTask PlaceAtGateAsync(ExitGate gate)
     {
         var player = this._player;
-        player.SelectedCharacter!.PositionX = (byte)Rand.NextInt(gate.X1, gate.X2);
-        player.SelectedCharacter.PositionY = (byte)Rand.NextInt(gate.Y1, gate.Y2);
+        var landingPoint = gate.GetRandomPoint();
+        player.SelectedCharacter!.PositionX = landingPoint.X;
+        player.SelectedCharacter.PositionY = landingPoint.Y;
         player.SelectedCharacter.CurrentMap = gate.Map;
         player.Rotation = gate.Direction;
 

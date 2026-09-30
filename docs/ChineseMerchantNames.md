@@ -4,7 +4,7 @@ The built-in 0.75, 0.95d, and Season 6 initializers include Chinese merchant nam
 Existing databases can apply **对齐简体中文商人名称** on `/config-updates`
 after deploying this revision, then restart the service. Back up the database first.
 This optional update does not run automatically on deployment. Its version is
-119 (0.75), 120 (0.95d), or 121 (Season 6).
+100119 (0.75), 100120 (0.95d), or 100121 (Season 6).
 
 Only merchants with matching NPC numbers and neutral English names are changed.
 Missing Chinese translations and the known legacy translations of Silvia and
