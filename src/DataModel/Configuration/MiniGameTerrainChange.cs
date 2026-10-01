@@ -1,4 +1,4 @@
-﻿// <copyright file="MiniGameTerrainChange.cs" company="MUnique">
+// <copyright file="MiniGameTerrainChange.cs" company="MUnique">
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 // </copyright>
 
@@ -50,14 +50,10 @@ public partial class MiniGameTerrainChange
     /// <inheritdoc />
     public override string ToString()
     {
-        return string.Format(
-            MUnique.OpenMU.DataModel.Properties.Resources.TerrainChangeSummary,
+        return string.Format(MUnique.OpenMU.DataModel.Properties.Resources.TerrainChangeSummary,
             this.SetTerrainAttribute ? MUnique.OpenMU.DataModel.Properties.Resources.TerrainSet : MUnique.OpenMU.DataModel.Properties.Resources.TerrainRemove,
             ModelResourceProvider.GetEnumCaption(this.TerrainAttribute.GetType(), this.TerrainAttribute),
-            this.StartX,
-            this.StartY,
-            this.EndX,
-            this.EndY,
+            this.StartX, this.StartY, this.EndX, this.EndY,
             this.IsClientUpdateRequired ? MUnique.OpenMU.DataModel.Properties.Resources.TerrainWithClientUpdate : MUnique.OpenMU.DataModel.Properties.Resources.TerrainWithoutClientUpdate);
     }
 }
