@@ -9,6 +9,8 @@ using MUnique.OpenMU.DataModel.Attributes;
 using MUnique.OpenMU.DataModel.Configuration;
 using MUnique.OpenMU.DataModel.Configuration.Items;
 using MUnique.OpenMU.GameLogic.Attributes;
+using MUnique.OpenMU.Interfaces;
+using MUnique.OpenMU.Persistence.Initialization.Properties;
 
 /// <summary>
 /// Initializer for harmony options.
@@ -18,17 +20,17 @@ public class HarmonyOptions : InitializerBase
     /// <summary>
     /// The name of the <see cref="ItemOptionDefinition"/> of harmony defense options.
     /// </summary>
-    public static readonly string DefenseOptionsName = "Harmony Defense Options";
+    public static readonly string DefenseOptionsName = LocalizedString.FromResource(() => ItemOptionNames.HarmonyDefenseOptions).ValueInNeutralLanguage;
 
     /// <summary>
     /// The name of the <see cref="ItemOptionDefinition"/> of harmony physical attack options.
     /// </summary>
-    public static readonly string PhysicalAttackOptionsName = "Harmony Physical Attack Options";
+    public static readonly string PhysicalAttackOptionsName = LocalizedString.FromResource(() => ItemOptionNames.HarmonyPhysicalAttackOptions).ValueInNeutralLanguage;
 
     /// <summary>
     /// The name of the <see cref="ItemOptionDefinition"/> of harmony wizardry attack options.
     /// </summary>
-    public static readonly string WizardryAttackOptionsName = "Harmony Wizardry Attack Options";
+    public static readonly string WizardryAttackOptionsName = LocalizedString.FromResource(() => ItemOptionNames.HarmonyWizardryAttackOptions).ValueInNeutralLanguage;
 
     /// <summary>
     /// The name of the <see cref="ItemOptionDefinition"/> of harmony curse attack options.
@@ -78,7 +80,7 @@ public class HarmonyOptions : InitializerBase
     {
         var definition = this.Context.CreateNew<ItemOptionDefinition>();
         this.GameConfiguration.ItemOptions.Add(definition);
-        definition.Name = WizardryAttackOptionsName;
+        definition.Name = LocalizedString.FromResource(() => ItemOptionNames.HarmonyWizardryAttackOptions);
         definition.MaximumOptionsPerItem = 1;
 
         definition.PossibleOptions.Add(this.CreateHarmonyOptions(1, ItemOptionDefinitionNumbers.HarmonyWizardry, 40, Stats.WizardryBaseDmg, AggregateType.AddRaw, 0, 6, 8, 10, 12, 14, 16, 17, 18, 19, 21, 23, 25, 27, 31));
@@ -95,7 +97,7 @@ public class HarmonyOptions : InitializerBase
     {
         var definition = this.Context.CreateNew<ItemOptionDefinition>();
         this.GameConfiguration.ItemOptions.Add(definition);
-        definition.Name = PhysicalAttackOptionsName;
+        definition.Name = LocalizedString.FromResource(() => ItemOptionNames.HarmonyPhysicalAttackOptions);
         definition.MaximumOptionsPerItem = 1;
 
         definition.PossibleOptions.Add(this.CreateHarmonyOptions(1, ItemOptionDefinitionNumbers.HarmonyPhysical, 40, Stats.MinimumPhysBaseDmg, AggregateType.AddRaw, 0, 2, 3, 4, 5, 6, 7, 9, 11, 12, 14, 15, 16, 17, 20));
@@ -114,7 +116,7 @@ public class HarmonyOptions : InitializerBase
     {
         var definition = this.Context.CreateNew<ItemOptionDefinition>();
         this.GameConfiguration.ItemOptions.Add(definition);
-        definition.Name = DefenseOptionsName;
+        definition.Name = LocalizedString.FromResource(() => ItemOptionNames.HarmonyDefenseOptions);
         definition.MaximumOptionsPerItem = 1;
 
         definition.PossibleOptions.Add(this.CreateHarmonyOptions(1, ItemOptionDefinitionNumbers.HarmonyDefense, 50, Stats.DefenseBase, AggregateType.AddFinal, 0, 3, 4, 5, 6, 7, 8, 10, 12, 14, 16, 18, 20, 22, 25));

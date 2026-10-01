@@ -427,6 +427,30 @@ internal static class ConfigurationNameTranslations
         UpdateNames(configuration.Monsters, MonsterNames.ResourceManager, MonsterMappings, m => m.Number, m => m.Designation, (m, name) => m.Designation = name);
     }
 
+    /// <summary>Completes resource translations while preserving neutral and translated customizations.</summary>
+    /// <param name="current">The stored name.</param>
+    /// <param name="resources">The neutral and satellite resources.</param>
+    /// <param name="key">The resource key.</param>
+    /// <returns>The name with missing translations completed.</returns>
+    internal static LocalizedString CompleteTranslations(LocalizedString current, ResourceManager resources, string key)
+    {
+        if (current.ValueInNeutralLanguage != resources.GetLocalizedString(key).ValueInNeutralLanguage)
+        {
+            return current;
+        }
+
+        foreach (var culture in resources.AvailableCultures)
+        {
+            var text = resources.GetResourceSet(culture, true, tryParents: false)?.GetString(key);
+            if (!string.IsNullOrEmpty(text) && !HasCustomTranslation(current, culture))
+            {
+                current = current.WithTranslation(culture, text);
+            }
+        }
+
+        return current;
+    }
+
     private static void UpdateNames<T>(IEnumerable<T> entities, ResourceManager resources, IReadOnlyList<(short Number, string Key)> mappings, Func<T, int> getNumber, Func<T, LocalizedString> getName, Action<T, LocalizedString> setName)
     {
         var keysByNumber = mappings.ToLookup(mapping => (int)mapping.Number, mapping => mapping.Key);
@@ -441,14 +465,7 @@ internal static class ConfigurationNameTranslations
                     continue;
                 }
 
-                foreach (var culture in resources.AvailableCultures)
-                {
-                    var text = resources.GetResourceSet(culture, true, tryParents: false)?.GetString(key);
-                    if (!string.IsNullOrEmpty(text) && !HasCustomTranslation(current, culture))
-                    {
-                        current = current.WithTranslation(culture, text);
-                    }
-                }
+                current = CompleteTranslations(current, resources, key);
 
                 setName(entity, current);
                 break;

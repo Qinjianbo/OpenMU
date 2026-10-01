@@ -933,5 +933,17 @@ namespace MUnique.OpenMU.Persistence.Initialization.Properties {
         /// <summary>Gets the localized AddConfigurationNameTranslations_Description text.</summary>
         public static string AddConfigurationNameTranslations_Description => ResourceManager.GetString("AddConfigurationNameTranslations_Description", resourceCulture)!;
 
+        /// <summary>Gets the localized AddItemNameTranslations_Name text.</summary>
+        public static string AddItemNameTranslations_Name => ResourceManager.GetString("AddItemNameTranslations_Name", resourceCulture)!;
+
+        /// <summary>Gets the localized AddItemNameTranslations_Description text.</summary>
+        public static string AddItemNameTranslations_Description => ResourceManager.GetString("AddItemNameTranslations_Description", resourceCulture)!;
+
+        /// <summary>Gets the localized AddItemOptionTranslations_Name text.</summary>
+        public static string AddItemOptionTranslations_Name => ResourceManager.GetString("AddItemOptionTranslations_Name", resourceCulture)!;
+
+        /// <summary>Gets the localized AddItemOptionTranslations_Description text.</summary>
+        public static string AddItemOptionTranslations_Description => ResourceManager.GetString("AddItemOptionTranslations_Description", resourceCulture)!;
+
     }
 }

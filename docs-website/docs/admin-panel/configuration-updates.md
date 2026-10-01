@@ -71,3 +71,18 @@ Coverage is partial: unverified names retain their existing values. These are
 server configuration names; the game's own client language files are unaffected.
 The [mapping and sources](https://github.com/MUnique/OpenMU/blob/master/docs/ChineseConfigurationNames.md)
 list included names and distinguish derived variant labels from official names.
+
+### Item names and options
+
+The optional **Add item name translations** and **Add item option and set translations**
+updates use the same language resources as fresh initialization. They support
+075, 095d and Season 6 configurations. Deploy the initialization assembly together
+with its satellite resource assemblies before applying these updates.
+
+Item names are matched by group, number and neutral name. Option types, option
+groups, set names and option descriptions are matched by their built-in neutral
+text. Missing translations and English copies are filled; existing translations
+and custom neutral names are preserved. Item statistics and references are unchanged.
+Fresh configurations already contain these translations and mark the updates as
+installed. Earlier local Chinese correction updates retain their identities and
+installation history.

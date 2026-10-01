@@ -6,7 +6,7 @@ import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[1]
 DIRECTORY = ROOT / 'src/Persistence/Initialization/Properties'
-CATEGORIES = ('CharacterClassNames', 'MapNames', 'MerchantNames', 'MonsterNames')
+CATEGORIES = ('CharacterClassNames', 'MapNames', 'MerchantNames', 'MonsterNames', 'ItemNames', 'ItemOptionTypeNames', 'ItemOptionNames', 'ItemSetNames', 'ItemOptionDescriptions')
 for category in CATEGORIES:
     entries = ET.parse(DIRECTORY / f'{category}.resx').getroot().findall('data')
     properties = '\n'.join(
@@ -38,13 +38,13 @@ public static class {category}
 designer = DIRECTORY / 'PlugInResources.Designer.cs'
 text = designer.read_text(encoding='utf-8-sig')
 text = re.sub(
-    r'        /// <summary>Gets the localized (?:AddMissingChineseConfigurationNames|AddConfigurationNameTranslations)_(?:Name|Description) text.</summary>\n'
+    r'        /// <summary>Gets the localized (?:AddMissingChineseConfigurationNames|AddConfigurationNameTranslations|AddItemNameTranslations|AddItemOptionTranslations)_(?:Name|Description) text.</summary>\n'
     r'        public static string [^\n]+\n\n', '', text
 )
 properties = ''
 for entry in ET.parse(DIRECTORY / 'PlugInResources.resx').getroot().findall('data'):
     key = entry.attrib['name']
-    if key.startswith('AddConfigurationNameTranslations_'):
+    if key.startswith(('AddConfigurationNameTranslations_', 'AddItemNameTranslations_', 'AddItemOptionTranslations_')):
         properties += (f'        /// <summary>Gets the localized {key} text.</summary>\n'
                        f'        public static string {key} => ResourceManager.GetString("{key}", resourceCulture)!;\n\n')
 index = text.rfind('    }')

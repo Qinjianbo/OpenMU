@@ -390,4 +390,8 @@
   <data name="AddFenrirMaterialDropGroupsUpdateSeason6_Description" xml:space="preserve"><value>Adds the drops of Splinter of Armor (5 %), Bless of Guardian (2 %) and Claw of Beast (0.5 %) to all monsters of Crywolf. Materials which already drop on Crywolf by another group are skipped.</value></data>
   <data name="AddConfigurationNameTranslations_Name" xml:space="preserve"><value>Add configuration name translations</value></data>
   <data name="AddConfigurationNameTranslations_Description" xml:space="preserve"><value>Adds available translations of class, map, merchant, monster and NPC names. Only missing translations and copies of the neutral name are replaced; customized names and gameplay settings are preserved.</value></data>
+  <data name="AddItemNameTranslations_Name" xml:space="preserve"><value>Add item name translations</value></data>
+  <data name="AddItemNameTranslations_Description" xml:space="preserve"><value>Adds available resource translations of item names. Only missing translations and English copies are filled; custom names, existing translations and gameplay settings are preserved.</value></data>
+  <data name="AddItemOptionTranslations_Name" xml:space="preserve"><value>Add item option and set translations</value></data>
+  <data name="AddItemOptionTranslations_Description" xml:space="preserve"><value>Adds available resource translations of item option types, options, sets and descriptions. Only missing translations and English copies are filled; custom names, existing translations and gameplay settings are preserved.</value></data>
 </root>

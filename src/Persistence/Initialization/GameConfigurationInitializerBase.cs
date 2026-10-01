@@ -10,7 +10,9 @@ using MUnique.OpenMU.DataModel.Attributes;
 using MUnique.OpenMU.DataModel.Configuration;
 using MUnique.OpenMU.DataModel.Configuration.Items;
 using MUnique.OpenMU.GameLogic.Attributes;
+using MUnique.OpenMU.Interfaces;
 using MUnique.OpenMU.Persistence.Initialization.CharacterClasses;
+using MUnique.OpenMU.Persistence.Initialization.Properties;
 using MUnique.OpenMU.Persistence.Initialization.Version075.Items;
 using MUnique.OpenMU.Persistence.Initialization.VersionSeasonSix.Maps;
 
@@ -111,7 +113,7 @@ public abstract class GameConfigurationInitializerBase : InitializerBase
     {
         var definition = this.Context.CreateNew<ItemOptionDefinition>();
         definition.SetGuid(number);
-        definition.Name = attributeDefinition.Designation + " Option";
+        definition.Name = ItemNameTranslations.GetOptionName(attributeDefinition.Designation + " Option");
         definition.AddChance = 0.25f;
         definition.AddsRandomly = true;
         definition.MaximumOptionsPerItem = 1;
@@ -215,7 +217,7 @@ public abstract class GameConfigurationInitializerBase : InitializerBase
     {
         var definition = this.Context.CreateNew<ItemOptionDefinition>();
         definition.SetGuid(ItemOptionDefinitionNumbers.Luck);
-        definition.Name = "Luck";
+        definition.Name = LocalizedString.FromResource(() => ItemOptionNames.Luck);
         definition.AddChance = 0.25f;
         definition.AddsRandomly = true;
         definition.MaximumOptionsPerItem = 1;
@@ -239,9 +241,9 @@ public abstract class GameConfigurationInitializerBase : InitializerBase
         foreach (var optionType in this.OptionTypes)
         {
             var persistentOptionType = this.Context.CreateNew<ItemOptionType>();
-            persistentOptionType.Description = optionType.Description;
+            persistentOptionType.Description = ItemNameTranslations.GetOptionDescription(optionType.Description);
             persistentOptionType.Id = optionType.Id;
-            persistentOptionType.Name = optionType.Name;
+            persistentOptionType.Name = ItemNameTranslations.GetOptionTypeName(optionType.Name);
             persistentOptionType.IsVisible = optionType.IsVisible;
             this.GameConfiguration.ItemOptionTypes.Add(persistentOptionType);
         }

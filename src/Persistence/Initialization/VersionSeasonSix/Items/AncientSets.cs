@@ -9,8 +9,10 @@ using MUnique.OpenMU.DataModel.Attributes;
 using MUnique.OpenMU.DataModel.Configuration;
 using MUnique.OpenMU.DataModel.Configuration.Items;
 using MUnique.OpenMU.GameLogic.Attributes;
+using MUnique.OpenMU.Interfaces;
 using MUnique.OpenMU.Network;
 using MUnique.OpenMU.Persistence.Initialization.Items;
+using MUnique.OpenMU.Persistence.Initialization.Properties;
 
 /// <summary>
 /// Initialization code for ancient sets.
@@ -37,7 +39,7 @@ public class AncientSets : InitializerBase
     public override void Initialize()
     {
         var warrior = this.AddAncientSet(
-            "Warrior", // Leather
+            LocalizedString.FromResource(() => ItemSetNames.Warrior), // Leather
             1,
             (Stats.TotalStrength, 10.0f, AggregateType.AddRaw),
             (Stats.SkillDamageBonus, 10.0f, AggregateType.AddRaw),
@@ -60,7 +62,7 @@ public class AncientSets : InitializerBase
             (8, ItemGroups.Misc1, Stats.TotalAgility, 1)); // Ring of Ice
 
         var anonymous = this.AddAncientSet(
-            "Anonymous", // Leather
+            LocalizedString.FromResource(() => ItemSetNames.Anonymous), // Leather
             2,
             (Stats.MaximumHealth, 50.0f),
             (Stats.TotalAgility, 50.0f),
@@ -75,7 +77,7 @@ public class AncientSets : InitializerBase
             (0, ItemGroups.Shields, Stats.TotalVitality, 1)); // Small Shield
 
         var hyperion = this.AddAncientSet(
-            "Hyperion", // Bronze
+            LocalizedString.FromResource(() => ItemSetNames.Hyperion), // Bronze
             3,
             (Stats.TotalEnergy, 15.0f),
             (Stats.TotalAgility, 15.0f),
@@ -89,7 +91,7 @@ public class AncientSets : InitializerBase
             (0, ItemGroups.Armor, Stats.TotalVitality, 1));
 
         var mist = this.AddAncientSet(
-            "Mist", // Bronze
+            LocalizedString.FromResource(() => ItemSetNames.Mist), // Bronze
             4,
             (Stats.TotalVitality, 20.0f),
             (Stats.SkillDamageBonus, 30.0f),
@@ -103,7 +105,7 @@ public class AncientSets : InitializerBase
             (0, ItemGroups.Helm, Stats.TotalVitality, 1));
 
         var eplete = this.AddAncientSet(
-            "Eplete", // Scale
+            LocalizedString.FromResource(() => ItemSetNames.Eplete), // Scale
             5,
             (Stats.SkillDamageBonus, 15.0f, AggregateType.AddRaw),
             (Stats.AttackRatePvm, 50.0f, AggregateType.AddRaw),
@@ -122,7 +124,7 @@ public class AncientSets : InitializerBase
             (12, ItemGroups.Misc1, Stats.TotalEnergy, 1)); // Pendant of Lightning
 
         var berserker = this.AddAncientSet(
-            "Berserker", // Scale
+            LocalizedString.FromResource(() => ItemSetNames.Berserker), // Scale
             6,
             (Stats.MaximumPhysBaseDmg, 10.0f),
             (Stats.MaximumPhysBaseDmg, 20.0f),
@@ -140,7 +142,7 @@ public class AncientSets : InitializerBase
             (6, ItemGroups.Boots, Stats.TotalVitality, 1));
 
         var garuda = this.AddAncientSet(
-            "Garuda", // Brass
+            LocalizedString.FromResource(() => ItemSetNames.Garuda), // Brass
             7,
             (Stats.MaximumAbility, 30.0f, AggregateType.AddRaw),
             (Stats.DoubleDamageChance, 0.05f, AggregateType.AddRaw),
@@ -158,7 +160,7 @@ public class AncientSets : InitializerBase
             (13, ItemGroups.Misc1, Stats.TotalStrength, 1)); // Pendant of Fire
 
         var cloud = this.AddAncientSet(
-            "Cloud", // Brass
+            LocalizedString.FromResource(() => ItemSetNames.Cloud), // Brass
             8,
             (Stats.CriticalDamageChance, 0.20f),
             (Stats.CriticalDamageBonus, 50.0f));
@@ -169,7 +171,7 @@ public class AncientSets : InitializerBase
             (8, ItemGroups.Helm, Stats.TotalVitality, 1));
 
         var kantata = this.AddAncientSet(
-            "Kantata", // Plate
+            LocalizedString.FromResource(() => ItemSetNames.Kantata), // Plate
             9,
             (Stats.TotalEnergy, 15.0f, AggregateType.AddRaw),
             (Stats.TotalVitality, 30.0f, AggregateType.AddRaw),
@@ -188,7 +190,7 @@ public class AncientSets : InitializerBase
             (9, ItemGroups.Misc1, Stats.TotalVitality, 1)); // Ring of Poison
 
         var rave = this.AddAncientSet(
-            "Rave", // Plate
+            LocalizedString.FromResource(() => ItemSetNames.Rave), // Plate
             10,
             (Stats.SkillDamageBonus, 20.0f),
             (Stats.DoubleDamageChance, 0.10f),
@@ -202,7 +204,7 @@ public class AncientSets : InitializerBase
             (9, ItemGroups.Armor, Stats.TotalVitality, 2));
 
         var hyon = this.AddAncientSet(
-            "Hyon", // Dragon
+            LocalizedString.FromResource(() => ItemSetNames.Hyon), // Dragon
             11,
             (Stats.DefenseBase, 25, AggregateType.AddFinal),
             (Stats.DoubleDamageChance, 0.10f, AggregateType.AddRaw),
@@ -220,7 +222,7 @@ public class AncientSets : InitializerBase
             (1, ItemGroups.Gloves, Stats.TotalVitality, 1));
 
         var vicious = this.AddAncientSet(
-            "Vicious", // Dragon
+            LocalizedString.FromResource(() => ItemSetNames.Vicious), // Dragon
             12,
             (Stats.SkillDamageBonus, 15.0f),
             (Stats.FinalDamageBonus, 15.0f),
@@ -237,7 +239,7 @@ public class AncientSets : InitializerBase
             (1, ItemGroups.Armor, Stats.TotalVitality, 2));
 
         var apollo = this.AddAncientSet(
-            "Apollo", // Pad
+            LocalizedString.FromResource(() => ItemSetNames.Apollo), // Pad
             13,
             (Stats.TotalEnergy, 10.0f, AggregateType.AddRaw),
             (Stats.WizardryBaseDmgIncrease, 1.05f, AggregateType.Multiplicate),
@@ -260,7 +262,7 @@ public class AncientSets : InitializerBase
             (24, ItemGroups.Misc1, Stats.TotalEnergy, 1)); // Ring of Magic
 
         var barnake = this.AddAncientSet(
-            "Barnake", // Pad
+            LocalizedString.FromResource(() => ItemSetNames.Barnake), // Pad
             14,
             (Stats.WizardryBaseDmgIncrease, 1.10f, AggregateType.Multiplicate),
             (Stats.TotalEnergy, 20.0f, AggregateType.AddRaw),
@@ -274,7 +276,7 @@ public class AncientSets : InitializerBase
             (2, ItemGroups.Boots, Stats.TotalVitality, 1));
 
         var evis = this.AddAncientSet(
-            "Evis", // Bone
+            LocalizedString.FromResource(() => ItemSetNames.Evis), // Bone
             15,
             (Stats.SkillDamageBonus, 15.0f, AggregateType.AddRaw),
             (Stats.TotalVitality, 20.0f, AggregateType.AddRaw),
@@ -291,7 +293,7 @@ public class AncientSets : InitializerBase
             (26, ItemGroups.Misc1, Stats.TotalAgility, 1)); // Pendant of Wind
 
         var sylion = this.AddAncientSet(
-            "Sylion", // Bone
+            LocalizedString.FromResource(() => ItemSetNames.Sylion), // Bone
             16,
             (Stats.DoubleDamageChance, 0.05f, AggregateType.AddRaw),
             (Stats.CriticalDamageChance, 0.05f, AggregateType.AddRaw),
@@ -309,7 +311,7 @@ public class AncientSets : InitializerBase
             (4, ItemGroups.Helm, Stats.TotalVitality, 1));
 
         var heras = this.AddAncientSet(
-            "Heras", // Sphinx
+            LocalizedString.FromResource(() => ItemSetNames.Heras), // Sphinx
             17,
             (Stats.TotalStrength, 15.0f, AggregateType.AddRaw),
             (Stats.WizardryBaseDmgIncrease, 1.10f, AggregateType.Multiplicate),
@@ -331,7 +333,7 @@ public class AncientSets : InitializerBase
             (7, ItemGroups.Boots, Stats.TotalVitality, 1));
 
         var minet = this.AddAncientSet(
-            "Minet", // Sphinx
+            LocalizedString.FromResource(() => ItemSetNames.Minet), // Sphinx
             18,
             (Stats.TotalEnergy, 30.0f, AggregateType.AddRaw),
             (Stats.DefenseBase, 30.0f, AggregateType.AddFinal),
@@ -345,7 +347,7 @@ public class AncientSets : InitializerBase
             (7, ItemGroups.Boots, Stats.TotalVitality, 2));
 
         var anubis = this.AddAncientSet(
-            "Anubis", // Legendary
+            LocalizedString.FromResource(() => ItemSetNames.Anubis), // Legendary
             19,
             (Stats.DoubleDamageChance, 0.10f, AggregateType.AddRaw),
             (Stats.MaximumMana, 50.0f, AggregateType.AddRaw),
@@ -363,7 +365,7 @@ public class AncientSets : InitializerBase
             (21, ItemGroups.Misc1, Stats.TotalEnergy, 1)); // Ring of Fire
 
         var enis = this.AddAncientSet(
-            "Enis", // Legendary
+            LocalizedString.FromResource(() => ItemSetNames.Enis), // Legendary
             20,
             (Stats.SkillDamageBonus, 10.0f, AggregateType.AddRaw),
             (Stats.DoubleDamageChance, 0.10f, AggregateType.AddRaw),
@@ -379,7 +381,7 @@ public class AncientSets : InitializerBase
             (3, ItemGroups.Pants, Stats.TotalVitality, 2));
 
         var ceto = this.AddAncientSet(
-            "Ceto", // Vine
+            LocalizedString.FromResource(() => ItemSetNames.Ceto), // Vine
             21,
             (Stats.TotalAgility, 10.0f, AggregateType.AddRaw),
             (Stats.MaximumHealth, 50.0f, AggregateType.AddRaw),
@@ -399,7 +401,7 @@ public class AncientSets : InitializerBase
             (22, ItemGroups.Misc1, Stats.TotalStrength, 1)); // Ring of Earth
 
         var drake = this.AddAncientSet(
-            "Drake", // Vine
+            LocalizedString.FromResource(() => ItemSetNames.Drake), // Vine
             22,
             (Stats.TotalAgility, 20.0f, AggregateType.AddRaw),
             (Stats.FinalDamageBonus, 25.0f, AggregateType.AddRaw),
@@ -415,7 +417,7 @@ public class AncientSets : InitializerBase
             (10, ItemGroups.Pants, Stats.TotalVitality, 2));
 
         var gaia = this.AddAncientSet(
-            "Gaia", // Silk
+            LocalizedString.FromResource(() => ItemSetNames.Gaia), // Silk
             23,
             (Stats.SkillDamageBonus, 10.0f),
             (Stats.MaximumMana, 25.0f),
@@ -434,7 +436,7 @@ public class AncientSets : InitializerBase
             (9, ItemGroups.Bows, Stats.TotalAgility, 1)); // Golden Crossbow
 
         var fase = this.AddAncientSet(
-            "Fase", // Silk
+            LocalizedString.FromResource(() => ItemSetNames.Fase), // Silk
             24,
             (Stats.MaximumHealth, 100.0f, AggregateType.AddRaw),
             (Stats.MaximumMana, 100.0f, AggregateType.AddRaw),
@@ -447,7 +449,7 @@ public class AncientSets : InitializerBase
             (11, ItemGroups.Boots, Stats.TotalVitality, 1));
 
         var odin = this.AddAncientSet(
-            "Odin", // Wind
+            LocalizedString.FromResource(() => ItemSetNames.Odin), // Wind
             25,
             (Stats.TotalEnergy, 15.0f),
             (Stats.MaximumHealth, 50.0f),
@@ -466,7 +468,7 @@ public class AncientSets : InitializerBase
             (12, ItemGroups.Boots, Stats.TotalVitality, 1));
 
         var elvian = this.AddAncientSet(
-            "Elvian", // Wind
+            LocalizedString.FromResource(() => ItemSetNames.Elvian), // Wind
             26,
             (Stats.TotalAgility, 30.0f),
             (Stats.DefenseIgnoreChance, 0.05f));
@@ -477,7 +479,7 @@ public class AncientSets : InitializerBase
             (12, ItemGroups.Boots, Stats.TotalVitality, 2));
 
         var argo = this.AddAncientSet(
-            "Argo", // Spirit
+            LocalizedString.FromResource(() => ItemSetNames.Argo), // Spirit
             27,
             (Stats.MaximumPhysBaseDmg, 20.0f),
             (Stats.SkillDamageBonus, 25.0f),
@@ -491,7 +493,7 @@ public class AncientSets : InitializerBase
             (13, ItemGroups.Pants, Stats.TotalVitality, 1));
 
         var karis = this.AddAncientSet(
-            "Karis", // Spirit
+            LocalizedString.FromResource(() => ItemSetNames.Karis), // Spirit
             28,
             (Stats.SkillDamageBonus, 15.0f),
             (Stats.DoubleDamageChance, 0.10f),
@@ -505,7 +507,7 @@ public class AncientSets : InitializerBase
             (13, ItemGroups.Pants, Stats.TotalVitality, 2));
 
         var gywen = this.AddAncientSet(
-            "Gywen", // Guardian
+            LocalizedString.FromResource(() => ItemSetNames.Gywen), // Guardian
             29,
             (Stats.TotalAgility, 30.0f, AggregateType.AddRaw),
             (Stats.MinimumPhysBaseDmg, 20.0f, AggregateType.AddRaw),
@@ -525,7 +527,7 @@ public class AncientSets : InitializerBase
             (28, ItemGroups.Misc1, null, 1)); // Pendant of Ability
 
         var aruan = this.AddAncientSet(
-            "Aruan", // Guardian
+            LocalizedString.FromResource(() => ItemSetNames.Aruan), // Guardian
             30,
             (Stats.FinalDamageBonus, 10.0f),
             (Stats.DoubleDamageChance, 0.10f),
@@ -542,7 +544,7 @@ public class AncientSets : InitializerBase
             (14, ItemGroups.Helm, Stats.TotalVitality, 2));
 
         var gaion = this.AddAncientSet(
-            "Gaion", // Storm Crow
+            LocalizedString.FromResource(() => ItemSetNames.Gaion), // Storm Crow
             31,
             (Stats.DefenseIgnoreChance, 0.05f, AggregateType.AddRaw),
             (Stats.DoubleDamageChance, 0.15f, AggregateType.AddRaw),
@@ -560,7 +562,7 @@ public class AncientSets : InitializerBase
             (27, ItemGroups.Misc1, Stats.TotalVitality, 1)); // Pendant of Water
 
         var muren = this.AddAncientSet(
-            "Muren", // Storm Crow
+            LocalizedString.FromResource(() => ItemSetNames.Muren), // Storm Crow
             32,
             (Stats.SkillDamageBonus, 10.0f, AggregateType.AddRaw),
             (Stats.WizardryBaseDmgIncrease, 1.10f, AggregateType.Multiplicate),
@@ -578,7 +580,7 @@ public class AncientSets : InitializerBase
             (21, ItemGroups.Misc1, Stats.TotalVitality, 2)); // Ring of Fire
 
         var agnis = this.AddAncientSet(
-            "Agnis", // Adamantine
+            LocalizedString.FromResource(() => ItemSetNames.Agnis), // Adamantine
             33,
             (Stats.DoubleDamageChance, 0.10f, AggregateType.AddRaw),
             (Stats.DefenseBase, 40.0f, AggregateType.AddFinal),
@@ -596,7 +598,7 @@ public class AncientSets : InitializerBase
             (9, ItemGroups.Misc1, Stats.TotalVitality, 2)); // Ring of Poison
 
         var broy = this.AddAncientSet(
-            "Broy", // Adamantine
+            LocalizedString.FromResource(() => ItemSetNames.Broy), // Adamantine
             34,
             (Stats.FinalDamageBonus, 20.0f),
             (Stats.SkillDamageBonus, 20.0f),
@@ -614,7 +616,7 @@ public class AncientSets : InitializerBase
             (25, ItemGroups.Misc1, Stats.TotalStrength, 2)); // Pendant of Ice
 
         var chrono = this.AddAncientSet(
-            "Chrono", // Red Wing
+            LocalizedString.FromResource(() => ItemSetNames.Chrono), // Red Wing
             35,
             (Stats.DoubleDamageChance, 0.20f, AggregateType.AddRaw),
             (Stats.DefenseBase, 60.0f, AggregateType.AddFinal),
@@ -632,7 +634,7 @@ public class AncientSets : InitializerBase
             (24, ItemGroups.Misc1, Stats.TotalEnergy, 2)); // Ring of Magic
 
         var semeden = this.AddAncientSet(
-            "Semeden", // Red Wing
+            LocalizedString.FromResource(() => ItemSetNames.Semeden), // Red Wing
             36,
             (Stats.WizardryBaseDmgIncrease, 1.15f, AggregateType.Multiplicate),
             (Stats.SkillDamageBonus, 25.0f, AggregateType.AddRaw),
@@ -665,12 +667,12 @@ public class AncientSets : InitializerBase
         }
     }
 
-    private ItemSetGroup AddAncientSet(string name, short setNumber, params (AttributeDefinition Attribute, float Value)[] ancientOptions)
+    private ItemSetGroup AddAncientSet(LocalizedString name, short setNumber, params (AttributeDefinition Attribute, float Value)[] ancientOptions)
     {
         return this.AddAncientSet(name, setNumber, ancientOptions.Select(ancOpt => (ancOpt.Attribute, ancOpt.Value, AggregateType.AddRaw)).ToArray());
     }
 
-    private ItemSetGroup AddAncientSet(string name, short setNumber, params (AttributeDefinition Attribute, float Value, AggregateType AggregateType)[] ancientOptions)
+    private ItemSetGroup AddAncientSet(LocalizedString name, short setNumber, params (AttributeDefinition Attribute, float Value, AggregateType AggregateType)[] ancientOptions)
     {
         var set = this.Context.CreateNew<ItemSetGroup>();
         set.SetGuid(setNumber);
@@ -680,7 +682,7 @@ public class AncientSets : InitializerBase
         int number = 1;
         var options = this.Context.CreateNew<ItemOptionDefinition>();
         options.SetGuid(ItemOptionDefinitionNumbers.AncientOption, setNumber, (byte)number);
-        options.Name = $"{name} (Ancient Set)";
+        options.Name = ItemNameTranslations.GetOptionName($"{name.ValueInNeutralLanguage} (Ancient Set)");
         set.Options = options;
         foreach (var optionTuple in ancientOptions)
         {
@@ -715,7 +717,7 @@ public class AncientSets : InitializerBase
 
         var optionDefinition = this.Context.CreateNew<ItemOptionDefinition>();
         optionDefinition.SetGuid(ItemOptionDefinitionNumbers.AncientBonus, attribute.Id.ExtractFirstTwoBytes());
-        optionDefinition.Name = $"Ancient Bonus of {attribute.Designation}";
+        optionDefinition.Name = ItemNameTranslations.GetOptionName($"Ancient Bonus of {attribute.Designation}");
         optionDefinition.AddsRandomly = false;
         optionDefinition.MaximumOptionsPerItem = 1;
         this.GameConfiguration.ItemOptions.Add(optionDefinition);
