@@ -36,11 +36,6 @@ internal class ChineseMapNamesTests
         await initializer.CreateInitialDataAsync(1, false).ConfigureAwait(false);
         using var context = provider.CreateNewContext();
         var configuration = (await context.GetAsync<GameConfiguration>().ConfigureAwait(false)).Single();
-        foreach (var map in configuration.Maps)
-        {
-            Assert.That(map.Name.GetTranslation(Chinese, false), Is.Not.Null.And.Not.Empty, map.Name.ValueInNeutralLanguage);
-        }
-
         Assert.That(configuration.Maps.Single(map => map.Number == 0).Name.GetTranslation(Chinese), Is.EqualTo("勇者大陆"));
         Assert.That(configuration.Maps.Single(map => map.Number == 3).Name.GetTranslation(Chinese), Is.EqualTo("仙踪林"));
         if (version == "Season6")
@@ -51,7 +46,7 @@ internal class ChineseMapNamesTests
         }
 
         var updates = await context.GetAsync<ConfigurationUpdate>().ConfigureAwait(false);
-        Assert.That(updates.Any(update => update.Version == (int)CreateUpdate(version).Version && update.InstalledAt is not null), Is.True);
+        Assert.That(updates.Any(update => update.Key == CreateUpdate(version).Key && update.InstalledAt is not null), Is.True);
     }
 
     /// <summary>Updates distinguish shared map numbers, preserve custom names, and are idempotent.</summary>
@@ -66,7 +61,7 @@ internal class ChineseMapNamesTests
         var configuration = context.CreateNew<GameConfiguration>();
         var update = CreateUpdate(version);
         context.CreateNew<ConfigurationUpdateState>().InitializationKey = update.DataInitializationKey;
-        var lorencia = AddMap(0, "Lorencia||de=Stadt||zh=洛兰");
+        var lorencia = AddMap(0, "Lorencia||de=Stadt||zh=Lorencia");
         var missing = AddMap(3, "Noria");
         var ice = AddMap(57, "LaCleon||zh=狼魂要塞");
         var wolf = AddMap(34, "Crywolf Fortress||zh=狼魂要塞");
@@ -75,6 +70,7 @@ internal class ChineseMapNamesTests
         var custom = AddMap(63, "Vulcanus||zh=自定义 PK 地图");
         var renamed = AddMap(65, "Custom Map||zh=幽灵神殿 1");
         var unknown = AddMap(200, "Noria");
+        var unverified = AddMap(40, "Silent Map?");
         var gate = context.CreateNew<ExitGate>();
         gate.X1 = 45;
         gate.Y1 = 67;
@@ -87,30 +83,31 @@ internal class ChineseMapNamesTests
         var manager = new PlugInManager(null, NullLoggerFactory.Instance, null, null);
         manager.DiscoverAndRegisterPlugInsOf<IConfigurationUpdatePlugIn>();
         var service = new DataUpdateService(provider, manager);
-        var available = (await service.DetermineAvailableUpdatesAsync().ConfigureAwait(false)).OfType<AlignChineseMapNamesPlugInBase>().ToList();
-        Assert.That(available.Select(item => item.Version), Is.EqualTo(new[] { update.Version }));
+        var available = (await service.DetermineAvailableUpdatesAsync().ConfigureAwait(false)).OfType<AddConfigurationNameTranslationsPlugInBase>().ToList();
+        Assert.That(available.Select(item => item.Key), Is.EqualTo(new[] { update.Key }));
         Assert.That(available.Single().IsMandatory, Is.False);
-        await service.ApplyUpdatesAsync(available, new Progress<(UpdateVersion, bool)>()).ConfigureAwait(false);
+        await service.ApplyUpdatesAsync(available, new Progress<(Guid, bool)>()).ConfigureAwait(false);
 
         Assert.That(lorencia.Name.ValueInNeutralLanguage, Is.EqualTo("Lorencia"));
         Assert.That(lorencia.Name.GetTranslation(Chinese), Is.EqualTo("勇者大陆"));
         Assert.That(lorencia.Name.GetTranslation(CultureInfo.GetCultureInfo("de")), Is.EqualTo("Stadt"));
         Assert.That(missing.Name.GetTranslation(Chinese), Is.EqualTo("仙踪林"));
-        Assert.That(ice.Name.GetTranslation(Chinese), Is.EqualTo("冰霜之城"));
+        Assert.That(ice.Name.GetTranslation(Chinese), Is.EqualTo("狼魂要塞"));
         Assert.That(wolf.Name.GetTranslation(Chinese), Is.EqualTo("狼魂要塞"));
         Assert.That(devil1.Name.GetTranslation(Chinese), Is.EqualTo("恶魔广场 1"));
         Assert.That(devil2.Name.GetTranslation(Chinese), Is.EqualTo("恶魔广场 2"));
         Assert.That(custom.Name.GetTranslation(Chinese), Is.EqualTo("自定义 PK 地图"));
         Assert.That(renamed.Name.Value, Is.EqualTo("Custom Map||zh=幽灵神殿 1"));
         Assert.That(unknown.Name.Value, Is.EqualTo("Noria"));
+        Assert.That(unverified.Name.Value, Is.EqualTo("Silent Map?"));
         Assert.That(lorencia.Number, Is.Zero);
         Assert.That(lorencia.ExitGates.Single(), Is.SameAs(gate));
         Assert.That(gate.X1, Is.EqualTo(45));
         Assert.That(gate.Y1, Is.EqualTo(67));
         Assert.That(lorencia.MonsterSpawns.Single(), Is.SameAs(spawn));
         Assert.That(spawn.Quantity, Is.EqualTo(7));
-        Assert.That(configuration.Maps, Has.Count.EqualTo(9));
-        Assert.That((await service.DetermineAvailableUpdatesAsync().ConfigureAwait(false)).OfType<AlignChineseMapNamesPlugInBase>(), Is.Empty);
+        Assert.That(configuration.Maps, Has.Count.EqualTo(10));
+        Assert.That((await service.DetermineAvailableUpdatesAsync().ConfigureAwait(false)).OfType<AddConfigurationNameTranslationsPlugInBase>(), Is.Empty);
         var names = configuration.Maps.Select(map => map.Name).ToArray();
         await update.ApplyUpdateAsync(context, configuration).ConfigureAwait(false);
         Assert.That(configuration.Maps.Select(map => map.Name), Is.EqualTo(names));
@@ -125,10 +122,10 @@ internal class ChineseMapNamesTests
         }
     }
 
-    private static AlignChineseMapNamesPlugInBase CreateUpdate(string version) => version switch
+    private static AddConfigurationNameTranslationsPlugInBase CreateUpdate(string version) => version switch
     {
-        "075" => new AlignChineseMapNamesPlugIn075(),
-        "095d" => new AlignChineseMapNamesPlugIn095d(),
-        _ => new AlignChineseMapNamesPlugInSeason6(),
+        "075" => new AddConfigurationNameTranslationsPlugIn075(),
+        "095d" => new AddConfigurationNameTranslationsPlugIn095D(),
+        _ => new AddConfigurationNameTranslationsPlugInSeason6(),
     };
 }

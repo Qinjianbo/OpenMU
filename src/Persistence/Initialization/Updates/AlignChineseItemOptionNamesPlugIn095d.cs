@@ -17,8 +17,5 @@ using MUnique.OpenMU.PlugIns;
 public class AlignChineseItemOptionNamesPlugIn095d : AlignChineseItemOptionNamesPlugInBase
 {
     /// <inheritdoc />
-    public override UpdateVersion Version => UpdateVersion.AlignChineseItemOptionNames095d;
-
-    /// <inheritdoc />
     public override string DataInitializationKey => Version095d.DataInitialization.Id;
 }

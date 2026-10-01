@@ -17,8 +17,5 @@ using MUnique.OpenMU.PlugIns;
 public class AlignChineseMapNamesPlugInSeason6 : AlignChineseMapNamesPlugInBase
 {
     /// <inheritdoc />
-    public override UpdateVersion Version => UpdateVersion.AlignChineseMapNamesSeason6;
-
-    /// <inheritdoc />
     public override string DataInitializationKey => VersionSeasonSix.DataInitialization.Id;
 }

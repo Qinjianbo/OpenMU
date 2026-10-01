@@ -17,8 +17,5 @@ using MUnique.OpenMU.PlugIns;
 public class AlignChineseMerchantNamesPlugIn075 : AlignChineseMerchantNamesPlugInBase
 {
     /// <inheritdoc />
-    public override UpdateVersion Version => UpdateVersion.AlignChineseMerchantNames075;
-
-    /// <inheritdoc />
     public override string DataInitializationKey => Version075.DataInitialization.Id;
 }

@@ -347,4 +347,6 @@
   <data name="AlignChineseItemNames_Description" xml:space="preserve"><value>补齐物品中文名称，修正已知旧译，保留自定义名称及其他语言。</value></data>
   <data name="AlignChineseItemOptionNames_Name" xml:space="preserve"><value>补齐简体中文物品属性名称</value></data>
   <data name="AlignChineseItemOptionNames_Description" xml:space="preserve"><value>补齐物品属性类型、属性组和套装名称的中文翻译，保留自定义名称及其他语言。</value></data>
+  <data name="AddConfigurationNameTranslations_Name" xml:space="preserve"><value>补充配置名称翻译</value></data>
+  <data name="AddConfigurationNameTranslations_Description" xml:space="preserve"><value>补充职业、地图、商人、怪物及NPC名称的可用翻译。仅补齐缺失翻译或替换原文副本；保留自定义名称及玩法配置。</value></data>
 </root>

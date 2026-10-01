@@ -71,7 +71,7 @@ internal class ChineseCharacterClassNamesTests
         }
 
         var updates = await context.GetAsync<ConfigurationUpdate>().ConfigureAwait(false);
-        Assert.That(updates.Any(update => update.Version == (int)CreateUpdate(version).Version && update.InstalledAt is not null), Is.True);
+        Assert.That(updates.Any(update => update.Key == CreateUpdate(version).Key && update.InstalledAt is not null), Is.True);
     }
 
     /// <summary>
@@ -88,7 +88,7 @@ internal class ChineseCharacterClassNamesTests
         var configuration = context.CreateNew<GameConfiguration>();
         var update = CreateUpdate(version);
         context.CreateNew<ConfigurationUpdateState>().InitializationKey = update.DataInitializationKey;
-        var wizard = AddClass(0, "Dark Wizard||zh=黑暗巫师||de=Zauberer");
+        var wizard = AddClass(0, "Dark Wizard||zh=Dark Wizard||de=Zauberer");
         var knight = AddClass(6, "Blade Knight||zh=剑圣");
         var fighter = AddClass(24, "Rage Fighter||zh=圣导师");
         var summoner = AddClass(22, "Bloody Summoner");
@@ -103,16 +103,16 @@ internal class ChineseCharacterClassNamesTests
         manager.DiscoverAndRegisterPlugInsOf<IConfigurationUpdatePlugIn>();
         var service = new DataUpdateService(provider, manager);
         var available = (await service.DetermineAvailableUpdatesAsync().ConfigureAwait(false))
-            .OfType<AlignChineseCharacterClassNamesPlugInBase>().ToList();
-        Assert.That(available.Select(item => item.Version), Is.EqualTo(new[] { update.Version }));
+            .OfType<AddConfigurationNameTranslationsPlugInBase>().ToList();
+        Assert.That(available.Select(item => item.Key), Is.EqualTo(new[] { update.Key }));
         Assert.That(available.Single().IsMandatory, Is.False);
-        await service.ApplyUpdatesAsync(available, new Progress<(UpdateVersion, bool)>()).ConfigureAwait(false);
+        await service.ApplyUpdatesAsync(available, new Progress<(Guid, bool)>()).ConfigureAwait(false);
 
         Assert.That(wizard.Name.GetTranslation(Chinese, false), Is.EqualTo("魔法师"));
         Assert.That(wizard.Name.ValueInNeutralLanguage, Is.EqualTo("Dark Wizard"));
         Assert.That(wizard.Name.GetTranslation(German, false), Is.EqualTo("Zauberer"));
-        Assert.That(knight.Name.GetTranslation(Chinese, false), Is.EqualTo("骑士"));
-        Assert.That(fighter.Name.GetTranslation(Chinese, false), Is.EqualTo("格斗家"));
+        Assert.That(knight.Name.GetTranslation(Chinese, false), Is.EqualTo("剑圣"));
+        Assert.That(fighter.Name.GetTranslation(Chinese, false), Is.EqualTo("圣导师"));
         Assert.That(summoner.Name.GetTranslation(Chinese, false), Is.EqualTo("召唤导师"));
         Assert.That(custom.Name.GetTranslation(Chinese, false), Is.EqualTo("自定义剑士"));
         Assert.That(unknown.Name.GetTranslation(Chinese, false), Is.EqualTo("自定义职业"));
@@ -122,7 +122,7 @@ internal class ChineseCharacterClassNamesTests
         Assert.That(wizard.NextGenerationClass, Is.SameAs(knight));
         Assert.That(wizard.LevelRequirementByCreation, Is.EqualTo(123));
         Assert.That(configuration.CharacterClasses, Has.Count.EqualTo(7));
-        Assert.That((await service.DetermineAvailableUpdatesAsync().ConfigureAwait(false)).OfType<AlignChineseCharacterClassNamesPlugInBase>(), Is.Empty);
+        Assert.That((await service.DetermineAvailableUpdatesAsync().ConfigureAwait(false)).OfType<AddConfigurationNameTranslationsPlugInBase>(), Is.Empty);
 
         var names = configuration.CharacterClasses.Select(item => item.Name).ToArray();
         await update.ApplyUpdateAsync(context, configuration).ConfigureAwait(false);
@@ -138,10 +138,10 @@ internal class ChineseCharacterClassNamesTests
         }
     }
 
-    private static AlignChineseCharacterClassNamesPlugInBase CreateUpdate(string version) => version switch
+    private static AddConfigurationNameTranslationsPlugInBase CreateUpdate(string version) => version switch
     {
-        "075" => new AlignChineseCharacterClassNamesPlugIn075(),
-        "095d" => new AlignChineseCharacterClassNamesPlugIn095d(),
-        _ => new AlignChineseCharacterClassNamesPlugInSeason6(),
+        "075" => new AddConfigurationNameTranslationsPlugIn075(),
+        "095d" => new AddConfigurationNameTranslationsPlugIn095D(),
+        _ => new AddConfigurationNameTranslationsPlugInSeason6(),
     };
 }

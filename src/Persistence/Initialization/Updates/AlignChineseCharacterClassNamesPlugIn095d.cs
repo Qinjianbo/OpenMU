@@ -17,8 +17,5 @@ using MUnique.OpenMU.PlugIns;
 public class AlignChineseCharacterClassNamesPlugIn095d : AlignChineseCharacterClassNamesPlugInBase
 {
     /// <inheritdoc />
-    public override UpdateVersion Version => UpdateVersion.AlignChineseCharacterClassNames095d;
-
-    /// <inheritdoc />
     public override string DataInitializationKey => Version095d.DataInitialization.Id;
 }

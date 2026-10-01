@@ -50,7 +50,7 @@ public class ChineseItemOptionNamesTests
         }
 
         var updates = await context.GetAsync<ConfigurationUpdate>().ConfigureAwait(false);
-        Assert.That(updates.Any(update => update.Version == (int)CreateUpdate(version).Version && update.InstalledAt is not null), Is.True);
+        Assert.That(updates.Any(update => update.Key == CreateUpdate(version).Key && update.InstalledAt is not null), Is.True);
     }
 
     /// <summary>Updates preserve custom translations, other languages and gameplay values.</summary>
@@ -86,9 +86,9 @@ public class ChineseItemOptionNamesTests
         manager.DiscoverAndRegisterPlugInsOf<IConfigurationUpdatePlugIn>();
         var service = new DataUpdateService(provider, manager);
         var available = (await service.DetermineAvailableUpdatesAsync().ConfigureAwait(false)).OfType<AlignChineseItemOptionNamesPlugInBase>().ToList();
-        Assert.That(available.Select(item => item.Version), Is.EqualTo(new[] { update.Version }));
+        Assert.That(available.Select(item => item.Key), Is.EqualTo(new[] { update.Key }));
         Assert.That(available.Single().IsMandatory, Is.False);
-        await service.ApplyUpdatesAsync(available, new Progress<(UpdateVersion, bool)>()).ConfigureAwait(false);
+        await service.ApplyUpdatesAsync(available, new Progress<(Guid, bool)>()).ConfigureAwait(false);
         Assert.That(option.Name.ValueInNeutralLanguage, Is.EqualTo("Excellent Defense Options"));
         Assert.That(option.Name.GetTranslation(Chinese), Is.EqualTo("卓越防御属性"));
         Assert.That(option.Name.GetTranslation(CultureInfo.GetCultureInfo("de")), Is.EqualTo("Verteidigung"));

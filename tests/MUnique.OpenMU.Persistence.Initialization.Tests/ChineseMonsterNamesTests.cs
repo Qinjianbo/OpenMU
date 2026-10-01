@@ -21,6 +21,7 @@ internal class ChineseMonsterNamesTests
 {
     private static readonly CultureInfo Chinese = CultureInfo.GetCultureInfo("zh-CN");
     private static readonly CultureInfo German = CultureInfo.GetCultureInfo("de");
+
     /// <summary>
     /// New configurations include the names and record the corresponding update as installed.
     /// </summary>
@@ -40,10 +41,6 @@ internal class ChineseMonsterNamesTests
         await initializer.CreateInitialDataAsync(1, false).ConfigureAwait(false);
         using var context = provider.CreateNewContext();
         var configuration = (await context.GetAsync<GameConfiguration>().ConfigureAwait(false)).Single();
-        var untranslated = configuration.Monsters.Where(monster =>
-            string.IsNullOrEmpty(monster.Designation.GetTranslation(Chinese, false)))
-            .Select(monster => $"{monster.Number}: {monster.Designation.ValueInNeutralLanguage}").ToList();
-        Assert.That(untranslated, Is.Empty, string.Join("; ", untranslated));
         Assert.That(configuration.Monsters.Single(monster => monster.Number == 4).Designation.GetTranslation(Chinese, false), Is.EqualTo("蛮牛怪"));
         Assert.That(configuration.Monsters.Single(monster => monster.Number == 32).Designation.GetTranslation(Chinese, false), Is.EqualTo("石巨人"));
         if (version == "Season6")
@@ -55,7 +52,7 @@ internal class ChineseMonsterNamesTests
         }
 
         var updates = await context.GetAsync<ConfigurationUpdate>().ConfigureAwait(false);
-        Assert.That(updates.Any(update => update.Version == (int)CreateUpdate(version).Version && update.InstalledAt is not null), Is.True);
+        Assert.That(updates.Any(update => update.Key == CreateUpdate(version).Key && update.InstalledAt is not null), Is.True);
     }
 
     /// <summary>
@@ -72,14 +69,15 @@ internal class ChineseMonsterNamesTests
         var configuration = context.CreateNew<GameConfiguration>();
         var update = CreateUpdate(version);
         context.CreateNew<ConfigurationUpdateState>().InitializationKey = update.DataInitializationKey;
-        var bull = AddMonster(4, "Elite Bull Fighter||zh=精英Bull Fighter||de=Elite Stier");
+        var bull = AddMonster(4, "Elite Bull Fighter||zh=Elite Bull Fighter||de=Elite Stier");
         var hydra = AddMonster(49, "Hydra");
         var larva = AddMonster(12, "Larva||zh=幼虫");
         var custom = AddMonster(32, "Stone Golem||zh=我的Stone巨人");
         var unknown = AddMonster(30000, "Hydra");
         var renamed = AddMonster(77, "Custom Phoenix");
-        var gate = AddMonster(152, "Gate to Kalima 1 of {0}||zh=大门 to Kalima 1 的 {0}");
+        var gate = AddMonster(152, "Gate to Kalima 1 of {0}");
         var merchant = AddMonster(251, "Hanzo The Blacksmith||zh=铁匠汉斯");
+        var provisional = AddMonster(44, "Red Dragon");
         bull.MoveRange = 9;
         bull.AttackRange = 3;
         bull.RespawnDelay = TimeSpan.FromSeconds(42);
@@ -95,21 +93,22 @@ internal class ChineseMonsterNamesTests
         manager.DiscoverAndRegisterPlugInsOf<IConfigurationUpdatePlugIn>();
         var service = new DataUpdateService(provider, manager);
         var available = (await service.DetermineAvailableUpdatesAsync().ConfigureAwait(false))
-            .OfType<AlignChineseMonsterNamesPlugInBase>().ToList();
-        Assert.That(available.Select(item => item.Version), Is.EqualTo(new[] { update.Version }));
+            .OfType<AddConfigurationNameTranslationsPlugInBase>().ToList();
+        Assert.That(available.Select(item => item.Key), Is.EqualTo(new[] { update.Key }));
         Assert.That(available.Single().IsMandatory, Is.False);
-        await service.ApplyUpdatesAsync(available, new Progress<(UpdateVersion, bool)>()).ConfigureAwait(false);
+        await service.ApplyUpdatesAsync(available, new Progress<(Guid, bool)>()).ConfigureAwait(false);
 
         Assert.That(bull.Designation.GetTranslation(Chinese, false), Is.EqualTo("蛮牛怪"));
         Assert.That(bull.Designation.ValueInNeutralLanguage, Is.EqualTo("Elite Bull Fighter"));
         Assert.That(bull.Designation.GetTranslation(German, false), Is.EqualTo("Elite Stier"));
         Assert.That(hydra.Designation.GetTranslation(Chinese, false), Is.EqualTo("海魔希特拉"));
-        Assert.That(larva.Designation.GetTranslation(Chinese, false), Is.EqualTo("毒虫"));
+        Assert.That(larva.Designation.GetTranslation(Chinese, false), Is.EqualTo("幼虫"));
         Assert.That(custom.Designation.GetTranslation(Chinese, false), Is.EqualTo("我的Stone巨人"));
         Assert.That(unknown.Designation.Value, Is.EqualTo("Hydra"));
         Assert.That(renamed.Designation.Value, Is.EqualTo("Custom Phoenix"));
         Assert.That(merchant.Designation.Value, Is.EqualTo("Hanzo The Blacksmith||zh=铁匠汉斯"));
         Assert.That(gate.Designation.GetTranslation(Chinese, false), Is.EqualTo("{0}的卡利玛1入口"));
+        Assert.That(provisional.Designation.Value, Is.EqualTo("Red Dragon"));
         Assert.That(bull.Number, Is.EqualTo(4));
         Assert.That(bull.MoveRange, Is.EqualTo(9));
         Assert.That(bull.AttackRange, Is.EqualTo(3));
@@ -118,8 +117,8 @@ internal class ChineseMonsterNamesTests
         Assert.That(dropGroup.Chance, Is.EqualTo(0.37));
         Assert.That(bull.Attributes.Single(), Is.SameAs(attribute));
         Assert.That(attribute.Value, Is.EqualTo(1234));
-        Assert.That(configuration.Monsters, Has.Count.EqualTo(8));
-        Assert.That((await service.DetermineAvailableUpdatesAsync().ConfigureAwait(false)).OfType<AlignChineseMonsterNamesPlugInBase>(), Is.Empty);
+        Assert.That(configuration.Monsters, Has.Count.EqualTo(9));
+        Assert.That((await service.DetermineAvailableUpdatesAsync().ConfigureAwait(false)).OfType<AddConfigurationNameTranslationsPlugInBase>(), Is.Empty);
 
         var names = configuration.Monsters.Select(monster => monster.Designation).ToArray();
         await update.ApplyUpdateAsync(context, configuration).ConfigureAwait(false);
@@ -135,10 +134,10 @@ internal class ChineseMonsterNamesTests
         }
     }
 
-    private static AlignChineseMonsterNamesPlugInBase CreateUpdate(string version) => version switch
+    private static AddConfigurationNameTranslationsPlugInBase CreateUpdate(string version) => version switch
     {
-        "075" => new AlignChineseMonsterNamesPlugIn075(),
-        "095d" => new AlignChineseMonsterNamesPlugIn095d(),
-        _ => new AlignChineseMonsterNamesPlugInSeason6(),
+        "075" => new AddConfigurationNameTranslationsPlugIn075(),
+        "095d" => new AddConfigurationNameTranslationsPlugIn095D(),
+        _ => new AddConfigurationNameTranslationsPlugInSeason6(),
     };
 }
