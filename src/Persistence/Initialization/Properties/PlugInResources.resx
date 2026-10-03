@@ -394,4 +394,8 @@
   <data name="AddItemNameTranslations_Description" xml:space="preserve"><value>Adds available resource translations of item names. Only missing translations and English copies are filled; custom names, existing translations and gameplay settings are preserved.</value></data>
   <data name="AddItemOptionTranslations_Name" xml:space="preserve"><value>Add item option and set translations</value></data>
   <data name="AddItemOptionTranslations_Description" xml:space="preserve"><value>Adds available resource translations of item option types, options, sets and descriptions. Only missing translations and English copies are filled; custom names, existing translations and gameplay settings are preserved.</value></data>
+  <data name="FixVulcanusWarpIndexUpdatePlugIn_Name" xml:space="preserve"><value>Fix Vulcanus warp index</value></data>
+  <data name="FixVulcanusWarpIndexUpdatePlugIn_Description" xml:space="preserve"><value>This update corrects the index of the warp entry of Vulcanus to 42, which the season 6 game client requests.</value></data>
+  <data name="AddSmallWingsUpdatePlugIn_Name" xml:space="preserve"><value>Add small wings and capes</value></data>
+  <data name="AddSmallWingsUpdatePlugIn_Description" xml:space="preserve"><value>This update adds the missing small wings and capes of the in-game shop: Small Cape of Lord, Small Wing of Curse, Small Wings of Elf, Small Wings of Heaven, Small Wings of Satan and Little Warrior's Cloak. Existing items with the same numbers are left unchanged.</value></data>
 </root>

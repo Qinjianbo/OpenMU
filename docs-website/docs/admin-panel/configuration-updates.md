@@ -52,37 +52,17 @@ applied on top of a current schema.
   yourself in the [game configuration](game-configuration.md).
 * Apply updates during a maintenance window, since a restart is needed anyway.
 
-## Configuration name translations
+## Translation updates in this fork
 
-The optional **Add configuration name translations** update supplements names of
-built-in classes, maps, merchants, monsters and NPCs from the available language
-resources. It supports 0.75, 0.95d and Season 6 configurations. This batch includes
-382 Simplified Chinese name mappings. Freshly initialized databases already
-include the translations and record the corresponding update as installed.
+Use the [captions page](configuration-captions.md) to link built-in names to their resources and
+review available translations. This includes the local item and option resources.
+Fresh configurations store the resource source keys directly.
 
-Back up the database, apply the update on `/config-updates`, then restart the
-application. Only missing translations and exact copies of the neutral English
-name are filled. Custom neutral names and existing custom translations are
-preserved, including older language-only values such as `zh`. Regional entries
-such as `zh-CN` and `zh-TW` can coexist. Gameplay settings remain unchanged.
-Reapplying the mapping does not create duplicate translations.
+Earlier optional translation plugins are retained in this fork with their original
+GUIDs to preserve installation history. They fill missing translations or English
+copies and preserve custom text. They do not replace the captions page's source
+linking and preview workflow.
 
-Coverage is partial: unverified names retain their existing values. These are
-server configuration names; the game's own client language files are unaffected.
-The [mapping and sources](https://github.com/MUnique/OpenMU/blob/master/docs/ChineseConfigurationNames.md)
-list included names and distinguish derived variant labels from official names.
-
-### Item names and options
-
-The optional **Add item name translations** and **Add item option and set translations**
-updates use the same language resources as fresh initialization. They support
-075, 095d and Season 6 configurations. Deploy the initialization assembly together
-with its satellite resource assemblies before applying these updates.
-
-Item names are matched by group, number and neutral name. Option types, option
-groups, set names and option descriptions are matched by their built-in neutral
-text. Missing translations and English copies are filled; existing translations
-and custom neutral names are preserved. Item statistics and references are unchanged.
-Fresh configurations already contain these translations and mark the updates as
-installed. Earlier local Chinese correction updates retain their identities and
-installation history.
+Some legacy item option definitions have randomly generated identifiers and no
+numeric identity. Source linking can leave these names unlinked; the earlier
+optional item option translation update remains available for them.

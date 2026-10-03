@@ -6,7 +6,7 @@ import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[1]
 DIRECTORY = ROOT / 'src/Persistence/Initialization/Properties'
-CATEGORIES = ('CharacterClassNames', 'MapNames', 'MerchantNames', 'MonsterNames', 'ItemNames', 'ItemOptionTypeNames', 'ItemOptionNames', 'ItemSetNames', 'ItemOptionDescriptions')
+CATEGORIES = ('ItemNames', 'ItemOptionTypeNames', 'ItemOptionNames', 'ItemSetNames', 'ItemOptionDescriptions')
 for category in CATEGORIES:
     entries = ET.parse(DIRECTORY / f'{category}.resx').getroot().findall('data')
     properties = '\n'.join(

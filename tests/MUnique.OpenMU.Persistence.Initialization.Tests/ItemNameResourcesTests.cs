@@ -19,6 +19,17 @@ using MUnique.OpenMU.Persistence.InMemory;
 [NonParallelizable]
 internal class ItemNameResourcesTests
 {
+    /// <summary>Persisted item source keys resolve before a game configuration is initialized.</summary>
+    [Test]
+    public void ItemSourcesResolveWithoutInitialization()
+    {
+        ConfigurationNameSources.Register();
+        var item = new LocalizedString("Kris").WithSourceKey("ItemNames/Kris");
+        var option = new LocalizedString("Luck").WithSourceKey("ItemOptionNames/Luck");
+        Assert.That(item.GetFromSource()?.GetOwnTranslation(CultureInfo.GetCultureInfo("zh-CN")), Is.EqualTo("波刃剑"));
+        Assert.That(option.GetFromSource()?.GetOwnTranslation(CultureInfo.GetCultureInfo("zh-CN")), Is.EqualTo("幸运属性"));
+    }
+
     /// <summary>Every resource is initialized directly, and optional updates restore missing translations.</summary>
     [Test]
     public async Task InitializationAndUpdatesUseAllResourcesAsync()
@@ -79,8 +90,8 @@ internal class ItemNameResourcesTests
                 Assert.That(installed.Any(entry => entry.Key == update.Key && entry.InstalledAt is not null), Is.True);
             }
 
-            var expected = configuration.Items.Select(i => i.Name.Value)
-                .Concat(configuration.ItemOptions.Select(i => i.Name.Value)).ToArray();
+            var expected = configuration.Items.Select(i => i.Name.ComputeContentHash())
+                .Concat(configuration.ItemOptions.Select(i => i.Name.ComputeContentHash())).ToArray();
             foreach (var item in configuration.Items)
             {
                 item.Name = item.Name.ValueInNeutralLanguage;
@@ -97,8 +108,8 @@ internal class ItemNameResourcesTests
                 {
                     await update.ApplyUpdateAsync(context, configuration).ConfigureAwait(false);
                 }
-                Assert.That(configuration.Items.Select(i => i.Name.Value)
-                    .Concat(configuration.ItemOptions.Select(i => i.Name.Value)), Is.EqualTo(expected));
+                Assert.That(configuration.Items.Select(i => i.Name.ComputeContentHash())
+                    .Concat(configuration.ItemOptions.Select(i => i.Name.ComputeContentHash())), Is.EqualTo(expected));
             }
         }
 
