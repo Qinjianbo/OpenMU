@@ -181,7 +181,7 @@
     <value>至尊权杖</value>
   </data>
   <data name="DivineScepterOfArchangel" xml:space="preserve">
-    <value>大天使之杖（圣导师）</value>
+    <value>大天使权杖</value>
   </data>
   <data name="SoleilScepter" xml:space="preserve">
     <value>圣尊天使之杖</value>
@@ -190,7 +190,7 @@
     <value>弹奏权杖</value>
   </data>
   <data name="FrostMace" xml:space="preserve">
-    <value>寒冰之槌</value>
+    <value>巨毒之刺</value>
   </data>
   <data name="AbsoluteScepter" xml:space="preserve">
     <value>独裁权杖</value>
@@ -394,7 +394,7 @@
     <value>乌鸦之杖</value>
   </data>
   <data name="DivineStickOfArchangel" xml:space="preserve">
-    <value>大天使之杖（召唤术师）</value>
+    <value>大天使绝对魔杖</value>
   </data>
   <data name="SmallShield" xml:space="preserve">
     <value>圆盾</value>
@@ -1333,7 +1333,7 @@
     <value>玛雅宝石</value>
   </data>
   <data name="OrbOfFireSlash" xml:space="preserve">
-    <value>天雷闪之石</value>
+    <value>玄月斩之石</value>
   </data>
   <data name="OrbOfPenetration" xml:space="preserve">
     <value>穿透箭之石</value>
@@ -1363,13 +1363,13 @@
     <value>灵魂宝石组合</value>
   </data>
   <data name="RedRibbonBox" xml:space="preserve">
-    <value>红色缎带宝箱</value>
+    <value>红色圣诞箱</value>
   </data>
   <data name="GreenRibbonBox" xml:space="preserve">
-    <value>绿色缎带宝箱</value>
+    <value>绿色圣诞箱</value>
   </data>
   <data name="BlueRibbonBox" xml:space="preserve">
-    <value>蓝色缎带宝箱</value>
+    <value>蓝色圣诞箱</value>
   </data>
   <data name="ScrollOfFireScream" xml:space="preserve">
     <value>火舞旋风卷轴</value>
@@ -1687,16 +1687,16 @@
     <value>圣诞变身指环</value>
   </data>
   <data name="GameMasterTransformationRing" xml:space="preserve">
-    <value>管理员变身指环</value>
+    <value>GM变身指环</value>
   </data>
   <data name="OldScroll" xml:space="preserve">
-    <value>旧卷轴</value>
+    <value>旧卷纸</value>
   </data>
   <data name="IllusionSorcererCovenant" xml:space="preserve">
-    <value>幻影教主的血书</value>
+    <value>幻影教药水</value>
   </data>
   <data name="ScrollOfBlood" xml:space="preserve">
-    <value>血的卷轴</value>
+    <value>血的卷纸</value>
   </data>
   <data name="FlameOfCondor" xml:space="preserve">
     <value>神鹰火种</value>
@@ -1783,7 +1783,7 @@
     <value>恶魔之钥</value>
   </data>
   <data name="DevilSInvitation" xml:space="preserve">
-    <value>恶魔广场通行证</value>
+    <value>恶魔广场入场券</value>
   </data>
   <data name="Rena" xml:space="preserve">
     <value>蕾娜</value>
@@ -1822,13 +1822,13 @@
     <value>蓝色巧克力盒</value>
   </data>
   <data name="SmallShieldPotion" xml:space="preserve">
-    <value>小瓶护盾药水</value>
+    <value>SD恢复药水（小）</value>
   </data>
   <data name="MediumShieldPotion" xml:space="preserve">
-    <value>中瓶护盾药水</value>
+    <value>SD恢复药水（中）</value>
   </data>
   <data name="LargeShieldPotion" xml:space="preserve">
-    <value>大瓶护盾药水</value>
+    <value>SD恢复药水（大）</value>
   </data>
   <data name="SmallComplexPotion" xml:space="preserve">
     <value>小瓶复合药水</value>
@@ -1855,25 +1855,25 @@
     <value>幸运南瓜</value>
   </data>
   <data name="JackOLanternBlessings" xml:space="preserve">
-    <value>南瓜祝福</value>
+    <value>南瓜灯的祝福</value>
   </data>
   <data name="JackOLanternWrath" xml:space="preserve">
-    <value>南瓜愤怒</value>
+    <value>南瓜灯的愤怒</value>
   </data>
   <data name="JackOLanternCry" xml:space="preserve">
-    <value>南瓜哭泣</value>
+    <value>南瓜灯的呐喊</value>
   </data>
   <data name="JackOLanternFood" xml:space="preserve">
-    <value>南瓜食物</value>
+    <value>南瓜灯的食物</value>
   </data>
   <data name="JackOLanternDrink" xml:space="preserve">
-    <value>南瓜饮料</value>
+    <value>南瓜灯的饮料</value>
   </data>
   <data name="ChristmasStar" xml:space="preserve">
     <value>圣诞之星</value>
   </data>
   <data name="GMGift" xml:space="preserve">
-    <value>管理员礼物</value>
+    <value>GM礼物宝箱</value>
   </data>
   <data name="Firecracker" xml:space="preserve">
     <value>烟花</value>
@@ -1891,7 +1891,7 @@
     <value>深渊之眼</value>
   </data>
   <data name="CherryBlossomPlayBox" xml:space="preserve">
-    <value>樱花礼盒</value>
+    <value>樱花游戏箱</value>
   </data>
   <data name="CherryBlossomWine" xml:space="preserve">
     <value>樱花酒</value>
@@ -1903,37 +1903,37 @@
     <value>樱花花瓣</value>
   </data>
   <data name="GoldenCherryBlossomBranch" xml:space="preserve">
-    <value>金色樱花树枝</value>
+    <value>黄色樱花树枝</value>
   </data>
   <data name="ChristmasFirecracker" xml:space="preserve">
     <value>圣诞烟花</value>
   </data>
   <data name="SuspiciousScrapOfPaper" xml:space="preserve">
-    <value>可疑的纸片</value>
+    <value>奇怪的小纸条</value>
   </data>
   <data name="GaionSOrder" xml:space="preserve">
     <value>凯文的指令</value>
   </data>
   <data name="FirstSecromiconFragment" xml:space="preserve">
-    <value>第一块西克罗米昆碎片</value>
+    <value>希克拉碎片1</value>
   </data>
   <data name="SecondSecromiconFragment" xml:space="preserve">
-    <value>第二块西克罗米昆碎片</value>
+    <value>希克拉碎片2</value>
   </data>
   <data name="ThirdSecromiconFragment" xml:space="preserve">
-    <value>第三块西克罗米昆碎片</value>
+    <value>希克拉碎片3</value>
   </data>
   <data name="FourthSecromiconFragment" xml:space="preserve">
-    <value>第四块西克罗米昆碎片</value>
+    <value>希克拉碎片4</value>
   </data>
   <data name="FifthSecromiconFragment" xml:space="preserve">
-    <value>第五块西克罗米昆碎片</value>
+    <value>希克拉碎片5</value>
   </data>
   <data name="SixthSecromiconFragment" xml:space="preserve">
-    <value>第六块西克罗米昆碎片</value>
+    <value>希克拉碎片6</value>
   </data>
   <data name="CompleteSecromicon" xml:space="preserve">
-    <value>完整的西克罗米昆</value>
+    <value>完整的希克拉</value>
   </data>
   <data name="ScrollOfPoison" xml:space="preserve">
     <value>毒咒术</value>
@@ -2042,5 +2042,23 @@
   </data>
   <data name="IncreaseBlockParchment" xml:space="preserve">
     <value>斗神-御羊皮纸</value>
+  </data>
+  <data name="SmallCapeOfLord" xml:space="preserve">
+    <value>小王者披风</value>
+  </data>
+  <data name="SmallWingOfCurse" xml:space="preserve">
+    <value>小灾难之翼</value>
+  </data>
+  <data name="SmallWingsOfElf" xml:space="preserve">
+    <value>小精灵之翼</value>
+  </data>
+  <data name="SmallWingsOfHeaven" xml:space="preserve">
+    <value>小天使之翼</value>
+  </data>
+  <data name="SmallWingsOfSatan" xml:space="preserve">
+    <value>小恶魔之翼</value>
+  </data>
+  <data name="LittleWarriorsCloak" xml:space="preserve">
+    <value>小武者披风</value>
   </data>
 </root>

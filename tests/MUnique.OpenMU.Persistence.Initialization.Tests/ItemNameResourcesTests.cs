@@ -10,156 +10,150 @@ using Microsoft.Extensions.Logging.Abstractions;
 using MUnique.OpenMU.DataModel.Configuration;
 using MUnique.OpenMU.DataModel.Configuration.Items;
 using MUnique.OpenMU.Interfaces;
+using MUnique.OpenMU.Persistence.Initialization.Captions;
 using MUnique.OpenMU.Persistence.Initialization.Properties;
-using MUnique.OpenMU.Persistence.Initialization.Updates;
 using MUnique.OpenMU.Persistence.InMemory;
 
-/// <summary>Verifies resource coverage and non-destructive updates for item configuration.</summary>
+/// <summary>
+/// Verifies item name resource coverage and the existing caption update workflow.
+/// </summary>
 [TestFixture]
 [NonParallelizable]
 internal class ItemNameResourcesTests
 {
-    /// <summary>Persisted item source keys resolve before a game configuration is initialized.</summary>
+    /// <summary>
+    /// Persisted source keys resolve without initializing a reference configuration.
+    /// </summary>
     [Test]
-    public void ItemSourcesResolveWithoutInitialization()
+    public void SourcesResolveWithoutInitialization()
     {
         ConfigurationNameSources.Register();
-        var item = new LocalizedString("Kris").WithSourceKey("ItemNames/Kris");
-        var option = new LocalizedString("Luck").WithSourceKey("ItemOptionNames/Luck");
-        Assert.That(item.GetFromSource()?.GetOwnTranslation(CultureInfo.GetCultureInfo("zh-CN")), Is.EqualTo("波刃剑"));
-        Assert.That(option.GetFromSource()?.GetOwnTranslation(CultureInfo.GetCultureInfo("zh-CN")), Is.EqualTo("幸运属性"));
+        var name = new LocalizedString("Kris").WithSourceKey("ItemNames/Kris");
+        Assert.That(name.GetFromSource()?.GetOwnTranslation(CultureInfo.GetCultureInfo("zh-CN")), Is.EqualTo("波刃剑"));
     }
 
-    /// <summary>Every resource is initialized directly, and optional updates restore missing translations.</summary>
-    [Test]
-    public async Task InitializationAndUpdatesUseAllResourcesAsync()
+    /// <summary>
+    /// Every supported configuration initializes its item names from resources, and existing
+    /// neutral names can be linked and translated through the caption workflow.
+    /// </summary>
+    /// <param name="version">The configuration version.</param>
+    /// <returns>The task.</returns>
+    [TestCase("075")]
+    [TestCase("095d")]
+    [TestCase("Season6")]
+    public async Task ItemNamesUseCaptionWorkflowAsync(string version)
     {
-        var categories = new[]
+        var provider = new InMemoryPersistenceContextProvider();
+        DataInitializationBase initializer = version switch
         {
-            ItemNames.ResourceManager,
-            ItemOptionTypeNames.ResourceManager,
-            ItemOptionNames.ResourceManager,
-            ItemSetNames.ResourceManager,
-            ItemOptionDescriptions.ResourceManager,
+            "075" => new Version075.DataInitialization(provider, NullLoggerFactory.Instance),
+            "095d" => new Version095d.DataInitialization(provider, NullLoggerFactory.Instance),
+            _ => new VersionSeasonSix.DataInitialization(provider, NullLoggerFactory.Instance),
         };
-        var used = categories.Select(_ => new HashSet<string>(StringComparer.Ordinal)).ToArray();
-        foreach (var version in new[] { "075", "095d", "Season6" })
+        await initializer.CreateInitialDataAsync(1, false).ConfigureAwait(false);
+        using var context = provider.CreateNewContext();
+        var configuration = (await context.GetAsync<GameConfiguration>().ConfigureAwait(false)).Single();
+        var culture = CultureInfo.GetCultureInfo("zh-CN");
+        var items = configuration.Items.Where(item => item.Name.SourceKey?.StartsWith("ItemNames/", StringComparison.Ordinal) == true).ToArray();
+        Assert.That(items, Is.Not.Empty);
+        Assert.That(items.All(item => !string.IsNullOrEmpty(item.Name.GetOwnTranslation(culture))), Is.True);
+        var expected = items.Select(item => item.Name.GetOwnTranslation(culture)).ToArray();
+        var referenceNames = items.Select(item => item.Name).ToArray();
+        // Keep the initialized configuration as a reference, and remove translations and source keys
+        // from a separate configuration, as on an existing installation.
+        using var existingContext = provider.CreateNewContext();
+        var existing = existingContext.CreateNew<GameConfiguration>();
+        foreach (var item in items)
         {
+            var copy = existingContext.CreateNew<ItemDefinition>();
+            ((IIdentifiable)copy).Id = item.GetId();
+            copy.Group = item.Group;
+            copy.Number = item.Number;
+            copy.Name = new LocalizedString(item.Name.ValueInNeutralLanguage);
+            existing.Items.Add(copy);
+        }
+
+        var (linked, skipped) = ConfigurationCaptions.LinkSourceKeys(existing, configuration);
+        Assert.That(linked, Is.EqualTo(items.Length));
+        Assert.That(skipped, Is.Zero);
+        Assert.That(existing.Items.All(item => item.Name.GetOwnTranslation(culture) is null), Is.True);
+        var changes = ConfigurationCaptions.DetermineChanges(existing).Where(change => change.CultureName == culture.Name).ToArray();
+        Assert.That(changes, Has.Length.EqualTo(items.Length));
+        Assert.That(changes.All(change => change.IsRecommended), Is.True);
+        ConfigurationCaptions.ApplyChanges(existing, changes.Select(change => change.Id));
+        Assert.That(existing.Items.Select(item => item.Name.GetOwnTranslation(culture)), Is.EqualTo(expected));
+        Assert.That(ConfigurationCaptions.DetermineChanges(existing), Is.Empty);
+        Assert.That(ConfigurationCaptions.LinkSourceKeys(existing, configuration).Linked, Is.Zero);
+
+        if (version == "Season6")
+        {
+            var keys = ItemNames.ResourceManager.GetResourceSet(CultureInfo.InvariantCulture, true, false)!
+                .Cast<DictionaryEntry>().Select(entry => $"ItemNames/{entry.Key}").ToArray();
+            Assert.That(referenceNames.Select(name => name.SourceKey).Distinct(), Is.EquivalentTo(keys));
+        }
+    }
+    /// <summary>
+    /// Money fallback descriptions retain their neutral text without inheriting item-name metadata.
+    /// </summary>
+    /// <param name="version">The configuration version.</param>
+    /// <param name="cultureName">The culture used during initialization.</param>
+    /// <returns>The task.</returns>
+    [TestCase("095d", "en-US")]
+    [TestCase("095d", "zh-CN")]
+    [TestCase("Season6", "en-US")]
+    [TestCase("Season6", "zh-CN")]
+    public async Task MoneyFallbackDescriptionsAreCultureIndependentAsync(string version, string cultureName)
+    {
+        var previousCulture = CultureInfo.CurrentCulture;
+        var previousUiCulture = CultureInfo.CurrentUICulture;
+        try
+        {
+            CultureInfo.CurrentCulture = CultureInfo.GetCultureInfo(cultureName);
+            CultureInfo.CurrentUICulture = CultureInfo.CurrentCulture;
             var provider = new InMemoryPersistenceContextProvider();
-            DataInitializationBase initializer = version switch
-            {
-                "075" => new Version075.DataInitialization(provider, NullLoggerFactory.Instance),
-                "095d" => new Version095d.DataInitialization(provider, NullLoggerFactory.Instance),
-                _ => new VersionSeasonSix.DataInitialization(provider, NullLoggerFactory.Instance),
-            };
+            DataInitializationBase initializer = version == "095d"
+                ? new Version095d.DataInitialization(provider, NullLoggerFactory.Instance)
+                : new VersionSeasonSix.DataInitialization(provider, NullLoggerFactory.Instance);
             await initializer.CreateInitialDataAsync(1, false).ConfigureAwait(false);
             using var context = provider.CreateNewContext();
             var configuration = (await context.GetAsync<GameConfiguration>().ConfigureAwait(false)).Single();
-            var entities = new[]
+            var expected = new List<(byte Group, short Number, string Name, int MoneyAmount)>
             {
-                configuration.Items.Select(i => i.Name),
-                configuration.ItemOptionTypes.Select(i => i.Name),
-                configuration.ItemOptions.Select(i => i.Name),
-                configuration.ItemSetGroups.Select(i => i.Name),
-                configuration.ItemOptionTypes.Select(i => i.Description),
+                (14, 11, "Box of Luck", 10000),
             };
-            for (var category = 0; category < categories.Length; category++)
+            if (version == "Season6")
             {
-                var resources = categories[category];
-                foreach (DictionaryEntry entry in resources.GetResourceSet(CultureInfo.InvariantCulture, true, false)!)
+                expected.AddRange(new (byte, short, string, int)[]
                 {
-                    var key = (string)entry.Key;
-                    foreach (var actual in entities[category].Where(n => n.ValueInNeutralLanguage == (string)entry.Value!))
-                    {
-                        used[category].Add(key);
-                        Assert.That(actual.Value, Is.EqualTo(resources.GetLocalizedString(key).Value), $"{version}: {resources.BaseName}.{key}");
-                    }
-                }
+                    (14, 32, "Pink Chocolate Box", 100000),
+                    (14, 33, "Red Chocolate Box", 500000),
+                    (14, 34, "Blue Chocolate Box", 500000),
+                    (12, 32, "Red Ribbon Box", 10000),
+                    (12, 33, "Green Ribbon Box", 40000),
+                    (12, 34, "Blue Ribbon Box", 80000),
+                });
             }
 
-            UpdatePlugInBase[] updates = version switch
+            foreach (var (group, number, name, moneyAmount) in expected)
             {
-                "075" => [new AddItemNameTranslationsPlugIn075(), new AddItemOptionTranslationsPlugIn075()],
-                "095d" => [new AddItemNameTranslationsPlugIn095D(), new AddItemOptionTranslationsPlugIn095D()],
-                _ => [new AddItemNameTranslationsPlugInSeason6(), new AddItemOptionTranslationsPlugInSeason6()],
-            };
-            var installed = await context.GetAsync<ConfigurationUpdate>().ConfigureAwait(false);
-            foreach (var update in updates)
-            {
-                Assert.That(update.IsMandatory, Is.False);
-                Assert.That(installed.Any(entry => entry.Key == update.Key && entry.InstalledAt is not null), Is.True);
-            }
-
-            var expected = configuration.Items.Select(i => i.Name.ComputeContentHash())
-                .Concat(configuration.ItemOptions.Select(i => i.Name.ComputeContentHash())).ToArray();
-            foreach (var item in configuration.Items)
-            {
-                item.Name = item.Name.ValueInNeutralLanguage;
-            }
-
-            foreach (var option in configuration.ItemOptions)
-            {
-                option.Name = option.Name.ValueInNeutralLanguage;
-            }
-
-            for (var iteration = 0; iteration < 2; iteration++)
-            {
-                foreach (var update in updates)
+                var item = configuration.Items.Single(item => item.Group == group && item.Number == number);
+                var fallback = item.DropItems.Single(drop => drop.ItemType == SpecialItemType.Money && drop.SourceItemLevel == 0);
+                Assert.Multiple(() =>
                 {
-                    await update.ApplyUpdateAsync(context, configuration).ConfigureAwait(false);
-                }
-                Assert.That(configuration.Items.Select(i => i.Name.ComputeContentHash())
-                    .Concat(configuration.ItemOptions.Select(i => i.Name.ComputeContentHash())), Is.EqualTo(expected));
+                    Assert.That(fallback.Description.Value, Is.EqualTo($"{name} - Money"));
+                    Assert.That(fallback.Description.ValueInNeutralLanguage, Is.EqualTo($"{name} - Money"));
+                    Assert.That(fallback.Description.SourceKey, Is.Null);
+                    Assert.That(fallback.Description.SourceStamp, Is.Null);
+                    Assert.That(fallback.MoneyAmount, Is.EqualTo(moneyAmount));
+                    Assert.That(fallback.Chance, Is.EqualTo(1.0));
+                });
             }
         }
-
-        for (var category = 0; category < categories.Length; category++)
+        finally
         {
-            var keys = categories[category].GetResourceSet(CultureInfo.InvariantCulture, true, false)!
-                .Cast<DictionaryEntry>().Select(e => (string)e.Key).ToArray();
-            Assert.That(used[category], Is.EquivalentTo(keys), categories[category].BaseName);
-            foreach (var culture in categories[category].AvailableCultures)
-            {
-                Assert.That(categories[category].GetResourceSet(culture, true, false)!
-                    .Cast<DictionaryEntry>().Select(e => (string)e.Key), Is.SubsetOf(keys));
-            }
+            CultureInfo.CurrentCulture = previousCulture;
+            CultureInfo.CurrentUICulture = previousUiCulture;
         }
     }
 
-    /// <summary>Translations preserve customized text and require the original item identity.</summary>
-    [Test]
-    public void UpdatesPreserveCustomNames()
-    {
-        var provider = new InMemoryPersistenceContextProvider();
-        using var context = provider.CreateNewContext();
-        var configuration = context.CreateNew<GameConfiguration>();
-        var custom = AddItem(0, "Kris||zh-CN=自定义||de=Dolch");
-        var parent = AddItem(0, "Kris||zh=旧中文");
-        var sibling = AddItem(0, "Kris||zh-TW=自訂");
-        var renamed = AddItem(0, "Custom Kris");
-        var unknown = AddItem(255, "Kris");
-        var option = context.CreateNew<ItemOptionDefinition>();
-        option.Name = "Luck||zh-CN=自定义幸运";
-        configuration.ItemOptions.Add(option);
-        ItemNameTranslations.ApplyOptions(configuration);
-        Assert.That(option.Name.Value, Is.EqualTo("Luck||zh-CN=自定义幸运"));
-        ItemNameTranslations.ApplyItems(configuration);
-        ItemNameTranslations.ApplyItems(configuration);
-        Assert.That(custom.Name.Value, Is.EqualTo("Kris||zh-CN=自定义||de=Dolch"));
-        Assert.That(parent.Name.Value, Is.EqualTo("Kris||zh=旧中文"));
-        Assert.That(sibling.Name.GetTranslation(CultureInfo.GetCultureInfo("zh-TW"), false), Is.EqualTo("自訂"));
-        Assert.That(sibling.Name.GetTranslation(CultureInfo.GetCultureInfo("zh-CN"), false), Is.EqualTo(ItemNames.ResourceManager.GetLocalizedString(nameof(ItemNames.Kris)).GetTranslation(CultureInfo.GetCultureInfo("zh-CN"), false)));
-        Assert.That(renamed.Name.Value, Is.EqualTo("Custom Kris"));
-        Assert.That(unknown.Name.Value, Is.EqualTo("Kris"));
-
-        ItemDefinition AddItem(short number, LocalizedString name)
-        {
-            var item = context.CreateNew<ItemDefinition>();
-            item.Group = 0;
-            item.Number = number;
-            item.Name = name;
-            configuration.Items.Add(item);
-            return item;
-        }
-    }
 }

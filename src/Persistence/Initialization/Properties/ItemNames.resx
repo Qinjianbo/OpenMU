@@ -2043,4 +2043,22 @@
   <data name="IncreaseBlockParchment" xml:space="preserve">
     <value>Increase Block Parchment</value>
   </data>
+  <data name="SmallCapeOfLord" xml:space="preserve">
+    <value>Small Cape of Lord</value>
+  </data>
+  <data name="SmallWingOfCurse" xml:space="preserve">
+    <value>Small Wing of Curse</value>
+  </data>
+  <data name="SmallWingsOfElf" xml:space="preserve">
+    <value>Small Wings of Elf</value>
+  </data>
+  <data name="SmallWingsOfHeaven" xml:space="preserve">
+    <value>Small Wings of Heaven</value>
+  </data>
+  <data name="SmallWingsOfSatan" xml:space="preserve">
+    <value>Small Wings of Satan</value>
+  </data>
+  <data name="LittleWarriorsCloak" xml:space="preserve">
+    <value>Little Warrior's Cloak</value>
+  </data>
 </root>

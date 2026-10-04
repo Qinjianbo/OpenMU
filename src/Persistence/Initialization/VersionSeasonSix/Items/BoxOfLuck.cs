@@ -1274,7 +1274,7 @@ internal class BoxOfLuck : InitializerBase
 
     private void CreateGameMasterPresentBox()
     {
-        var box = this.CreateBox(LocalizedString.FromResource(() => ItemNames.GMGift), 14, 52);
+        this.CreateBox(LocalizedString.FromResource(() => ItemNames.GMGift), 14, 52);
     }
 
     private void CreateWizardsRings()
@@ -1374,14 +1374,17 @@ internal class BoxOfLuck : InitializerBase
         return item;
     }
 
-    private void AddMoneyDropFallback(ItemDefinition item, int moneyAmount, ItemDropItemGroup baseGroup, string itemName = "")
+    private void AddMoneyDropFallback(ItemDefinition item, int moneyAmount, ItemDropItemGroup baseGroup, LocalizedString? itemName = null)
     {
         var zenDrop = this.Context.CreateNew<ItemDropItemGroup>();
         zenDrop.ItemType = SpecialItemType.Money;
         zenDrop.MoneyAmount = moneyAmount;
         zenDrop.SourceItemLevel = baseGroup.SourceItemLevel;
         zenDrop.Chance = 1.0;
-        zenDrop.Description = string.IsNullOrWhiteSpace(itemName) ? $"{baseGroup.Description} - Money" : $"{itemName} - Money";
+        var neutralName = itemName?.ValueInNeutralLanguage;
+        zenDrop.Description = string.IsNullOrWhiteSpace(neutralName)
+            ? $"{baseGroup.Description.ValueInNeutralLanguage} - Money"
+            : $"{neutralName} - Money";
         item.DropItems.Add(zenDrop);
     }
 

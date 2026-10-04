@@ -6,6 +6,7 @@ namespace MUnique.OpenMU.Persistence.Initialization.Tests;
 
 using Microsoft.Extensions.Logging.Abstractions;
 using MUnique.OpenMU.DataModel.Configuration;
+using MUnique.OpenMU.DataModel.Configuration.Items;
 using MUnique.OpenMU.Persistence.Initialization.Captions;
 using MUnique.OpenMU.Persistence.InMemory;
 using MUnique.OpenMU.PlugIns;
@@ -70,13 +71,13 @@ public class TypeHelperTests
         var linkedInFreshConfiguration = (await service.CompareAsync().ConfigureAwait(false)).LinkedCaptions;
         Assert.That(linkedInFreshConfiguration, Is.Positive);
 
-        // Simulates class, map and NPC names without source keys, preserving other linked captions.
+        // Simulates class, map, NPC and item names without source keys, preserving other linked captions.
         var captionsToRelink = 0;
         using (var context = databaseProvider.CreateNewContext())
         {
             var configuration = (await context.GetAsync<GameConfiguration>().ConfigureAwait(false)).Single();
             foreach (var caption in LocalizedCaption.FindAll(configuration)
-                         .Where(caption => caption.Owner is CharacterClass or GameMapDefinition or MonsterDefinition))
+                         .Where(caption => caption.Owner is CharacterClass or GameMapDefinition or MonsterDefinition or ItemDefinition))
             {
                 if (caption.Value.SourceKey is not null)
                 {

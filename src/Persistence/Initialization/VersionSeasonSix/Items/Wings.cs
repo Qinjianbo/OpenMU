@@ -8,7 +8,6 @@ using MUnique.OpenMU.AttributeSystem;
 using MUnique.OpenMU.DataModel.Configuration;
 using MUnique.OpenMU.DataModel.Configuration.Items;
 using MUnique.OpenMU.GameLogic.Attributes;
-
 using MUnique.OpenMU.Interfaces;
 using MUnique.OpenMU.Persistence.Initialization;
 using MUnique.OpenMU.Persistence.Initialization.CharacterClasses;
@@ -144,18 +143,18 @@ public class Wings : WingsInitializerBase
     {
         var created = new List<ItemDefinition?>
         {
-            this.CreateSmallWing(130, 2, 2, "Small Cape of Lord", 15, 0, 0, 0, 0, 1, 0, 0, 20),
-            this.CreateSmallWing(131, 3, 2, "Small Wing of Curse", 10, 0, 0, 0, 0, 0, 1, 0, 12),
-            this.CreateSmallWing(132, 3, 2, "Small Wings of Elf", 10, 0, 0, 1, 0, 0, 0, 0, 12),
-            this.CreateSmallWing(133, 3, 2, "Small Wings of Heaven", 10, 1, 0, 0, 1, 0, 0, 0, 12),
-            this.CreateSmallWing(134, 3, 2, "Small Wings of Satan", 20, 0, 1, 0, 1, 0, 0, 0, 12),
-            this.CreateSmallWing(135, 2, 2, "Little Warrior's Cloak", 15, 0, 0, 0, 0, 0, 0, 1, 20),
+            this.CreateSmallWing(130, 2, 2, LocalizedString.FromResource(() => ItemNames.SmallCapeOfLord), 15, 0, 0, 0, 0, 1, 0, 0, 20),
+            this.CreateSmallWing(131, 3, 2, LocalizedString.FromResource(() => ItemNames.SmallWingOfCurse), 10, 0, 0, 0, 0, 0, 1, 0, 12),
+            this.CreateSmallWing(132, 3, 2, LocalizedString.FromResource(() => ItemNames.SmallWingsOfElf), 10, 0, 0, 1, 0, 0, 0, 0, 12),
+            this.CreateSmallWing(133, 3, 2, LocalizedString.FromResource(() => ItemNames.SmallWingsOfHeaven), 10, 1, 0, 0, 1, 0, 0, 0, 12),
+            this.CreateSmallWing(134, 3, 2, LocalizedString.FromResource(() => ItemNames.SmallWingsOfSatan), 20, 0, 1, 0, 1, 0, 0, 0, 12),
+            this.CreateSmallWing(135, 2, 2, LocalizedString.FromResource(() => ItemNames.LittleWarriorsCloak), 15, 0, 0, 0, 0, 0, 0, 1, 20),
         };
 
         return created.OfType<ItemDefinition>().ToList();
     }
 
-    private ItemDefinition? CreateSmallWing(byte number, byte width, byte height, string name, int defense, int darkWizardClassLevel, int darkKnightClassLevel, int elfClassLevel, int magicGladiatorClassLevel, int darkLordClassLevel, int summonerClassLevel, int ragefighterClassLevel, int damageIncreaseAndAbsorbInitial)
+    private ItemDefinition? CreateSmallWing(byte number, byte width, byte height, LocalizedString name, int defense, int darkWizardClassLevel, int darkKnightClassLevel, int elfClassLevel, int magicGladiatorClassLevel, int darkLordClassLevel, int summonerClassLevel, int ragefighterClassLevel, int damageIncreaseAndAbsorbInitial)
     {
         if (this.GameConfiguration.Items.Any(item => item.Group == 12 && item.Number == number))
         {
@@ -212,6 +211,23 @@ public class Wings : WingsInitializerBase
         this.GameConfiguration.Items.Add(feather);
     }
 
+    private void AddDamagePowerUps(ItemDefinition wing, int damageIncreaseInitial, int damageAbsorbInitial, ItemLevelBonusTable? damageIncreasePerLevel)
+    {
+        if (damageAbsorbInitial > 0)
+        {
+            var powerUp = this.CreateItemBasePowerUpDefinition(Stats.DamageReceiveDecrement, 1f - (damageAbsorbInitial / 100f), AggregateType.Multiplicate);
+            powerUp.BonusPerLevelTable = this._absorbByLevelTable;
+            wing.BasePowerUpAttributes.Add(powerUp);
+        }
+
+        if (damageIncreaseInitial > 0)
+        {
+            var powerUp = this.CreateItemBasePowerUpDefinition(Stats.AttackDamageIncrease, 1f + (damageIncreaseInitial / 100f), AggregateType.Multiplicate);
+            powerUp.BonusPerLevelTable = damageIncreasePerLevel;
+            wing.BasePowerUpAttributes.Add(powerUp);
+        }
+    }
+
     private ItemDefinition CreateWing(byte number, byte width, byte height, LocalizedString name, byte dropLevel, int defense, byte durability, int levelRequirement, int darkWizardClassLevel, int darkKnightClassLevel, int elfClassLevel, int magicGladiatorClassLevel, int darkLordClassLevel, int summonerClassLevel, int ragefighterClassLevel, IEnumerable<IncreasableItemOption> possibleOptions, int damageIncreaseInitial, int damageAbsorbInitial, ItemLevelBonusTable damageIncreasePerLevel, ItemOptionDefinition? wingOptionDefinition, float movementSpeed = MovementSpeedConstants.DefaultWingMovementSpeed)
     {
         var wing = this.CreateWing(number, width, height, name, dropLevel, defense, durability, levelRequirement, darkWizardClassLevel, darkKnightClassLevel, elfClassLevel, magicGladiatorClassLevel, darkLordClassLevel, summonerClassLevel, ragefighterClassLevel, movementSpeed);
@@ -241,23 +257,6 @@ public class Wings : WingsInitializerBase
 
         wing.PossibleItemOptions.Add(this.GameConfiguration.ItemOptions.First(iod => iod.PossibleOptions.Any(o => o?.OptionType == ItemOptionTypes.Luck)));
         return wing;
-    }
-
-    private void AddDamagePowerUps(ItemDefinition wing, int damageIncreaseInitial, int damageAbsorbInitial, ItemLevelBonusTable? damageIncreasePerLevel)
-    {
-        if (damageAbsorbInitial > 0)
-        {
-            var powerUp = this.CreateItemBasePowerUpDefinition(Stats.DamageReceiveDecrement, 1f - (damageAbsorbInitial / 100f), AggregateType.Multiplicate);
-            powerUp.BonusPerLevelTable = this._absorbByLevelTable;
-            wing.BasePowerUpAttributes.Add(powerUp);
-        }
-
-        if (damageIncreaseInitial > 0)
-        {
-            var powerUp = this.CreateItemBasePowerUpDefinition(Stats.AttackDamageIncrease, 1f + (damageIncreaseInitial / 100f), AggregateType.Multiplicate);
-            powerUp.BonusPerLevelTable = damageIncreasePerLevel;
-            wing.BasePowerUpAttributes.Add(powerUp);
-        }
     }
 
     private ItemDefinition CreateWing(byte number, byte width, byte height, LocalizedString name, byte dropLevel, int defense, byte durability, int levelRequirement, int darkWizardClassLevel, int darkKnightClassLevel, int elfClassLevel, int magicGladiatorClassLevel, int darkLordClassLevel, int summonerClassLevel, int ragefighterClassLevel, float movementSpeed = MovementSpeedConstants.DefaultWingMovementSpeed)

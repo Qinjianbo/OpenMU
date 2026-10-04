@@ -3,6 +3,11 @@
 The Simplified Chinese resources use `zh-CN`. UI labels belong to the assembly
 which owns the page or component. English remains the neutral resource language.
 
+Select **简体中文** in the admin panel language selector to use the Simplified
+Chinese (`zh-CN`) resources, or **Deutsch** to use the German (`de`) resources.
+The selected culture is preserved by the existing culture cookie. English
+remains the neutral resource language and fallback.
+
 ## Coverage
 
 | Page or component | Localized content | Resource owner |
@@ -114,3 +119,17 @@ resources use `{Type}_{Property}_Name` / `_Description`, and type display resour
 use `{Type}_Name` / `_Description`. English extension point text is its resource key;
 changing that text requires a matching translation key update. Model `ToString()`
 summaries can also appear localized in server logs.
+
+### German terminology
+
+The German texts (`*.de.resx`) use the same terms as the German translation of
+the open source game client ([sven-n/MuMain](https://github.com/sven-n/MuMain),
+`src/Localization/*.de.resx`), so players see the same words in server messages
+and in the client. They address the player formally ("Sie"), like the client.
+Map, class and event names follow the client (e.g. *Verlorener Turm*,
+*Dunkler Ritter*, *Lord-Imperator*, *Blutburg*, *Illusionstempel*,
+*Festung der Kaiserlichen Wächter*); the event names *Devil Square*,
+*Chaos Castle* and *Castle Siege* are not translated, like in the client. The
+client's `docs/translation-system.md` lists the shared terms. Monster, skill and
+most item names stay English, because the client shows them in English; jewels
+use the German names of the client texts (e.g. *Juwel des Segens*).

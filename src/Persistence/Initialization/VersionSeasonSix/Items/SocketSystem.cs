@@ -65,21 +65,69 @@ public class SocketSystem : InitializerBase
     public override void Initialize()
     {
         this.CreateSocketOptions();
-        var types = new[]
+        var types = new (LocalizedString SeedName, LocalizedString[] SphereNames, ItemOptionDefinition Options)[]
         {
-            ("Fire", this._fireOptions!),
-            ("Water", this._waterOptions!),
-            ("Ice", this._iceOptions!),
-            ("Wind", this._windOptions!),
-            ("Lightning", this._lightningOptions!),
-            ("Earth", this._earthOptions!),
+            (LocalizedString.FromResource(() => ItemNames.SeedFire),
+                [
+                    LocalizedString.FromResource(() => ItemNames.SeedSphereFire1),
+                    LocalizedString.FromResource(() => ItemNames.SeedSphereFire2),
+                    LocalizedString.FromResource(() => ItemNames.SeedSphereFire3),
+                    LocalizedString.FromResource(() => ItemNames.SeedSphereFire4),
+                    LocalizedString.FromResource(() => ItemNames.SeedSphereFire5),
+                ],
+                this._fireOptions!),
+            (LocalizedString.FromResource(() => ItemNames.SeedWater),
+                [
+                    LocalizedString.FromResource(() => ItemNames.SeedSphereWater1),
+                    LocalizedString.FromResource(() => ItemNames.SeedSphereWater2),
+                    LocalizedString.FromResource(() => ItemNames.SeedSphereWater3),
+                    LocalizedString.FromResource(() => ItemNames.SeedSphereWater4),
+                    LocalizedString.FromResource(() => ItemNames.SeedSphereWater5),
+                ],
+                this._waterOptions!),
+            (LocalizedString.FromResource(() => ItemNames.SeedIce),
+                [
+                    LocalizedString.FromResource(() => ItemNames.SeedSphereIce1),
+                    LocalizedString.FromResource(() => ItemNames.SeedSphereIce2),
+                    LocalizedString.FromResource(() => ItemNames.SeedSphereIce3),
+                    LocalizedString.FromResource(() => ItemNames.SeedSphereIce4),
+                    LocalizedString.FromResource(() => ItemNames.SeedSphereIce5),
+                ],
+                this._iceOptions!),
+            (LocalizedString.FromResource(() => ItemNames.SeedWind),
+                [
+                    LocalizedString.FromResource(() => ItemNames.SeedSphereWind1),
+                    LocalizedString.FromResource(() => ItemNames.SeedSphereWind2),
+                    LocalizedString.FromResource(() => ItemNames.SeedSphereWind3),
+                    LocalizedString.FromResource(() => ItemNames.SeedSphereWind4),
+                    LocalizedString.FromResource(() => ItemNames.SeedSphereWind5),
+                ],
+                this._windOptions!),
+            (LocalizedString.FromResource(() => ItemNames.SeedLightning),
+                [
+                    LocalizedString.FromResource(() => ItemNames.SeedSphereLightning1),
+                    LocalizedString.FromResource(() => ItemNames.SeedSphereLightning2),
+                    LocalizedString.FromResource(() => ItemNames.SeedSphereLightning3),
+                    LocalizedString.FromResource(() => ItemNames.SeedSphereLightning4),
+                    LocalizedString.FromResource(() => ItemNames.SeedSphereLightning5),
+                ],
+                this._lightningOptions!),
+            (LocalizedString.FromResource(() => ItemNames.SeedEarth),
+                [
+                    LocalizedString.FromResource(() => ItemNames.SeedSphereEarth1),
+                    LocalizedString.FromResource(() => ItemNames.SeedSphereEarth2),
+                    LocalizedString.FromResource(() => ItemNames.SeedSphereEarth3),
+                    LocalizedString.FromResource(() => ItemNames.SeedSphereEarth4),
+                    LocalizedString.FromResource(() => ItemNames.SeedSphereEarth5),
+                ],
+                this._earthOptions!),
         };
 
         const int seedNumberStart = 60;
         for (byte number = seedNumberStart; number < seedNumberStart + types.Length; number++)
         {
             var type = types[number - 60];
-            this.CreateSeed(number, $"Seed ({type.Item1})", type.Item2!);
+            this.CreateSeed(number, type.SeedName, type.Options);
         }
 
         this.CreateSphere(70, LocalizedString.FromResource(() => ItemNames.SphereMono), 102);
@@ -93,7 +141,7 @@ public class SocketSystem : InitializerBase
             var number = SeedSphereNumberStart + (level * types.Length);
             foreach (var type in types)
             {
-                this.CreateSeedSphere((byte)number, $"Seed Sphere ({type.Item1}) ({level + 1})", level, type.Item2!);
+                this.CreateSeedSphere((byte)number, type.SphereNames[level], level, type.Options);
                 number++;
             }
         }
