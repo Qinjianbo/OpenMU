@@ -242,7 +242,28 @@ public class Wings : WingsInitializerBase
         optionDefinition.SetGuid(wing.GetItemId());
         this.GameConfiguration.ItemOptions.Add(optionDefinition);
 
-        optionDefinition.Name = ItemNameTranslations.GetOptionName($"{name.ValueInNeutralLanguage} Options");
+        optionDefinition.Name = number switch
+        {
+            0 => LocalizedString.FromResource(() => ItemOptionNames.WingsOfElfOptions),
+            1 => LocalizedString.FromResource(() => ItemOptionNames.WingsOfHeavenOptions),
+            2 => LocalizedString.FromResource(() => ItemOptionNames.WingsOfSatanOptions),
+            41 => LocalizedString.FromResource(() => ItemOptionNames.WingsOfCurseOptions),
+            3 => LocalizedString.FromResource(() => ItemOptionNames.WingsOfSpiritsOptions),
+            4 => LocalizedString.FromResource(() => ItemOptionNames.WingsOfSoulOptions),
+            5 => LocalizedString.FromResource(() => ItemOptionNames.WingsOfDragonOptions),
+            6 => LocalizedString.FromResource(() => ItemOptionNames.WingsOfDarknessOptions),
+            42 => LocalizedString.FromResource(() => ItemOptionNames.WingsOfDespairOptions),
+            49 => LocalizedString.FromResource(() => ItemOptionNames.CapeOfFighterOptions),
+            30 => LocalizedString.FromResource(() => ItemOptionNames.CapeOfLordOptions),
+            36 => LocalizedString.FromResource(() => ItemOptionNames.WingOfStormOptions),
+            37 => LocalizedString.FromResource(() => ItemOptionNames.WingOfEternalOptions),
+            38 => LocalizedString.FromResource(() => ItemOptionNames.WingOfIllusionOptions),
+            39 => LocalizedString.FromResource(() => ItemOptionNames.WingOfRuinOptions),
+            40 => LocalizedString.FromResource(() => ItemOptionNames.CapeOfEmperorOptions),
+            43 => LocalizedString.FromResource(() => ItemOptionNames.WingOfDimensionOptions),
+            50 => LocalizedString.FromResource(() => ItemOptionNames.CapeOfOverruleOptions),
+            _ => new LocalizedString($"{name.ValueInNeutralLanguage} Options"),
+        };
         optionDefinition.AddChance = 0.25f;
         optionDefinition.AddsRandomly = true;
         optionDefinition.MaximumOptionsPerItem = 1;

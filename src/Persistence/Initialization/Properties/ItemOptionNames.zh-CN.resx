@@ -34,22 +34,22 @@
     <value>套装体力总值加成</value>
   </data>
   <data name="AnonymousAncientSet" xml:space="preserve">
-    <value>哈德的强化皮套装属性</value>
+    <value>汉斯的强化皮套装属性</value>
   </data>
   <data name="AnubisAncientSet" xml:space="preserve">
     <value>帕希的传说套装属性</value>
   </data>
   <data name="ApolloAncientSet" xml:space="preserve">
-    <value>奥维兰的革套装属性</value>
+    <value>帕西的革套装属性</value>
   </data>
   <data name="ArgoAncientSet" xml:space="preserve">
-    <value>玫菲尔的精灵套装属性</value>
+    <value>安吉拉的精灵套装属性</value>
   </data>
   <data name="AruanAncientSet" xml:space="preserve">
     <value>安吉拉的强化女神套装属性</value>
   </data>
   <data name="BarnakeAncientSet" xml:space="preserve">
-    <value>奥维兰的强化革套装属性</value>
+    <value>帕西的强化革套装属性</value>
   </data>
   <data name="BaseDamageBonusPhysicalAndWizardryMinAndMaxOption" xml:space="preserve">
     <value>基础伤害追加属性（物理及魔法，最小值和最大值）</value>
@@ -58,7 +58,7 @@
     <value>基础防御力追加属性</value>
   </data>
   <data name="BerserkerAncientSet" xml:space="preserve">
-    <value>赫兰德的强化翡翠套装属性</value>
+    <value>汉斯的强化翡翠套装属性</value>
   </data>
   <data name="BroyAncientSet" xml:space="preserve">
     <value>阿莱斯的强化圣魂套装属性</value>
@@ -76,13 +76,13 @@
     <value>斗皇披风属性</value>
   </data>
   <data name="CetoAncientSet" xml:space="preserve">
-    <value>希尔芙的藤套装属性</value>
+    <value>安吉拉的藤套装属性</value>
   </data>
   <data name="ChronoAncientSet" xml:space="preserve">
     <value>露茜的红翼套装属性</value>
   </data>
   <data name="CloudAncientSet" xml:space="preserve">
-    <value>海德拉的强化黄金套装属性</value>
+    <value>汉斯的强化黄金套装属性</value>
   </data>
   <data name="CompleteSetBonusLevel10" xml:space="preserve">
     <value>全套装备奖励属性（强化 +10）</value>
@@ -118,22 +118,22 @@
     <value>彩云兽属性</value>
   </data>
   <data name="DrakeAncientSet" xml:space="preserve">
-    <value>希尔芙的强化藤套装属性</value>
+    <value>安吉拉的强化藤套装属性</value>
   </data>
   <data name="EliteSkeletonTransformationRing" xml:space="preserve">
     <value>骷髅战士变身指环属性</value>
   </data>
   <data name="ElvianAncientSet" xml:space="preserve">
-    <value>罗拉娜的强化风套装属性</value>
+    <value>安吉拉的强化风套装属性</value>
   </data>
   <data name="EnisAncientSet" xml:space="preserve">
     <value>帕希的强化传说套装属性</value>
   </data>
   <data name="EpleteAncientSet" xml:space="preserve">
-    <value>赫兰德的翡翠套装属性</value>
+    <value>汉斯的翡翠套装属性</value>
   </data>
   <data name="EvisAncientSet" xml:space="preserve">
-    <value>索尔思的骷髅套装属性</value>
+    <value>帕西的骷髅套装属性</value>
   </data>
   <data name="ExcellentDefenseOptions" xml:space="preserve">
     <value>卓越防御属性</value>
@@ -145,19 +145,19 @@
     <value>卓越魔法攻击属性</value>
   </data>
   <data name="FaseAncientSet" xml:space="preserve">
-    <value>洛迪丝的强化天蚕套装属性</value>
+    <value>安吉拉的强化天蚕套装属性</value>
   </data>
   <data name="FenrirOptions" xml:space="preserve">
     <value>炎狼兽属性</value>
   </data>
   <data name="GaiaAncientSet" xml:space="preserve">
-    <value>洛迪丝的天蚕套装属性</value>
+    <value>安吉拉的天蚕套装属性</value>
   </data>
   <data name="GaionAncientSet" xml:space="preserve">
     <value>凯文的亚特兰蒂斯套装属性</value>
   </data>
   <data name="GarudaAncientSet" xml:space="preserve">
-    <value>海德拉的黄金套装属性</value>
+    <value>汉斯的黄金套装属性</value>
   </data>
   <data name="GuardianOptionArmor" xml:space="preserve">
     <value>380级装备属性（铠）</value>
@@ -193,13 +193,13 @@
     <value>首饰生命恢复属性</value>
   </data>
   <data name="HerasAncientSet" xml:space="preserve">
-    <value>安东尼斯的魔王套装属性</value>
+    <value>帕西的魔王套装属性</value>
   </data>
   <data name="HyonAncientSet" xml:space="preserve">
     <value>汉斯的龙王套装属性</value>
   </data>
   <data name="HyperionAncientSet" xml:space="preserve">
-    <value>瑞恩的青铜套装属性</value>
+    <value>汉斯的青铜套装属性</value>
   </data>
   <data name="JeweleryOptionMaximumAbility" xml:space="preserve">
     <value>首饰最大技能值属性</value>
@@ -208,31 +208,31 @@
     <value>首饰最大魔法值属性</value>
   </data>
   <data name="KantataAncientSet" xml:space="preserve">
-    <value>菲斯特的白金套装属性</value>
+    <value>汉斯的白金套装属性</value>
   </data>
   <data name="KarisAncientSet" xml:space="preserve">
-    <value>玫菲尔的强化精灵套装属性</value>
+    <value>安吉拉的强化精灵套装属性</value>
   </data>
   <data name="Luck" xml:space="preserve">
     <value>幸运属性</value>
   </data>
   <data name="MinetAncientSet" xml:space="preserve">
-    <value>安东尼斯的强化魔王套装属性</value>
+    <value>帕西的强化魔王套装属性</value>
   </data>
   <data name="MistAncientSet" xml:space="preserve">
-    <value>瑞恩的强化青铜套装属性</value>
+    <value>汉斯的强化青铜套装属性</value>
   </data>
   <data name="MurenAncientSet" xml:space="preserve">
     <value>凯文的强化亚特兰蒂斯套装属性</value>
   </data>
   <data name="OdinAncientSet" xml:space="preserve">
-    <value>罗拉娜的风套装属性</value>
+    <value>安吉拉的风套装属性</value>
   </data>
   <data name="PhysicalBaseDamageMinAndMaxOption" xml:space="preserve">
     <value>基础物理攻击力追加属性（最小值和最大值）</value>
   </data>
   <data name="RaveAncientSet" xml:space="preserve">
-    <value>菲斯特的强化白金套装属性</value>
+    <value>汉斯的强化白金套装属性</value>
   </data>
   <data name="SemedenAncientSet" xml:space="preserve">
     <value>露茜的强化红翼套装属性</value>
@@ -268,13 +268,13 @@
     <value>镶嵌属性（风）</value>
   </data>
   <data name="SylionAncientSet" xml:space="preserve">
-    <value>索尔思的强化骷髅套装属性</value>
+    <value>帕西的强化骷髅套装属性</value>
   </data>
   <data name="ViciousAncientSet" xml:space="preserve">
     <value>汉斯的强化龙王套装属性</value>
   </data>
   <data name="WarriorAncientSet" xml:space="preserve">
-    <value>哈德的皮套装属性</value>
+    <value>汉斯的皮套装属性</value>
   </data>
   <data name="WingOfDimensionOptions" xml:space="preserve">
     <value>次元之翼属性</value>

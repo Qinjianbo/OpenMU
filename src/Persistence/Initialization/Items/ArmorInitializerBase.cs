@@ -78,7 +78,16 @@ public abstract class ArmorInitializerBase : InitializerBase
         {
             var def = this.Context.CreateNew<ItemOptionDefinition>();
             def.SetGuid(setLevel);
-            def.Name = ItemNameTranslations.GetOptionName($"Complete Set Bonus (Level {setLevel})");
+            def.Name = setLevel switch
+            {
+                10 => LocalizedString.FromResource(() => ItemOptionNames.CompleteSetBonusLevel10),
+                11 => LocalizedString.FromResource(() => ItemOptionNames.CompleteSetBonusLevel11),
+                12 => LocalizedString.FromResource(() => ItemOptionNames.CompleteSetBonusLevel12),
+                13 => LocalizedString.FromResource(() => ItemOptionNames.CompleteSetBonusLevel13),
+                14 => LocalizedString.FromResource(() => ItemOptionNames.CompleteSetBonusLevel14),
+                15 => LocalizedString.FromResource(() => ItemOptionNames.CompleteSetBonusLevel15),
+                _ => new LocalizedString($"Complete Set Bonus (Level {setLevel})"),
+            };
             def.PossibleOptions.Add(this.BuildDefenseBonusOption(1 + ((setLevel - 9) * 0.05f), setLevel));
             defenseBonus.Add(setLevel, def);
             this.GameConfiguration.ItemOptions.Add(def);
@@ -88,7 +97,7 @@ public abstract class ArmorInitializerBase : InitializerBase
         {
             var setForDefenseRate = this.Context.CreateNew<ItemSetGroup>();
             this.GameConfiguration.ItemSetGroups.Add(setForDefenseRate);
-            setForDefenseRate.Name = group.First().Name.ValueInNeutralLanguage.Split(' ')[0] + " Defense Rate Bonus";
+            setForDefenseRate.Name = GetSetName(group, null);
             setForDefenseRate.MinimumItemCount = group.Count();
             setForDefenseRate.Options = defenseRateBonusDef;
             setForDefenseRate.AlwaysApplies = true;
@@ -421,6 +430,27 @@ public abstract class ArmorInitializerBase : InitializerBase
         return armor;
     }
 
+    private static LocalizedString GetSetName(IEnumerable<ItemDefinition> items, byte? level)
+    {
+        var group = items.ToList();
+        var prefix = group[0].Name.ValueInNeutralLanguage.Split(' ')[0];
+        var neutral = level is { } setLevel
+            ? $"{prefix} Defense Bonus (Level {setLevel})"
+            : prefix + " Defense Rate Bonus";
+        var armorSource = group.FirstOrDefault(item => item.Group == 8)?.Name.SourceKey;
+        if (armorSource is not null && armorSource.StartsWith("ItemNames/", StringComparison.Ordinal))
+        {
+            var suffix = level is { } optionLevel ? $"DefenseBonusLevel{optionLevel}" : "DefenseRateBonus";
+            var key = armorSource["ItemNames/".Length..] + suffix;
+            if (ArmorSetNames.ResourceManager.GetString(key, System.Globalization.CultureInfo.InvariantCulture) == neutral)
+            {
+                return ArmorSetNames.ResourceManager.GetLocalizedString(key);
+            }
+        }
+
+        return neutral;
+    }
+
     private void AddRunningMovementSpeed(ItemDefinition item, AttributeDefinition targetAttribute)
     {
         var powerUp = this.CreateItemBasePowerUpDefinition(targetAttribute, 0, AggregateType.Maximum);
@@ -462,7 +492,7 @@ public abstract class ArmorInitializerBase : InitializerBase
     {
         var setForDefense = this.Context.CreateNew<ItemSetGroup>();
         this.GameConfiguration.ItemSetGroups.Add(setForDefense);
-        setForDefense.Name = $"{group.First().Name.ValueInNeutralLanguage.Split(' ')[0]} Defense Bonus (Level {setLevel})";
+        setForDefense.Name = GetSetName(group, setLevel);
         setForDefense.MinimumItemCount = group.Count;
         setForDefense.Options = options;
         setForDefense.AlwaysApplies = true;

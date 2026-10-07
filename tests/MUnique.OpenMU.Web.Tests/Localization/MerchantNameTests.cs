@@ -24,7 +24,7 @@ public class MerchantNameTests
         var previousCulture = CultureInfo.CurrentCulture;
         try
         {
-            var merchant = new MonsterDefinition { Designation = "Hanzo The Blacksmith||zh=铁匠汉斯" };
+            var merchant = new MonsterDefinition { Designation = "Hanzo The Blacksmith||zh-CN=铁匠汉斯||@src=MerchantNames/HanzoTheBlacksmith" };
             var model = new Merchants.MerchantStorageViewModel(merchant);
             CultureInfo.CurrentCulture = CultureInfo.GetCultureInfo("zh-CN");
             Assert.That(model.Name, Is.EqualTo("铁匠汉斯"));
@@ -32,7 +32,7 @@ public class MerchantNameTests
             Assert.That(model.Name, Is.EqualTo("Hanzo The Blacksmith"));
             CultureInfo.CurrentCulture = CultureInfo.GetCultureInfo("de-DE");
             Assert.That(model.Name, Is.EqualTo("Hanzo The Blacksmith"));
-            Assert.That(merchant.Designation.Value, Is.EqualTo("Hanzo The Blacksmith||zh=铁匠汉斯"));
+            Assert.That(merchant.Designation.Value, Is.EqualTo("Hanzo The Blacksmith||zh-CN=铁匠汉斯||@src=MerchantNames/HanzoTheBlacksmith"));
         }
         finally
         {

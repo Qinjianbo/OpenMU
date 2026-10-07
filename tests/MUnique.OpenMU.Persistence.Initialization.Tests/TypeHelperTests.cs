@@ -6,7 +6,6 @@ namespace MUnique.OpenMU.Persistence.Initialization.Tests;
 
 using Microsoft.Extensions.Logging.Abstractions;
 using MUnique.OpenMU.DataModel.Configuration;
-using MUnique.OpenMU.DataModel.Configuration.Items;
 using MUnique.OpenMU.Persistence.Initialization.Captions;
 using MUnique.OpenMU.Persistence.InMemory;
 using MUnique.OpenMU.PlugIns;
@@ -71,33 +70,57 @@ public class TypeHelperTests
         var linkedInFreshConfiguration = (await service.CompareAsync().ConfigureAwait(false)).LinkedCaptions;
         Assert.That(linkedInFreshConfiguration, Is.Positive);
 
-        // Simulates class, map, NPC and item names without source keys, preserving other linked captions.
-        var captionsToRelink = 0;
+        // Simulates a database which was created before the captions had source keys.
         using (var context = databaseProvider.CreateNewContext())
         {
             var configuration = (await context.GetAsync<GameConfiguration>().ConfigureAwait(false)).Single();
-            foreach (var caption in LocalizedCaption.FindAll(configuration)
-                         .Where(caption => caption.Owner is CharacterClass or GameMapDefinition or MonsterDefinition or ItemDefinition))
+            foreach (var monster in configuration.Monsters)
             {
-                if (caption.Value.SourceKey is not null)
-                {
-                    caption.SetValue(caption.Value.WithSourceKey(null));
-                    captionsToRelink++;
-                }
+                monster.Designation = monster.Designation.WithSourceKey(null);
+            }
+
+            foreach (var map in configuration.Maps)
+            {
+                map.Name = map.Name.WithSourceKey(null);
+            }
+
+            foreach (var item in configuration.Items)
+            {
+                item.Name = item.Name.WithSourceKey(null);
+            }
+
+            foreach (var characterClass in configuration.CharacterClasses)
+            {
+                characterClass.Name = characterClass.Name.WithSourceKey(null);
+            }
+
+            foreach (var optionType in configuration.ItemOptionTypes)
+            {
+                optionType.Name = optionType.Name.WithSourceKey(null);
+                optionType.Description = optionType.Description.WithSourceKey(null);
+            }
+
+            foreach (var option in configuration.ItemOptions)
+            {
+                option.Name = option.Name.WithSourceKey(null);
+            }
+
+            foreach (var set in configuration.ItemSetGroups)
+            {
+                set.Name = set.Name.WithSourceKey(null);
             }
 
             await context.SaveChangesAsync().ConfigureAwait(false);
         }
 
-        Assert.That(captionsToRelink, Is.Positive);
-        Assert.That((await service.CompareAsync().ConfigureAwait(false)).LinkedCaptions, Is.EqualTo(linkedInFreshConfiguration - captionsToRelink));
+        Assert.That((await service.CompareAsync().ConfigureAwait(false)).LinkedCaptions, Is.Zero);
 
         var steps = new List<CaptionLinkStep>();
         var (linked, skipped) = await service.LinkBuiltInCaptionsAsync(new SynchronousProgress<CaptionLinkStep>(steps.Add)).ConfigureAwait(false);
 
         Assert.That(steps, Is.EqualTo(Enum.GetValues<CaptionLinkStep>()));
         Assert.That(skipped, Is.Zero);
-        Assert.That(linked, Is.EqualTo(captionsToRelink));
+        Assert.That(linked, Is.EqualTo(linkedInFreshConfiguration));
         var comparison = await service.CompareAsync().ConfigureAwait(false);
         Assert.That(comparison.LinkedCaptions, Is.EqualTo(linkedInFreshConfiguration));
         Assert.That(comparison.Changes, Is.Empty);

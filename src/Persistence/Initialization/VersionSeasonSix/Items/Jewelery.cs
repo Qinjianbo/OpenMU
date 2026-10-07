@@ -232,7 +232,12 @@ internal class Jewelery : Version095d.Items.Jewelery
         if (optionTargetAttribute != Stats.HealthRecoveryMultiplier && optionTargetAttribute is not null)
         {
             // Then it's either maximum mana or ability increase by 1% for each option level
-            var option = this.CreateOption(ItemNameTranslations.GetOptionName("Jewelery option " + optionTargetAttribute.Designation), optionTargetAttribute, 0.01f, item.GetItemId(), AggregateType.Multiplicate);
+            var optionName = optionTargetAttribute == Stats.MaximumMana
+                ? LocalizedString.FromResource(() => ItemOptionNames.JeweleryOptionMaximumMana)
+                : optionTargetAttribute == Stats.MaximumAbility
+                    ? LocalizedString.FromResource(() => ItemOptionNames.JeweleryOptionMaximumAbility)
+                    : new LocalizedString("Jewelery option " + optionTargetAttribute.Designation);
+            var option = this.CreateOption(optionName, optionTargetAttribute, 0.01f, item.GetItemId(), AggregateType.Multiplicate);
 
             item.PossibleItemOptions.Add(option);
         }
