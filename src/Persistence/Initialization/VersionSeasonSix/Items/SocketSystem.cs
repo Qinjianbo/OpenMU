@@ -531,7 +531,7 @@ public class SocketSystem : InitializerBase
     private void CreateSeed(byte number, LocalizedString name, ItemOptionDefinition options)
     {
         var itemDefinition = this.Context.CreateNew<ItemDefinition>();
-        itemDefinition.Name = ItemNameTranslations.GetItemName(name);
+        itemDefinition.Name = name;
         itemDefinition.Number = number;
         itemDefinition.Group = 12;
         itemDefinition.Durability = 1;
@@ -547,7 +547,7 @@ public class SocketSystem : InitializerBase
     private void CreateSphere(byte number, LocalizedString name, byte? dropLevel)
     {
         var itemDefinition = this.Context.CreateNew<ItemDefinition>();
-        itemDefinition.Name = ItemNameTranslations.GetItemName(name);
+        itemDefinition.Name = name;
         itemDefinition.Number = number;
         itemDefinition.Group = 12;
         itemDefinition.Durability = 1;
@@ -562,7 +562,7 @@ public class SocketSystem : InitializerBase
     private void CreateSeedSphere(byte number, LocalizedString name, byte level, ItemOptionDefinition options)
     {
         var itemDefinition = this.Context.CreateNew<ItemDefinition>();
-        itemDefinition.Name = ItemNameTranslations.GetItemName(name);
+        itemDefinition.Name = name;
         itemDefinition.Number = number;
         itemDefinition.Group = 12;
         itemDefinition.Durability = 1;

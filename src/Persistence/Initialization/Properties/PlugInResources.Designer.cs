@@ -833,40 +833,6 @@ namespace MUnique.OpenMU.Persistence.Initialization.Properties {
         /// <summary>Gets the localized FixChaosMixesPlugInSeason6_Description text.</summary>
         public static string FixChaosMixesPlugInSeason6_Description => ResourceManager.GetString("FixChaosMixesPlugInSeason6_Description", resourceCulture)!;
 
-        /// <summary>Gets the localized AlignChineseCharacterClassNames_Name text.</summary>
-        public static string AlignChineseCharacterClassNames_Name => ResourceManager.GetString("AlignChineseCharacterClassNames_Name", resourceCulture)!;
-
-        /// <summary>Gets the localized AlignChineseCharacterClassNames_Description text.</summary>
-        public static string AlignChineseCharacterClassNames_Description => ResourceManager.GetString("AlignChineseCharacterClassNames_Description", resourceCulture)!;
-
-        /// <summary>Gets the localized AlignChineseMerchantNames_Name text.</summary>
-        public static string AlignChineseMerchantNames_Name => ResourceManager.GetString("AlignChineseMerchantNames_Name", resourceCulture)!;
-
-        /// <summary>Gets the localized AlignChineseMerchantNames_Description text.</summary>
-        public static string AlignChineseMerchantNames_Description => ResourceManager.GetString("AlignChineseMerchantNames_Description", resourceCulture)!;
-
-        /// <summary>Gets the localized AlignChineseMonsterNames_Name text.</summary>
-        public static string AlignChineseMonsterNames_Name => ResourceManager.GetString("AlignChineseMonsterNames_Name", resourceCulture)!;
-
-        /// <summary>Gets the localized AlignChineseMonsterNames_Description text.</summary>
-        public static string AlignChineseMonsterNames_Description => ResourceManager.GetString("AlignChineseMonsterNames_Description", resourceCulture)!;
-
-        /// <summary>Gets the localized AlignChineseMapNames_Name text.</summary>
-        public static string AlignChineseMapNames_Name => ResourceManager.GetString("AlignChineseMapNames_Name", resourceCulture)!;
-
-        /// <summary>Gets the localized AlignChineseMapNames_Description text.</summary>
-        public static string AlignChineseMapNames_Description => ResourceManager.GetString("AlignChineseMapNames_Description", resourceCulture)!;
-
-        /// <summary>Gets the localized AlignChineseItemNames_Name text.</summary>
-        public static string AlignChineseItemNames_Name => ResourceManager.GetString("AlignChineseItemNames_Name", resourceCulture)!;
-
-        /// <summary>Gets the localized AlignChineseItemNames_Description text.</summary>
-        public static string AlignChineseItemNames_Description => ResourceManager.GetString("AlignChineseItemNames_Description", resourceCulture)!;
-        /// <summary>Gets the localized AlignChineseItemOptionNames_Name text.</summary>
-        public static string AlignChineseItemOptionNames_Name => ResourceManager.GetString("AlignChineseItemOptionNames_Name", resourceCulture)!;
-
-        /// <summary>Gets the localized AlignChineseItemOptionNames_Description text.</summary>
-        public static string AlignChineseItemOptionNames_Description => ResourceManager.GetString("AlignChineseItemOptionNames_Description", resourceCulture)!;
         /// <summary>Gets the localized AddFenrirMaterialDropGroupsUpdateSeason6_Name text.</summary>
         public static string AddFenrirMaterialDropGroupsUpdateSeason6_Name => ResourceManager.GetString("AddFenrirMaterialDropGroupsUpdateSeason6_Name", resourceCulture)!;
 
@@ -896,24 +862,6 @@ namespace MUnique.OpenMU.Persistence.Initialization.Properties {
 
         /// <summary>Gets the localized ConfigureNpcTalkPlugInsPlugIn_Description text.</summary>
         public static string ConfigureNpcTalkPlugInsPlugIn_Description => ResourceManager.GetString("ConfigureNpcTalkPlugInsPlugIn_Description", resourceCulture)!;
-
-        /// <summary>Gets the localized AddConfigurationNameTranslations_Name text.</summary>
-        public static string AddConfigurationNameTranslations_Name => ResourceManager.GetString("AddConfigurationNameTranslations_Name", resourceCulture)!;
-
-        /// <summary>Gets the localized AddConfigurationNameTranslations_Description text.</summary>
-        public static string AddConfigurationNameTranslations_Description => ResourceManager.GetString("AddConfigurationNameTranslations_Description", resourceCulture)!;
-
-        /// <summary>Gets the localized AddItemNameTranslations_Name text.</summary>
-        public static string AddItemNameTranslations_Name => ResourceManager.GetString("AddItemNameTranslations_Name", resourceCulture)!;
-
-        /// <summary>Gets the localized AddItemNameTranslations_Description text.</summary>
-        public static string AddItemNameTranslations_Description => ResourceManager.GetString("AddItemNameTranslations_Description", resourceCulture)!;
-
-        /// <summary>Gets the localized AddItemOptionTranslations_Name text.</summary>
-        public static string AddItemOptionTranslations_Name => ResourceManager.GetString("AddItemOptionTranslations_Name", resourceCulture)!;
-
-        /// <summary>Gets the localized AddItemOptionTranslations_Description text.</summary>
-        public static string AddItemOptionTranslations_Description => ResourceManager.GetString("AddItemOptionTranslations_Description", resourceCulture)!;
 
     }
 }

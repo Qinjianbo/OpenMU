@@ -1,18 +1,9 @@
 # Chinese merchant names
 
 The built-in 0.75, 0.95d, and Season 6 initializers include Chinese merchant names.
-Existing databases can apply **对齐简体中文商人名称** on `/config-updates`
-after deploying this revision, then restart the service. Back up the database first.
-This optional update does not run automatically on deployment. Its version is
-100119 (0.75), 100120 (0.95d), or 100121 (Season 6).
+Fresh configurations read built-in language resources. For existing databases, use **Configuration captions** to link names to their sources, preview translations, and apply the selected changes. Custom text is only replaced when explicitly selected.
 
-Only merchants with matching NPC numbers and neutral English names are changed.
-Missing Chinese translations and the known legacy translations of Silvia and
-Oracle Layla are corrected. Customized names, other languages, shop inventories,
-prices, NPC identifiers, and spawn locations are preserved. Applying it again is safe.
-These database changes are separate from upstream UI localization PR #981.
-The server database names affect administration; names rendered by a game client
-may come from that client's own language data.
+The earlier translation plugins and direct SQL scripts have been removed. Existing translations and historical update records remain in the database. See [Configuration captions](../docs-website/docs/admin-panel/configuration-captions.md).
 
 ## Name mapping and evidence
 
@@ -55,12 +46,3 @@ Christine's Chinese name remains **provisional**, not verified as official:
 | 545 | Christine the General Goods Merchant | 杂货商人克里斯丁 | Provisional transliteration; official name unverified |
 | 577 | Leina the General Goods Merchant | 蕾娜 | F |
 | 578 | Weapons Merchant Bolo | 贝莱 | F |
-
-## SQL alternative
-
-`scripts/localization/align-merchant-names.sql` can update a PostgreSQL database
-without deploying the new plugin. Stop the application, back up the affected rows,
-run the script with `psql -v ON_ERROR_STOP=1`, and restart the application.
-It uses the same number/name guards and translation policy as the plugin.
-It does not mark the configuration update as installed; applying the plugin later
-is safe and records installation without changing already-correct names.

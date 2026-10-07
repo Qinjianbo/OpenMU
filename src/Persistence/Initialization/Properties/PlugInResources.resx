@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
 	<!-- 
 		Microsoft ResX Schema
@@ -356,26 +356,8 @@
   <data name="FixRageFighterMultipleHitSkillsPlugIn_Description" xml:space="preserve"><value>This update adds the missing multiple hits to the Killing Blow, Beast Uppercut, Chain Drive, Dragon Roar and Phoenix Shot Rage Fighter skills, as well as their magic effects.</value></data>
   <data name="FixChaosMixesPlugInSeason6_Name" xml:space="preserve"><value>Fix Chaos Mixes Settings And Several Options</value></data>
   <data name="FixChaosMixesPlugInSeason6_Description" xml:space="preserve"><value>This update fixes the Chaos Weapon, First Wings, Dinorant, Item Level Upgrade, Second Wings, Third Wings, Cape, SD Potions, Guardian Option, and Secromicon crafting settings; Blue Fenrir (Protect) damage decrease option value; Wizard's Ring wizardry option; lvl 380 item guardian options for Summoner and Rage Fighter.</value></data>
-  <data name="AlignChineseCharacterClassNames_Name" xml:space="preserve"><value>Align Simplified Chinese character class names</value></data>
-  <data name="AlignChineseCharacterClassNames_Description" xml:space="preserve"><value>Adds missing official Chinese class names and corrects known mistranslations while preserving customized names and other languages.</value></data>
-  <data name="AlignChineseMerchantNames_Name" xml:space="preserve"><value>Align Simplified Chinese merchant names</value></data>
-  <data name="AlignChineseMerchantNames_Description" xml:space="preserve"><value>Adds missing Chinese merchant names and corrects known mistranslations while preserving customized names, shop inventory, and other languages.</value></data>
-  <data name="AlignChineseMonsterNames_Name" xml:space="preserve"><value>Align Simplified Chinese monster and NPC names</value></data>
-  <data name="AlignChineseMonsterNames_Description" xml:space="preserve"><value>Adds missing Chinese monster and NPC names and corrects known mistranslations while preserving customized names, other languages, and gameplay settings.</value></data>
-  <data name="AlignChineseMapNames_Name" xml:space="preserve"><value>Align Simplified Chinese map names</value></data>
-  <data name="AlignChineseMapNames_Description" xml:space="preserve"><value>Adds missing Chinese map names and corrects known mistranslations while preserving customized names and other languages.</value></data>
-  <data name="AlignChineseItemNames_Name" xml:space="preserve"><value>Align Simplified Chinese item names</value></data>
-  <data name="AlignChineseItemNames_Description" xml:space="preserve"><value>Adds missing Chinese item names and corrects known mistranslations while preserving customized names and other languages.</value></data>
-  <data name="AlignChineseItemOptionNames_Name" xml:space="preserve"><value>Align Simplified Chinese item option names</value></data>
-  <data name="AlignChineseItemOptionNames_Description" xml:space="preserve"><value>Adds Chinese item option and ancient set names while preserving customized names and other languages.</value></data>
   <data name="AddFenrirMaterialDropGroupsUpdateSeason6_Name" xml:space="preserve"><value>Add Fenrir Material Drop Groups</value></data>
   <data name="AddFenrirMaterialDropGroupsUpdateSeason6_Description" xml:space="preserve"><value>Adds the drops of Splinter of Armor (5 %), Bless of Guardian (2 %) and Claw of Beast (0.5 %) to all monsters of Crywolf. Materials which already drop on Crywolf by another group are skipped.</value></data>
-  <data name="AddConfigurationNameTranslations_Name" xml:space="preserve"><value>Add configuration name translations</value></data>
-  <data name="AddConfigurationNameTranslations_Description" xml:space="preserve"><value>Adds available translations of class, map, merchant, monster and NPC names. Only missing translations and copies of the neutral name are replaced; customized names and gameplay settings are preserved.</value></data>
-  <data name="AddItemNameTranslations_Name" xml:space="preserve"><value>Add item name translations</value></data>
-  <data name="AddItemNameTranslations_Description" xml:space="preserve"><value>Adds available resource translations of item names. Only missing translations and English copies are filled; custom names, existing translations and gameplay settings are preserved.</value></data>
-  <data name="AddItemOptionTranslations_Name" xml:space="preserve"><value>Add item option and set translations</value></data>
-  <data name="AddItemOptionTranslations_Description" xml:space="preserve"><value>Adds available resource translations of item option types, options, sets and descriptions. Only missing translations and English copies are filled; custom names, existing translations and gameplay settings are preserved.</value></data>
   <data name="FixVulcanusWarpIndexUpdatePlugIn_Name" xml:space="preserve"><value>Fix Vulcanus warp index</value></data>
   <data name="FixVulcanusWarpIndexUpdatePlugIn_Description" xml:space="preserve"><value>This update corrects the index of the warp entry of Vulcanus to 42, which the season 6 game client requests.</value></data>
   <data name="AddSmallWingsUpdatePlugIn_Name" xml:space="preserve"><value>Add small wings and capes</value></data>

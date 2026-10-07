@@ -56,15 +56,11 @@ applied on top of a current schema.
 
 ## Translation updates in this fork
 
-Use the [captions page](configuration-captions.md) to link built-in names to their resources and
-review available translations. This includes the local item and option resources.
-Fresh configurations store the resource source keys directly.
+Use the [captions page](configuration-captions.md) to link built-in names to their
+resources, preview translations, and apply selected changes. This also handles
+legacy item option names with non-stable identifiers when the neutral name is
+unique in both configurations.
 
-Earlier optional translation plugins are retained in this fork with their original
-GUIDs to preserve installation history. They fill missing translations or English
-copies and preserve custom text. They do not replace the captions page's source
-linking and preview workflow.
-
-Some legacy item option definitions have randomly generated identifiers and no
-numeric identity. Source linking can leave these names unlinked; the earlier
-optional item option translation update remains available for them.
+The earlier local translation plugins, duplicate dictionaries, and direct SQL
+scripts have been removed. Existing translations and historical update records
+remain in the database; removing the old code does not undo applied translations.

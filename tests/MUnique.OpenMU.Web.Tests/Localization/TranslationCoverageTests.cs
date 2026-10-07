@@ -4,12 +4,12 @@
 
 namespace MUnique.OpenMU.Web.Tests.Localization;
 
-using System.ComponentModel.DataAnnotations;
 using System.Collections;
-using System.Resources;
-using System.Text.RegularExpressions;
+using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.Reflection;
+using System.Resources;
+using System.Text.RegularExpressions;
 using Bunit;
 using Microsoft.AspNetCore.Components.QuickGrid;
 using MUnique.OpenMU.GameLogic.PlugIns;
@@ -153,24 +153,6 @@ public class TranslationCoverageTests
         {
             CultureInfo.CurrentUICulture = previous;
         }
-    }
-
-    /// <summary>Preserves identifiers, other languages and customized Chinese names.</summary>
-    [Test]
-    public void ConfigurationNameCompletionPreservesOtherTranslations()
-    {
-        var chinese = CultureInfo.GetCultureInfo("zh-CN");
-        var german = CultureInfo.GetCultureInfo("de");
-        var original = new MUnique.OpenMU.Interfaces.LocalizedString("Jewel of Bless")
-            .WithTranslation(german, "Segensjuwel")
-            .WithTranslation(chinese, "Jewel之Bless");
-        var completed = MUnique.OpenMU.Persistence.Initialization.ChineseConfigurationNames.Complete(original);
-        Assert.That(completed.ValueInNeutralLanguage, Is.EqualTo("Jewel of Bless"));
-        Assert.That(completed.GetTranslation(german), Is.EqualTo("Segensjuwel"));
-        Assert.That(completed.GetTranslation(chinese), Is.EqualTo("祝福宝石"));
-        Assert.That(MUnique.OpenMU.Persistence.Initialization.ChineseConfigurationNames.Complete(completed), Is.EqualTo(completed));
-        var customized = original.WithTranslation(chinese, "自定义宝石");
-        Assert.That(MUnique.OpenMU.Persistence.Initialization.ChineseConfigurationNames.Complete(customized), Is.EqualTo(customized));
     }
 
     /// <summary>Checks localized validation labels and extension point names without changing identifiers.</summary>

@@ -317,22 +317,4 @@
   <data name="FixRageFighterMultipleHitSkillsPlugIn_Description" xml:space="preserve"><value>为格斗家的 Killing Blow、Beast Uppercut、Chain Drive、Dragon Roar、Phoenix Shot 技能及其魔法效果补充缺失的多段攻击。</value></data>
   <data name="FixChaosMixesPlugInSeason6_Name" xml:space="preserve"><value>修正玛雅合成和多项物品属性</value></data>
   <data name="FixChaosMixesPlugInSeason6_Description" xml:space="preserve"><value>修正玛雅武器、一代翅膀、彩云兽、物品强化、二代和三代翅膀、披风、防护药水、守护属性及召唤魔法书的合成配置；修正蓝色炎狼兽减伤、魔法师戒指魔法属性，以及召唤术师和格斗家 380 级物品的守护属性。</value></data>
-  <data name="AlignChineseCharacterClassNames_Name" xml:space="preserve"><value>对齐官方简体中文职业名称</value></data>
-  <data name="AlignChineseCharacterClassNames_Description" xml:space="preserve"><value>补齐官方中文职业名称并修正已知误译，保留自定义名称和其他语言。</value></data>
-  <data name="AlignChineseMerchantNames_Name" xml:space="preserve"><value>对齐简体中文商人名称</value></data>
-  <data name="AlignChineseMerchantNames_Description" xml:space="preserve"><value>补齐中文商人名称并修正已知误译，保留自定义名称、商店商品和其他语言。</value></data>
-  <data name="AlignChineseMonsterNames_Name" xml:space="preserve"><value>对齐简体中文怪物及NPC名称</value></data>
-  <data name="AlignChineseMonsterNames_Description" xml:space="preserve"><value>补齐怪物、NPC及机关的中文名称并修正已知误译，保留自定义名称、其他语言及战斗配置。</value></data>
-  <data name="AlignChineseMapNames_Name" xml:space="preserve"><value>对齐简体中文地图名称</value></data>
-  <data name="AlignChineseMapNames_Description" xml:space="preserve"><value>补齐地图中文名称，按国服官方名称修正已知旧译，保留自定义名称及其他语言。</value></data>
-  <data name="AlignChineseItemNames_Name" xml:space="preserve"><value>对齐简体中文物品名称</value></data>
-  <data name="AlignChineseItemNames_Description" xml:space="preserve"><value>补齐物品中文名称，修正已知旧译，保留自定义名称及其他语言。</value></data>
-  <data name="AlignChineseItemOptionNames_Name" xml:space="preserve"><value>补齐简体中文物品属性名称</value></data>
-  <data name="AlignChineseItemOptionNames_Description" xml:space="preserve"><value>补齐物品属性类型、属性组和套装名称的中文翻译，保留自定义名称及其他语言。</value></data>
-  <data name="AddConfigurationNameTranslations_Name" xml:space="preserve"><value>补充配置名称翻译</value></data>
-  <data name="AddConfigurationNameTranslations_Description" xml:space="preserve"><value>补充职业、地图、商人、怪物及NPC名称的可用翻译。仅补齐缺失翻译或替换原文副本；保留自定义名称及玩法配置。</value></data>
-  <data name="AddItemNameTranslations_Name" xml:space="preserve"><value>补充物品名称翻译</value></data>
-  <data name="AddItemNameTranslations_Description" xml:space="preserve"><value>从语言资源补充缺失的翻译或替换英文副本；保留自定义名称、现有译文和游戏设置。</value></data>
-  <data name="AddItemOptionTranslations_Name" xml:space="preserve"><value>补充物品选项与套装翻译</value></data>
-  <data name="AddItemOptionTranslations_Description" xml:space="preserve"><value>从语言资源补充缺失的翻译或替换英文副本；保留自定义名称、现有译文和游戏设置。</value></data>
 </root>
