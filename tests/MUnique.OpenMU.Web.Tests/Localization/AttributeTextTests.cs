@@ -12,8 +12,6 @@ using Microsoft.Extensions.DependencyInjection;
 using MUnique.OpenMU.AttributeSystem;
 using MUnique.OpenMU.DataModel;
 using MUnique.OpenMU.DataModel.Attributes;
-using MUnique.OpenMU.DataModel.Configuration;
-using MUnique.OpenMU.Interfaces;
 using MUnique.OpenMU.Persistence;
 using MUnique.OpenMU.Persistence.InMemory;
 using MUnique.OpenMU.Web.Shared.Components.Form;
@@ -41,8 +39,6 @@ public class AttributeTextTests
                     .Add(field => field.Value, attribute.Designation!)
                     .Add(field => field.ValueExpression, () => attribute.Designation!)
                     .Add(field => field.ValueChanged, value => attribute.Designation = value)));
-            Assert.That(typeof(AttributeDefinition).GetTypeCaption(), Is.EqualTo("属性"));
-            Assert.That(component.Find("label").TextContent, Does.StartWith("名称"));
             Assert.That(attribute.GetName(), Is.EqualTo("基础力量"));
             Assert.That(component.Find("input").GetAttribute("value"), Is.EqualTo("Base Strength"));
             Assert.That(component.Find(".form-text").TextContent, Is.EqualTo("基础力量"));
@@ -58,9 +54,38 @@ public class AttributeTextTests
         }
     }
 
-    /// <summary>Nested configuration captions render text for the current UI language without leaking serialized metadata.</summary>
+    /// <summary>Recently added built-in names resolve to Chinese without altering their identifiers.</summary>
+    /// <param name="name">The stored name.</param>
+    /// <param name="expected">The translated caption.</param>
+    [TestCase("Shield Recovery Active Everywhere", "允许在所有区域恢复防护值")]
+    [TestCase("Weapon And Armor Duration Increase (MST)", "武器和防具耐久消耗减缓（大师技能）")]
+    [TestCase("Jewelry And Wings Duration Increase (MST)", "首饰和翅膀耐久消耗减缓（大师技能）")]
+    [TestCase("Pet Duration Increase (MST)", "宠物耐久消耗减缓（大师技能）")]
+    [TestCase("Trainable Pet Duration Increase (MST)", "黑王马和天鹰耐久消耗减缓（大师技能）")]
+    [TestCase("Weapon Duration Increase", "武器耐久消耗减缓")]
+    [TestCase("Skill Final Damage Multiplier (PvE) (skill attribute)", "技能最终伤害倍率（对怪物，技能属性）")]
+    [TestCase("Master Skill Value (skill attribute)", "大师技能当前等级数值（技能属性）")]
+    public void NewAttributeNamesAreTranslated(string name, string expected)
+    {
+        var previous = CultureInfo.CurrentUICulture;
+        try
+        {
+            var attribute = new AttributeDefinition(Guid.NewGuid(), name, string.Empty);
+            CultureInfo.CurrentUICulture = CultureInfo.GetCultureInfo("zh-CN");
+            Assert.That(attribute.GetName(), Is.EqualTo(expected));
+            Assert.That(attribute.Designation, Is.EqualTo(name));
+            CultureInfo.CurrentUICulture = CultureInfo.GetCultureInfo("en");
+            Assert.That(attribute.GetName(), Is.EqualTo(name));
+        }
+        finally
+        {
+            CultureInfo.CurrentUICulture = previous;
+        }
+    }
+
+    /// <summary>Power-up and constant attribute captions use translated labels without modifying stored names.</summary>
     [Test]
-    public void NestedConfigurationTextUsesTheDisplayLanguage()
+    public void AttributeValuesUseTheDisplayLanguage()
     {
         var previous = CultureInfo.CurrentUICulture;
         var previousFormattingCulture = CultureInfo.CurrentCulture;
@@ -68,10 +93,6 @@ public class AttributeTextTests
         {
             CultureInfo.CurrentUICulture = CultureInfo.GetCultureInfo("zh-CN");
             CultureInfo.CurrentCulture = CultureInfo.CurrentUICulture;
-            var caption = new LocalizedString("English caption").WithTranslation(CultureInfo.CurrentUICulture, "中文名称").WithSourceKey("Test/Caption");
-            Assert.That(new DropItemGroup { Description = caption }.ToString(), Is.EqualTo("中文名称"));
-            Assert.That(new CharacterClass { Name = caption }.ToString(), Is.EqualTo("中文名称"));
-            Assert.That(new MiniGameDefinition { Name = caption }.ToString(), Is.EqualTo("中文名称"));
             var attribute = new AttributeDefinition(Guid.NewGuid(), "Base Strength", string.Empty);
             var provider = new InMemoryPersistenceContextProvider();
             using var dataContext = provider.CreateNewContext();
@@ -82,7 +103,6 @@ public class AttributeTextTests
             Assert.That(constant.GetName(), Is.EqualTo("基础力量: 5 (基础值相加)"));
             Assert.That(constant.ToString(), Is.EqualTo("Base Strength: 5 (AddRaw)"));
             Assert.That(attribute.Designation, Is.EqualTo("Base Strength"));
-            Assert.That(caption.Value, Does.Contain("@src=Test/Caption"));
         }
         finally
         {

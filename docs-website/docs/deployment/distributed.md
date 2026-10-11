@@ -39,7 +39,7 @@ Nothing addresses a game server by its Dapr app id: the calls to game servers,
 e.g. a friend request or a global message from the admin panel, are published to
 all game servers. The game server which hosts the affected player handles it, or
 the one whose id is in the message, and the others ignore it. So all game
-servers share the app id `gameServer`. Each process still needs its own queues
+servers share the app id `game-server`. Each process still needs its own queues
 in RabbitMQ to receive every message; they are named after the `POD_NAME` of its
 sidecar, which therefore has to be unique.
 
@@ -49,10 +49,9 @@ bundles an OpenTelemetry collector, Loki, Prometheus, Tempo and Grafana.
 
 ## Deployment with docker compose
 
-Currently there is only a docker compose file for the deployment, which has the
-limitation that everything runs on the same physical machine. For a truly
-distributed environment with multiple machines, Kubernetes can be used — but
-there is no finished Kubernetes configuration yet. Contributions are welcome.
+The docker compose file has the limitation that everything runs on the same
+physical machine. For a truly distributed environment with multiple machines,
+see [Kubernetes](kubernetes.md).
 
 ### Clone the repository and navigate to the compose files
 
@@ -165,11 +164,14 @@ which `docker compose ps` shows.
   (`GS_ID`). To add a game server, create it in the admin panel, and copy a game
   server service and its sidecar service in the compose file. Give them the next
   id, their own names, `POD_NAME` and ports.
-* The compose file publishes the ports 55901–55902 of `gameServer0` and
-  55903–55904 of `gameServer1`. That matches the endpoints which the setup
+* The compose file publishes the ports 45901–45902 of `gameServer0` and
+  45903–45904 of `gameServer1`. That matches the endpoints which the setup
   creates when there are two client versions. With one client version, the setup
-  assigns 55901 to server 0 and 55902 to server 1, so adjust the published ports
-  to the endpoints of the game servers in the admin panel.
+  assigns 45901 to server 0 and 45902 to server 1, so adjust the published ports
+  to the endpoints of the game servers in the admin panel. If your database was
+  initialized by an older version, it may still use the former ports 55901 and
+  following, see
+  [upgrading an existing installation](../reference/ports.md#upgrading-an-existing-installation).
 * Everything runs on the same machine, see above.
 
 ## Environment variables
@@ -209,8 +211,8 @@ doesn't start at 0, add an offset with `GS_ID_OFFSET`. Without both, the id is
 ### `GS_LISTENER_PORT`
 
 Optional. By default, a game server listens on the ports which are configured for
-its endpoints in the admin panel, e.g. 55901 and 55902 for server 0 with two
-client versions, and 55903 and 55904 for server 1. When `GS_LISTENER_PORT` is
+its endpoints in the admin panel, e.g. 45901 and 45902 for server 0 with two
+client versions, and 45903 and 45904 for server 1. When `GS_LISTENER_PORT` is
 set, the game server listens on this port for its first endpoint, on the next
 port for the second, and so on (in the order of the configured ports) — the same
 ports in every container. That's useful when all game servers share one

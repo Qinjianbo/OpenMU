@@ -178,6 +178,33 @@ namespace MUnique.OpenMU.GameLogic.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You can now create a character of the class {0}..
+        /// </summary>
+        public static string CashShopCharacterClassUnlocked {
+            get {
+                return ResourceManager.GetString("CashShopCharacterClassUnlocked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your inventory has been extended. Select your character again to use the new space..
+        /// </summary>
+        public static string CashShopInventoryExtended {
+            get {
+                return ResourceManager.GetString("CashShopInventoryExtended", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your vault has been extended..
+        /// </summary>
+        public static string CashShopVaultExtended {
+            get {
+                return ResourceManager.GetString("CashShopVaultExtended", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Account Name: {0}.
         /// </summary>
         public static string CharacterInfoAccountNameFormat {
@@ -316,6 +343,15 @@ namespace MUnique.OpenMU.GameLogic.Properties {
         public static string GensRequiredToCreateGuild {
             get {
                 return ResourceManager.GetString("GensRequiredToCreateGuild", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You received {0} Goblin Points for your play time..
+        /// </summary>
+        public static string GoblinPointsForPlayTime {
+            get {
+                return ResourceManager.GetString("GoblinPointsForPlayTime", resourceCulture);
             }
         }
         
@@ -2287,6 +2323,15 @@ namespace MUnique.OpenMU.GameLogic.Properties {
         public static string OfflineLevelingMustBeAlive {
             get {
                 return ResourceManager.GetString("OfflineLevelingMustBeAlive", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to You can not start offline leveling during an event..
+        /// </summary>
+        public static string OfflineLevelingInMiniGame {
+            get {
+                return ResourceManager.GetString("OfflineLevelingInMiniGame", resourceCulture);
             }
         }
 

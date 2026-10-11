@@ -617,6 +617,12 @@ namespace MUnique.OpenMU.Persistence.Initialization.Properties {
         /// <summary>Gets the localized AddCastleSiegeDataUpdatePlugIn_Description text.</summary>
         public static string AddCastleSiegeDataUpdatePlugIn_Description => ResourceManager.GetString("AddCastleSiegeDataUpdatePlugIn_Description", resourceCulture)!;
 
+        /// <summary>Gets the localized AddCashShopUpdatePlugIn_Name text.</summary>
+        public static string AddCashShopUpdatePlugIn_Name => ResourceManager.GetString("AddCashShopUpdatePlugIn_Name", resourceCulture)!;
+
+        /// <summary>Gets the localized AddCashShopUpdatePlugIn_Description text.</summary>
+        public static string AddCashShopUpdatePlugIn_Description => ResourceManager.GetString("AddCashShopUpdatePlugIn_Description", resourceCulture)!;
+
         /// <summary>Gets the localized FixAttackSpeedCalculationUpdate_Name text.</summary>
         public static string FixAttackSpeedCalculationUpdate_Name => ResourceManager.GetString("FixAttackSpeedCalculationUpdate_Name", resourceCulture)!;
 
@@ -862,6 +868,24 @@ namespace MUnique.OpenMU.Persistence.Initialization.Properties {
 
         /// <summary>Gets the localized ConfigureNpcTalkPlugInsPlugIn_Description text.</summary>
         public static string ConfigureNpcTalkPlugInsPlugIn_Description => ResourceManager.GetString("ConfigureNpcTalkPlugInsPlugIn_Description", resourceCulture)!;
+
+        /// <summary>Gets the localized AddIronKnightStabUpdatePlugIn_Name text.</summary>
+        public static string AddIronKnightStabUpdatePlugIn_Name => ResourceManager.GetString("AddIronKnightStabUpdatePlugIn_Name", resourceCulture)!;
+
+        /// <summary>Gets the localized AddIronKnightStabUpdatePlugIn_Description text.</summary>
+        public static string AddIronKnightStabUpdatePlugIn_Description => ResourceManager.GetString("AddIronKnightStabUpdatePlugIn_Description", resourceCulture)!;
+
+        /// <summary>Gets the localized AddLorenMarketRaulJewelBundlePlugIn_Name text.</summary>
+        public static string AddLorenMarketRaulJewelBundlePlugIn_Name => ResourceManager.GetString("AddLorenMarketRaulJewelBundlePlugIn_Name", resourceCulture)!;
+
+        /// <summary>Gets the localized AddLorenMarketRaulJewelBundlePlugIn_Description text.</summary>
+        public static string AddLorenMarketRaulJewelBundlePlugIn_Description => ResourceManager.GetString("AddLorenMarketRaulJewelBundlePlugIn_Description", resourceCulture)!;
+
+        /// <summary>Gets the localized MoveServerPortsOutOfDynamicRangePlugInBase_Name text.</summary>
+        public static string MoveServerPortsOutOfDynamicRangePlugInBase_Name => ResourceManager.GetString("MoveServerPortsOutOfDynamicRangePlugInBase_Name", resourceCulture)!;
+
+        /// <summary>Gets the localized MoveServerPortsOutOfDynamicRangePlugInBase_Description text.</summary>
+        public static string MoveServerPortsOutOfDynamicRangePlugInBase_Description => ResourceManager.GetString("MoveServerPortsOutOfDynamicRangePlugInBase_Description", resourceCulture)!;
 
     }
 }

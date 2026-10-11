@@ -30,14 +30,17 @@ internal class FullConfigurationCaptionTests
         var reference = (await referenceContext.GetAsync<GameConfiguration>().ConfigureAwait(false)).Single();
         var existingProvider = new InMemoryPersistenceContextProvider();
         var previousCulture = CultureInfo.CurrentUICulture;
+        var previousFormattingCulture = CultureInfo.CurrentCulture;
         try
         {
             CultureInfo.CurrentUICulture = CultureInfo.GetCultureInfo("zh-CN");
+            CultureInfo.CurrentCulture = CultureInfo.CurrentUICulture;
             await InitializeAsync(existingProvider, version).ConfigureAwait(false);
         }
         finally
         {
             CultureInfo.CurrentUICulture = previousCulture;
+            CultureInfo.CurrentCulture = previousFormattingCulture;
         }
         using var existingContext = existingProvider.CreateNewContext();
         var existing = (await existingContext.GetAsync<GameConfiguration>().ConfigureAwait(false)).Single();
