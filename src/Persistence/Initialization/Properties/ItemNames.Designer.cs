@@ -4829,5 +4829,26 @@ namespace MUnique.OpenMU.Persistence.Initialization.Properties {
                 return ResourceManager.GetString("LittleWarriorsCloak", resourceCulture);
             }
         }
+
+        /// <summary>Gets SignOfDimensions from the item name resources.</summary>
+        public static string SignOfDimensions {
+            get {
+                return ResourceManager.GetString("SignOfDimensions", resourceCulture);
+            }
+        }
+
+        /// <summary>Gets DoppelgangerFreeTicket from the item name resources.</summary>
+        public static string DoppelgangerFreeTicket {
+            get {
+                return ResourceManager.GetString("DoppelgangerFreeTicket", resourceCulture);
+            }
+        }
+
+        /// <summary>Gets MirrorOfDimensions from the item name resources.</summary>
+        public static string MirrorOfDimensions {
+            get {
+                return ResourceManager.GetString("MirrorOfDimensions", resourceCulture);
+            }
+        }
     }
 }

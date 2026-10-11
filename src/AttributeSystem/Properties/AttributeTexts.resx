@@ -1212,4 +1212,31 @@
   <data name="AggregateType_Maximum" xml:space="preserve">
     <value>Maximum</value>
   </data>
+  <data name="Name_ShieldRecoveryActiveEverywhere" xml:space="preserve">
+    <value>Shield Recovery Active Everywhere</value>
+  </data>
+  <data name="Name_WeaponAndArmorDurationIncreaseMST" xml:space="preserve">
+    <value>Weapon And Armor Duration Increase (MST)</value>
+  </data>
+  <data name="Name_JewelryAndWingsDurationIncreaseMST" xml:space="preserve">
+    <value>Jewelry And Wings Duration Increase (MST)</value>
+  </data>
+  <data name="Name_PetDurationIncreaseMST" xml:space="preserve">
+    <value>Pet Duration Increase (MST)</value>
+  </data>
+  <data name="Name_TrainablePetDurationIncreaseMST" xml:space="preserve">
+    <value>Trainable Pet Duration Increase (MST)</value>
+  </data>
+  <data name="Name_WeaponDurationIncrease" xml:space="preserve">
+    <value>Weapon Duration Increase</value>
+  </data>
+  <data name="Name_SkillFinalDamageMultiplierPvEskillattribute" xml:space="preserve">
+    <value>Skill Final Damage Multiplier (PvE) (skill attribute)</value>
+  </data>
+  <data name="Name_MasterSkillValueskillattribute" xml:space="preserve">
+    <value>Master Skill Value (skill attribute)</value>
+  </data>
+  <data name="Description_ShieldRecoveryActiveEverywhere" xml:space="preserve">
+    <value>By default, shield recovery is limited to the safezone only. With this attribute (value &gt;= 1), recovery works everywhere on a map.</value>
+  </data>
 </root>

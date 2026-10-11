@@ -1212,4 +1212,31 @@
   <data name="AggregateType_Maximum" xml:space="preserve">
     <value>取最大值</value>
   </data>
+  <data name="Name_ShieldRecoveryActiveEverywhere" xml:space="preserve">
+    <value>允许在所有区域恢复防护值</value>
+  </data>
+  <data name="Name_WeaponAndArmorDurationIncreaseMST" xml:space="preserve">
+    <value>武器和防具耐久消耗减缓（大师技能）</value>
+  </data>
+  <data name="Name_JewelryAndWingsDurationIncreaseMST" xml:space="preserve">
+    <value>首饰和翅膀耐久消耗减缓（大师技能）</value>
+  </data>
+  <data name="Name_PetDurationIncreaseMST" xml:space="preserve">
+    <value>宠物耐久消耗减缓（大师技能）</value>
+  </data>
+  <data name="Name_TrainablePetDurationIncreaseMST" xml:space="preserve">
+    <value>黑王马和天鹰耐久消耗减缓（大师技能）</value>
+  </data>
+  <data name="Name_WeaponDurationIncrease" xml:space="preserve">
+    <value>武器耐久消耗减缓</value>
+  </data>
+  <data name="Name_SkillFinalDamageMultiplierPvEskillattribute" xml:space="preserve">
+    <value>技能最终伤害倍率（对怪物，技能属性）</value>
+  </data>
+  <data name="Name_MasterSkillValueskillattribute" xml:space="preserve">
+    <value>大师技能当前等级数值（技能属性）</value>
+  </data>
+  <data name="Description_ShieldRecoveryActiveEverywhere" xml:space="preserve">
+    <value>默认仅能在安全区恢复防护值。此属性值大于或等于 1 时，可在地图的所有区域恢复防护值。</value>
+  </data>
 </root>

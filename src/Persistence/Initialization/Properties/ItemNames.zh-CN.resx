@@ -2061,4 +2061,13 @@
   <data name="LittleWarriorsCloak" xml:space="preserve">
     <value>小武者披风</value>
   </data>
+  <data name="SignOfDimensions" xml:space="preserve">
+    <value>次元标识</value>
+  </data>
+  <data name="DoppelgangerFreeTicket" xml:space="preserve">
+    <value>生魂广场自由入场券</value>
+  </data>
+  <data name="MirrorOfDimensions" xml:space="preserve">
+    <value>次元魔镜</value>
+  </data>
 </root>

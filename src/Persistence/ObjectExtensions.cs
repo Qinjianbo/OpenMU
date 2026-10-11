@@ -55,6 +55,11 @@ public static class ObjectExtensions
             return attribute.GetDisplayName() ?? string.Empty;
         }
 
+        if (item is ConstValueAttribute constant)
+        {
+            return $"{constant.Definition.GetDisplayName()}: {constant.Value} ({constant.AggregateType.GetDisplayName()})";
+        }
+
         if (!NameProperties.TryGetValue(item.GetType(), out var nameProperty))
         {
             var properties = item.GetType().GetProperties()

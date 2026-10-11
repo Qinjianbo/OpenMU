@@ -2061,4 +2061,13 @@
   <data name="LittleWarriorsCloak" xml:space="preserve">
     <value>Little Warrior's Cloak</value>
   </data>
+  <data name="SignOfDimensions" xml:space="preserve">
+    <value>Sign of Dimensions</value>
+  </data>
+  <data name="DoppelgangerFreeTicket" xml:space="preserve">
+    <value>Doppelganger Free Ticket</value>
+  </data>
+  <data name="MirrorOfDimensions" xml:space="preserve">
+    <value>Mirror of Dimensions</value>
+  </data>
 </root>
