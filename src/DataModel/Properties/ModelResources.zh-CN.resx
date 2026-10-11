@@ -6202,4 +6202,22 @@
   <data name="ConfigurationUpdate_Key_Caption" xml:space="preserve">
     <value>标识</value>
   </data>
+  <data name="Account_WCoinC_Caption" xml:space="preserve">
+    <value>WCoin (C)</value>
+  </data>
+  <data name="Account_WCoinC_Description" xml:space="preserve">
+    <value>商城中可用的 WCoin (C) 余额。</value>
+  </data>
+  <data name="Account_WCoinP_Caption" xml:space="preserve">
+    <value>WCoin (P)</value>
+  </data>
+  <data name="Account_WCoinP_Description" xml:space="preserve">
+    <value>商城中可用的 WCoin (P) 余额。</value>
+  </data>
+  <data name="Account_GoblinPoints_Caption" xml:space="preserve">
+    <value>哥布林积分</value>
+  </data>
+  <data name="Account_GoblinPoints_Description" xml:space="preserve">
+    <value>商城中可用的哥布林积分（Goblin Points）余额。</value>
+  </data>
 </root>
