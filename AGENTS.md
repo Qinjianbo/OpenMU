@@ -84,6 +84,14 @@ running, so several calls in a row repeat the same build. Don't do that:
   working on what and the approach can be discussed.
 * Reference the related issue in the pull request description when applicable.
 
+## Pull request preflight
+
+Before opening or updating an upstream pull request, read
+[`docs/PR_CHECKLIST.md`](docs/PR_CHECKLIST.md). Check the applicable items against
+the final diff and record the verification evidence using its review-record
+format. Review newer maintainer feedback as well; historical suggestions may have
+been superseded. This supplements, and does not replace, `docs/CODING_RULES.md`.
+
 ## Out of scope for AI changes
 
 Don't perform large retroactive cleanups of existing code to fit the rules unless
