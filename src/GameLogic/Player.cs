@@ -1359,6 +1359,19 @@ public class Player : AsyncDisposable, IBucketMapObserver, IAttackable, IAttacke
     }
 
     /// <summary>
+    /// Returns the items which are still in the temporary storage (the tray of a crafting NPC)
+    /// to the inventory and tells the client about it. Without the update, the client keeps
+    /// showing neither the tray nor the inventory slots until the next login.
+    /// </summary>
+    public async ValueTask ReturnTemporaryStorageItemsAsync()
+    {
+        if (await this._storages.TryReturnTemporaryStorageItemsAsync().ConfigureAwait(false))
+        {
+            await this.InvokeViewPlugInAsync<IUpdateInventoryListPlugIn>(p => p.UpdateInventoryListAsync()).ConfigureAwait(false);
+        }
+    }
+
+    /// <summary>
     /// Removes the player from the game and saves its state.
     /// </summary>
     public async ValueTask RemoveFromGameAsync()
@@ -1427,6 +1440,53 @@ public class Player : AsyncDisposable, IBucketMapObserver, IAttackable, IAttacke
     /// <returns>A value task which completes when the operation completed.</returns>
     public ValueTask RunPersistenceExclusiveAsync(Func<ValueTask> operation, CancellationToken cancellationToken = default)
         => this._persistence.RunExclusiveAsync(operation, cancellationToken);
+
+    /// <summary>
+    /// Applies a class change of the selected character, which happened while it's in the game (quest
+    /// evolution), to the running attribute system. The system is built with the class of the moment of
+    /// entering the game, so without this a fresh master class would have no Master Level stat and no
+    /// master points per level up until the next login: the master level-ups would be lost silently.
+    /// Only the stat attributes and the base values are applied; the attribute combinations of the new
+    /// class follow with the next login.
+    /// </summary>
+    /// <param name="previousClass">The character class before the change.</param>
+    public void ApplyCharacterClassChange(CharacterClass previousClass)
+    {
+        if (this.SelectedCharacter is not { CharacterClass: { } newClass } character
+            || this.Attributes is not { } attributes
+            || ReferenceEquals(previousClass, newClass))
+        {
+            return;
+        }
+
+        this.AddMissingStatAttributes();
+        foreach (var statAttribute in character.Attributes)
+        {
+            attributes.TryAddStatAttribute(statAttribute);
+        }
+
+        foreach (var oldValue in previousClass.BaseAttributeValues
+                     .Where(o => !newClass.BaseAttributeValues.Any(n => n.Definition == o.Definition && n.Value == o.Value))
+                     .ToList())
+        {
+            attributes.RemoveElement(oldValue, oldValue.Definition);
+        }
+
+        foreach (var newValue in newClass.BaseAttributeValues
+                     .Where(n => !previousClass.BaseAttributeValues.Any(o => o.Definition == n.Definition && o.Value == n.Value))
+                     .ToList())
+        {
+            attributes.AddElement(newValue, newValue.Definition);
+        }
+
+        this.Logger.LogInformation(
+            "Character {Name} changed class in the game from {Previous} to {New}; master level {MasterLevel}, master points per level up {Points}.",
+            character.Name,
+            previousClass.Name,
+            newClass.Name,
+            attributes[Stats.MasterLevel],
+            attributes[Stats.MasterPointsPerLevelUp]);
+    }
 
     /// <summary>
     /// Is called after the player killed a <see cref="Player"/>.
