@@ -77,16 +77,28 @@ internal class GuildServerContext : CachingEntityFrameworkContext, IGuildServerC
     }
 
     /// <inheritdoc/>
+    public async ValueTask<IReadOnlyList<GuildMemberActivity>> GetGuildMemberActivitiesAsync(CancellationToken cancellationToken = default)
+    {
+        return await (from member in this.Context.Set<GuildMember>()
+                      join guild in this.Context.Set<Guild>() on member.GuildId equals guild.Id
+                      join character in this.Context.Set<CharacterName>() on member.Id equals character.Id
+                      join account in this.Context.Set<AccountLastSeen>() on character.AccountId equals (Guid?)account.Id
+                      select new GuildMemberActivity(guild.Id, guild.Name ?? string.Empty, character.Id, character.Name, member.Status, account.LastSeenDate))
+            .AsNoTracking()
+            .ToListAsync(cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <inheritdoc/>
     public async ValueTask<GuildMembership?> GetGuildMembershipAsync(string characterName)
     {
         return await CreateGuildMembershipQuery(this.Context, characterName).FirstOrDefaultAsync().ConfigureAwait(false);
     }
 
     /// <inheritdoc/>
-    public async ValueTask<IReadOnlyList<DataModel.Entities.Guild>> GetAlliancesAsync(Guid allianceMasterId)
+    public async ValueTask<IReadOnlyList<DataModel.Entities.Guild>> GetAlliancesAsync(Guid guildId)
     {
         return await this.Context.Set<Guild>()
-            .Where(g => g.AllianceGuildId == allianceMasterId)
+            .Where(g => g.AllianceGuildId == guildId)
             .Include(g => g.RawMembers)
             .ToListAsync().ConfigureAwait(false);
     }
